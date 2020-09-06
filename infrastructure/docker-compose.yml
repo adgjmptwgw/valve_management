@@ -1,0 +1,30 @@
+version: "3.7"
+volumes:
+  db-store:
+  php-fpm-socket:
+services:
+  app:
+    build: ./docker/php
+    container_name: "valve-app"
+    volumes:
+      - php-fpm-socket:/var/run/php-fpm
+      - ../src:/work/backend
+      - ./docker/php/bash/.bash_history:/root/.bash_history
+      - ./docker/php/bash/psysh:/root/.config/psysh
+
+  web:
+    build: ./docker/nginx
+    container_name: "valve-web"
+    ports:
+      - 8080:80
+    volumes:
+      - php-fpm-socket:/var/run/php-fpm
+      - ../src:/work/backend
+
+  db:
+    build: ./docker/mysql
+    container_name: "valve-db"
+    volumes:
+      - db-store:/var/lib/mysql
+    ports:
+      - 33300:3306
