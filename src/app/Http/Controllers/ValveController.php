@@ -17,12 +17,20 @@ class ValveController extends Controller
     {
         // $ValveOptionsの変数にValveOptionモデルから取ってきたデータをid順に昇順で代入する。
         $ValveOptions = ValveOption::orderBy('id', 'asc')->get();
+        // $ValveOptions2 = ValveOption::orderBy('id', 'desc')->get();
+        
         // ddd($ValveOptions);
         //   ※$ValveOptionsのデータの中身を確認。
         // ValveOptionという名前のオブジェクトに$ValveOptionsを代入する。このオブジェクトはview以下で使用。
         return view('SystemD', [
-            'ValveOptions' => $ValveOptions
+            'ValveOptions' => $ValveOptions,
+            // 'ValveOptions2' => $ValveOptions2
         ]);
+    }
+    
+    public function HomeIndex()
+    {
+        return view('Home');
     }
 
     /**

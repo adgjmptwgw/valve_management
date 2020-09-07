@@ -20,16 +20,25 @@ Route::get('/', function () {
 // 系統線図の表示に関するルーティング
 Route::get('/SystemD', 'ValveController@index');
 
+// Route::get('/SystemD',function(){
+//     return view('SystemD');
+// });
+
+// ホーム画面の表示処理
+Route::get('/Home', 'ValveController@HomeIndex');
+
 // 編集処理
-Route::post('/SystemD', 'ValveController@update');
+// Route::post('/SystemD', 'ValveController@update');
 
 // 弁のオプション
 // Route::post('/SystemD', 'ValveController@store');
 
-Route::resource('SystemD', 'ValveController')->only([
-    'index', 'store', 'edit', 'update', 'destroy'
-]);
+// Route::resource('SystemD', 'ValveController')->only([
+//     'index', 'store', 'edit', 'update', 'destroy'
+// ]);
 
+
+// 以下Laravelデフォルト
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
