@@ -91,7 +91,7 @@ export default {
             stateInput: "",
             valveMemo: "",
             valveLock: "保安ロック",
-            lockInput: ""
+            lockInput: "",
         };
     },
     // props: ["optionId"],

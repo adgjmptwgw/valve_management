@@ -17,15 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// 系統線図の表示に関するルーティング
-Route::get('/SystemD', 'ValveController@index');
-
-// Route::get('/SystemD',function(){
-//     return view('SystemD');
-// });
-
 // ホーム画面の表示処理
 Route::get('/Home', 'ValveController@HomeIndex');
+
+// 系統図一覧の表示に関するルーティング
+Route::get('/SystemList', 'ValveController@ListIndex');
+
+// 系統線図の表示に関するルーティング
+// Route::get('/SystemD', 'ValveController@index');
 
 // 編集処理
 // Route::post('/SystemD', 'ValveController@update');

@@ -1953,6 +1953,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
@@ -2191,7 +2193,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({// data() {
+  //     return {
+  //     }
+  // },
+  // props: {
+  //     test: {
+  //         type: Object
+  //     }
+  // },
+});
 
 /***/ }),
 
@@ -38667,14 +38684,16 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { attrs: { id: "app" } }, [
-    _c(
-      "div",
-      [_c("router-link", { attrs: { to: "/T1" } }, [_vm._v("T-1系統線図")])],
-      1
-    ),
-    _vm._v(" "),
-    _c("div", [_c("router-view")], 1)
+  return _c("div", [
+    _c("div", { attrs: { id: "app" } }, [
+      _c(
+        "div",
+        [_c("router-link", { attrs: { to: "/T1" } }, [_vm._v("T-1系統線図")])],
+        1
+      ),
+      _vm._v(" "),
+      _c("div", [_c("router-view")], 1)
+    ])
   ])
 }
 var staticRenderFns = []
@@ -38982,7 +39001,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { attrs: { id: "app" } }, [_c("UsuallyClose")], 1)
+  return _c("div")
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -54960,27 +54979,27 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var _components_Menus_SystemList_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Menus/SystemList.vue */ "./resources/js/components/Menus/SystemList.vue");
-/* harmony import */ var _components_SystemDiagram_T1_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/SystemDiagram/T1.vue */ "./resources/js/components/SystemDiagram/T1.vue");
-/* harmony import */ var _components_Parts_UsuallyClose_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Parts/UsuallyClose.vue */ "./resources/js/components/Parts/UsuallyClose.vue");
-
+/* harmony import */ var _components_SystemDiagram_T1_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/SystemDiagram/T1.vue */ "./resources/js/components/SystemDiagram/T1.vue");
+/* harmony import */ var _components_Parts_UsuallyClose_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Parts/UsuallyClose.vue */ "./resources/js/components/Parts/UsuallyClose.vue");
+ // import SystemList from "./components/Menus/SystemList.vue";
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = (new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
   mode: "history",
-  routes: [{
-    path: "/SystemList",
-    name: "目次",
-    component: _components_Menus_SystemList_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
-  }, {
+  routes: [// {
+  //     path: "/SystemList",
+  //     name: "目次",
+  //     component: SystemList
+  // },
+  {
     path: "/T1",
     name: "T-1系統線図",
-    component: _components_SystemDiagram_T1_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+    component: _components_SystemDiagram_T1_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   }, {
     path: "/UsuallyClose",
     name: "閉のバルブ",
-    component: _components_Parts_UsuallyClose_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+    component: _components_Parts_UsuallyClose_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   }]
 }));
 

@@ -13,21 +13,28 @@ class ValveController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function ListIndex()
     {
         // $ValveOptionsの変数にValveOptionモデルから取ってきたデータをid順に昇順で代入する。
         $ValveOptions = ValveOption::orderBy('id', 'asc')->get();
+
+
         // $ValveOptions2 = ValveOption::orderBy('id', 'desc')->get();
         
+        // $test = ValveOption::orderBy('id', 'asc')->get();
+        // $ValveOptions = json_encode($test);
+
         // ddd($ValveOptions);
         //   ※$ValveOptionsのデータの中身を確認。
         // ValveOptionという名前のオブジェクトに$ValveOptionsを代入する。このオブジェクトはview以下で使用。
-        return view('SystemD', [
+        return view('SystemList', [
             'ValveOptions' => $ValveOptions,
-            // 'ValveOptions2' => $ValveOptions2
+        //     'ValveOptions2' => $ValveOptions2
         ]);
+
+        // return view('SystemList')->with('ValveOptions', $ValveOptions);
     }
-    
+
     public function HomeIndex()
     {
         return view('Home');
@@ -109,14 +116,14 @@ class ValveController extends Controller
             'valve_state' => 'sometimes|max:50',
             'valve_memo' => 'sometimes|max:50',
         ]);
-        
+
         if ($validator->fails()) {
             return redirect()
                 ->route('SystemD.index')
                 ->withInput()
                 ->withErrors($validator);
         }
-        
+
         $valveOption = ValveOption::find($id);
         // $valveOption->valve_name = 'CWP出口弁';
         if ($request->valve_state == !NULL) {
