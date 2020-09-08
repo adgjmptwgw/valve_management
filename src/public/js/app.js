@@ -2063,11 +2063,11 @@ __webpack_require__.r(__webpack_exports__);
       lockInput: ""
     };
   },
-  // props: ["optionId"],
+  props: ["optionId"],
   methods: {
     updateOption: function updateOption() {
-      axios // .put("/api/System/" + this.optionId, {
-      .put("/api/System/" + 1, {
+      axios.put("/api/System/" + this.optionId, {
+        // .put("/api/System/" + 1, {
         valve_state: this.stateInput,
         valve_lock: this.lockInput,
         valve_memo: this.valveMemo
@@ -2199,15 +2199,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({// data() {
-  //     return {
-  //     }
-  // },
-  // props: {
-  //     test: {
-  //         type: Object
-  //     }
-  // },
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      sendId: ""
+    };
+  },
+  props: {
+    T1: {
+      type: Object
+    }
+  },
+  methods: {
+    select: function select(ValveId) {
+      return this.sendId = ValveId;
+    }
+  }
 });
 
 /***/ }),
@@ -39001,7 +39011,35 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c(
+    "div",
+    [
+      _vm._l(_vm.T1, function(Valve) {
+        return _c(
+          "div",
+          {
+            key: Valve.id,
+            on: {
+              click: function($event) {
+                return _vm.select(Valve.id)
+              }
+            }
+          },
+          [
+            _c("p", [_vm._v(_vm._s(Valve.id))]),
+            _vm._v(" "),
+            _c(
+              "p",
+              [_c("UsuallyClose", { attrs: { "option-id": _vm.sendId } })],
+              1
+            )
+          ]
+        )
+      }),
+      _vm._v("\n    " + _vm._s(_vm.sendId) + "\n\n    ")
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

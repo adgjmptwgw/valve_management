@@ -94,12 +94,12 @@ export default {
             lockInput: "",
         };
     },
-    // props: ["optionId"],
+    props: ["optionId"],
     methods: {
         updateOption() {
             axios
-                // .put("/api/System/" + this.optionId, {
-                .put("/api/System/" + 1, {
+                .put("/api/System/" + this.optionId, {
+                // .put("/api/System/" + 1, {
                     valve_state: this.stateInput,
                     valve_lock: this.lockInput,
                     valve_memo: this.valveMemo
