@@ -2681,7 +2681,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
  // const axios = require('axios');
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -7291,7 +7290,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* .t1_3 {\n    color: red;\n    position: absolute;\n    top:100px;\n    right: 100px;\n} */\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* .t1_3 {\n    color: red;\n    position: absolute;\n    top:100px;\n    right: 100px;\n} */\n", ""]);
 
 // exports
 
@@ -40171,7 +40170,7 @@ var render = function() {
           _vm._s(_vm.sendId) +
           "\n    " +
           _vm._s(_vm.sendName) +
-          "\n\n    "
+          "\n    "
       )
     ],
     2

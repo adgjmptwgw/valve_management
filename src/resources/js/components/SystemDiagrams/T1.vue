@@ -43,7 +43,6 @@
 
         {{ sendId }}
         {{ sendName }}
-
         <!-- {{ValveOptions.id}} -->
     </div>
 </template>
