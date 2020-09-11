@@ -1959,15 +1959,53 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Parts/UsuallyClose.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Parts/UsuallyClose.vue?vue&type=script&lang=js& ***!
-  \*****************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Parts/BaseListBtn.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Parts/BaseListBtn.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      isActive: "block"
+    };
+  },
+  methods: {
+    ChangeClass: function ChangeClass() {// this.isActive = "none"
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Parts/UsuallyAdjusted.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Parts/UsuallyAdjusted.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2066,14 +2104,154 @@ __webpack_require__.r(__webpack_exports__);
   props: ["optionId"],
   methods: {
     updateOption: function updateOption() {
-      axios.put("/api/System/" + this.optionId, {
-        // .put("/api/System/" + 1, {
-        valve_state: this.stateInput,
-        valve_lock: this.lockInput,
-        valve_memo: this.valveMemo
-      }).then(function (response) {
-        console.log(response);
-      });
+      var _this = this;
+
+      // タイマーで遅らせる理由
+      // propsに弁1番が入っている時に弁2番を操作する→弁2番の操作が弁1番の方に反映されてしまう。
+      setTimeout(function () {
+        return axios.put("/api/System/" + _this.optionId, {
+          // .put("/api/System/" + 1, {
+          valve_state: _this.stateInput,
+          valve_lock: _this.lockInput,
+          valve_memo: _this.valveMemo
+        }).then(function (response) {
+          console.log(response);
+        });
+      }, 200);
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Parts/UsuallyClose.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Parts/UsuallyClose.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      show: true,
+      // show: false,
+      open: true,
+      close: true,
+      adjusted: true,
+      valueOpen: "開",
+      valueClose: "閉",
+      valueAdjusted: "調整開",
+      stateInput: "",
+      valveMemo: "",
+      valveLock: "保安ロック",
+      lockInput: ""
+    };
+  },
+  props: ["optionId"],
+  methods: {
+    updateOption: function updateOption() {
+      var _this = this;
+
+      // タイマーで遅らせる理由
+      // propsに弁1番が入っている時に弁2番を操作する→弁2番の操作が弁1番の方に反映されてしまう。
+      setTimeout(function () {
+        return axios.put("/api/System/" + _this.optionId, {
+          // .put("/api/System/" + 1, {
+          valve_state: _this.stateInput,
+          valve_lock: _this.lockInput,
+          valve_memo: _this.valveMemo
+        }).then(function (response) {
+          console.log(response);
+        });
+      }, 200);
     }
   }
 });
@@ -2159,29 +2337,65 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      show: false,
+      show: true,
+      // show: false,
       open: true,
       close: true,
-      adjusted: true
+      adjusted: true,
+      valueOpen: "開",
+      valueClose: "閉",
+      valueAdjusted: "調整開",
+      stateInput: "",
+      valveMemo: "",
+      valveLock: "保安ロック",
+      lockInput: ""
     };
-  } // props: {
-  //     csrf: {
-  //         type: String,
-  //         required: true
-  //     }
-  // }
+  },
+  props: ["optionId"],
+  methods: {
+    updateOption: function updateOption() {
+      var _this = this;
 
+      // タイマーで遅らせる理由
+      // propsに弁1番が入っている時に弁2番を操作する→弁2番の操作が弁1番の方に反映されてしまう。
+      setTimeout(function () {
+        return axios.put("/api/System/" + _this.optionId, {
+          // .put("/api/System/" + 1, {
+          valve_state: _this.stateInput,
+          valve_lock: _this.lockInput,
+          valve_memo: _this.valveMemo
+        }).then(function (response) {
+          console.log(response);
+        });
+      }, 200);
+    }
+  }
 });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SystemDiagram/T1.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SystemDiagram/T1.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SystemDiagrams/T1.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SystemDiagrams/T1.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2202,19 +2416,73 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+// const axios = require('axios');
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      sendId: ""
-    };
-  },
   props: {
     T1: {
       type: Object
     }
   },
+  data: function data() {
+    return {
+      sendId: "",
+      // バルブのコンポーネントに送る弁のid(弁をクリック時に送信される)
+      assignClass: "t1_" // ValveOptions:[]
+
+    };
+  },
   methods: {
-    select: function select(ValveId) {
+    getId: function getId(ValveId) {
+      return this.sendId = ValveId;
+    }
+  } // mounted() {
+  //     axios.get('/SystemList/json')
+  //          .then(response =>{
+  //              this.ValveOptions = response.data;
+  //          })
+  // },
+
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SystemDiagrams/T2.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SystemDiagrams/T2.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      sendId: "",
+      // バルブのコンポーネントに送る弁のid(弁をクリック時に送信される)
+      roadClose: true
+    };
+  },
+  props: ["T2"],
+  // {
+  //     type: Oxbject
+  // }
+  methods: {
+    getId: function getId(ValveId) {
       return this.sendId = ValveId;
     }
   }
@@ -6742,6 +7010,25 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Parts/UsuallyAdjusted.vue?vue&type=style&index=0&id=552e94f3&scoped=true&lang=css&":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Parts/UsuallyAdjusted.vue?vue&type=style&index=0&id=552e94f3&scoped=true&lang=css& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* 通常「閉」のバルブimg */\n.closeV[data-v-552e94f3] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n}\n\n/* 通常「開」のバルブimg */\n.openV[data-v-552e94f3] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n}\n\n/* 「調整開」のバルブimg */\n.adjustedV[data-v-552e94f3] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n}\n\n/* バルブオプション */\n.valve_option[data-v-552e94f3] {\n    width: 200px;\n    height: 600px;\n    display: flex;\n    justify-content: center;\n    flex-direction: column;\n    border-radius: 5px;\n}\n\n/* バルブオプション内の各ボタン(開閉等のボタン) */\n.valve_option > input[data-v-552e94f3] {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    margin: 30px auto;\n    width: 200px;\n    height: 50px;\n    border-radius: 5px;\n    border-bottom: solid 5px #444;\n    border-right: solid 5px #444;\n}\n\n/* オプション内のメモ欄 */\n.valve_option > textarea[data-v-552e94f3] {\n    width: 200px;\n    height: 50px;\n    border-radius: 5px;\n}\n.valve_names[data-v-552e94f3] {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-direction: column;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Parts/UsuallyClose.vue?vue&type=style&index=0&id=616696c3&scoped=true&lang=css&":
 /*!************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Parts/UsuallyClose.vue?vue&type=style&index=0&id=616696c3&scoped=true&lang=css& ***!
@@ -6754,7 +7041,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* 通常「閉」のバルブimg */\n.closeV[data-v-616696c3] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n}\n\n/* 通常「開」のバルブimg */\n.openV[data-v-616696c3] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n}\n\n/* 「調整開」のバルブimg */\n.adjustedV[data-v-616696c3] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n}\n\n/* バルブオプション */\n.valve_option[data-v-616696c3] {\n    width: 200px;\n    height: 600px;\n    display: flex;\n    justify-content: center;\n    flex-direction: column;\n    border-radius: 5px;\n}\n\n/* バルブオプション内の各ボタン(開閉等のボタン) */\n.valve_option > input[data-v-616696c3] {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    margin: 30px auto;\n    width: 200px;\n    height: 50px;\n    border-radius: 5px;\n    border-bottom: solid 5px #444;\n    border-right: solid 5px #444;\n}\n\n/* オプション内のメモ欄 */\n.valve_option > textarea[data-v-616696c3] {\n    width: 200px;\n    height: 50px;\n    border-radius: 5px;\n}\n.valve_names[data-v-616696c3] {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-direction: column;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* 通常「閉」のバルブimg */\n.closeV[data-v-616696c3] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n}\n\n/* 通常「開」のバルブimg */\n.openV[data-v-616696c3] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n}\n\n/* 「調整開」のバルブimg */\n.adjustedV[data-v-616696c3] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n}\n\n/* バルブオプション */\n.valve_option[data-v-616696c3] {\n    width: 200px;\n    height: 600px;\n    display: flex;\n    justify-content: center;\n    flex-direction: column;\n    border-radius: 5px;\n}\n\n/* バルブオプション内の各ボタン(開閉等のボタン) */\n.valve_option > input[data-v-616696c3] {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    margin: 30px auto;\n    width: 200px;\n    height: 50px;\n    border-radius: 5px;\n    border-bottom: solid 5px #444;\n    border-right: solid 5px #444;\n}\n\n/* オプション内のメモ欄 */\n.valve_option > textarea[data-v-616696c3] {\n    width: 200px;\n    height: 50px;\n    border-radius: 5px;\n}\n.valve_names[data-v-616696c3] {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-direction: column;\n}\n", ""]);
 
 // exports
 
@@ -6773,7 +7060,26 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* 通常「閉」のバルブimg */\n.closeV[data-v-e9d36162] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n    top: 100px;\n    left: 300px;\n}\n\n/* 通常「開」のバルブimg */\n.openV[data-v-e9d36162] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n    top: 100px;\n    left: 300px;\n}\n\n/* 「調整開」のバルブimg */\n.adjustedV[data-v-e9d36162] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n    top: 100px;\n    left: 300px;\n}\n\n/* バルブオプション */\n.valve_option[data-v-e9d36162] {\n    width: 200px;\n    height: 600px;\n    /* display: flex;\n    justify-content: center;\n    flex-direction: column;\n    border-radius: 5px; */\n}\n\n/* バルブオプション内の各ボタン(開閉等のボタン) */\n.valve_option > button[data-v-e9d36162] {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    margin: 30px auto;\n    width: 200px;\n    height: 50px;\n    border-radius: 5px;\n    border-bottom: solid 5px #444;\n    border-right: solid 5px #444;\n}\n\n/* オプション内のメモ欄 */\n.valve_option > textarea[data-v-e9d36162] {\n    width: 200px;\n    height: 50px;\n    border-radius: 5px;\n}\n.valve_names[data-v-e9d36162] {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-direction: column;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* 通常「閉」のバルブimg */\n.closeV[data-v-e9d36162] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n}\n\n/* 通常「開」のバルブimg */\n.openV[data-v-e9d36162] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n}\n\n/* 「調整開」のバルブimg */\n.adjustedV[data-v-e9d36162] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n}\n\n/* バルブオプション */\n.valve_option[data-v-e9d36162] {\n    width: 200px;\n    height: 600px;\n    display: flex;\n    justify-content: center;\n    flex-direction: column;\n    border-radius: 5px;\n}\n\n/* バルブオプション内の各ボタン(開閉等のボタン) */\n.valve_option > input[data-v-e9d36162] {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    margin: 30px auto;\n    width: 200px;\n    height: 50px;\n    border-radius: 5px;\n    border-bottom: solid 5px #444;\n    border-right: solid 5px #444;\n}\n\n/* オプション内のメモ欄 */\n.valve_option > textarea[data-v-e9d36162] {\n    width: 200px;\n    height: 50px;\n    border-radius: 5px;\n}\n.valve_names[data-v-e9d36162] {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-direction: column;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SystemDiagrams/T1.vue?vue&type=style&index=0&scope=true&lang=css&":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SystemDiagrams/T1.vue?vue&type=style&index=0&scope=true&lang=css& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.t1_2 {\n    color: red;\n}\n", ""]);
 
 // exports
 
@@ -37958,6 +38264,36 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Parts/UsuallyAdjusted.vue?vue&type=style&index=0&id=552e94f3&scoped=true&lang=css&":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Parts/UsuallyAdjusted.vue?vue&type=style&index=0&id=552e94f3&scoped=true&lang=css& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./UsuallyAdjusted.vue?vue&type=style&index=0&id=552e94f3&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Parts/UsuallyAdjusted.vue?vue&type=style&index=0&id=552e94f3&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Parts/UsuallyClose.vue?vue&type=style&index=0&id=616696c3&scoped=true&lang=css&":
 /*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Parts/UsuallyClose.vue?vue&type=style&index=0&id=616696c3&scoped=true&lang=css& ***!
@@ -37997,6 +38333,36 @@ if(false) {}
 
 
 var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./UsuallyOpen.vue?vue&type=style&index=0&id=e9d36162&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Parts/UsuallyOpen.vue?vue&type=style&index=0&id=e9d36162&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SystemDiagrams/T1.vue?vue&type=style&index=0&scope=true&lang=css&":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SystemDiagrams/T1.vue?vue&type=style&index=0&scope=true&lang=css& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./T1.vue?vue&type=style&index=0&scope=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SystemDiagrams/T1.vue?vue&type=style&index=0&scope=true&lang=css&");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -38713,6 +39079,204 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Parts/BaseListBtn.vue?vue&type=template&id=2ea3ebba&":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Parts/BaseListBtn.vue?vue&type=template&id=2ea3ebba& ***!
+  \********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "button",
+      {
+        style: { display: _vm.isActive },
+        on: {
+          click: function($event) {
+            return _vm.ChangeClass()
+          }
+        }
+      },
+      [_vm._t("btn-name")],
+      2
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Parts/UsuallyAdjusted.vue?vue&type=template&id=552e94f3&scoped=true&":
+/*!************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Parts/UsuallyAdjusted.vue?vue&type=template&id=552e94f3&scoped=true& ***!
+  \************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("span", [
+      _vm.open
+        ? _c("img", {
+            staticClass: "closeV",
+            attrs: { src: "/img/close_valve_2.png", alt: "弁「閉」" }
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.close
+        ? _c("img", {
+            staticClass: "openV",
+            attrs: { src: "/img/open_valve_2.png", alt: "弁「開」" }
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.adjusted
+        ? _c("img", {
+            staticClass: "adjustedV",
+            attrs: { src: "/img/adjusted_valve_2.png", alt: "調整開" }
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.show
+        ? _c("div", [
+            _c("fieldset", { staticClass: "valve_option" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("input", {
+                attrs: {
+                  type: "button",
+                  name: "valve_state",
+                  value: _vm.valueOpen
+                },
+                on: {
+                  click: function($event) {
+                    ;(_vm.open = false),
+                      (_vm.close = true),
+                      (_vm.adjusted = false),
+                      (_vm.stateInput = _vm.valueOpen),
+                      _vm.updateOption()
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("input", {
+                attrs: {
+                  type: "button",
+                  name: "valve_state",
+                  value: _vm.valueClose
+                },
+                on: {
+                  click: function($event) {
+                    ;(_vm.close = false),
+                      (_vm.open = true),
+                      (_vm.adjusted = false),
+                      (_vm.stateInput = _vm.valueClose),
+                      _vm.updateOption()
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("input", {
+                attrs: {
+                  type: "button",
+                  name: "valve_state",
+                  value: _vm.valueAdjusted
+                },
+                on: {
+                  click: function($event) {
+                    ;(_vm.close = false),
+                      (_vm.open = false),
+                      (_vm.adjusted = true),
+                      (_vm.stateInput = _vm.valueAdjusted),
+                      _vm.updateOption()
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("input", {
+                attrs: {
+                  type: "button",
+                  name: "valve_lock",
+                  value: _vm.valveLock
+                },
+                on: {
+                  click: function($event) {
+                    _vm.lockInput = _vm.valveLock
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.valveMemo,
+                    expression: "valveMemo"
+                  }
+                ],
+                attrs: { name: "valve_memo" },
+                domProps: { value: _vm.valveMemo },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.valveMemo = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("input", {
+                attrs: { type: "button", value: "メモを保存" },
+                on: { click: _vm.updateOption }
+              }),
+              _vm._v(" "),
+              _c("button", { on: { click: _vm.updateOption } }, [
+                _vm._v("\n                    DBへ送信\n                ")
+              ])
+            ])
+          ])
+        : _vm._e()
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("fieldset", [
+      _c("p", { staticClass: "valve_names" }, [_vm._v("弁名称")]),
+      _vm._v(" "),
+      _c("p", { staticClass: "valve_names" }, [_vm._v("弁番号")])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Parts/UsuallyClose.vue?vue&type=template&id=616696c3&scoped=true&":
 /*!*********************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Parts/UsuallyClose.vue?vue&type=template&id=616696c3&scoped=true& ***!
@@ -38757,47 +39321,62 @@ var render = function() {
               _vm._m(0),
               _vm._v(" "),
               _c("input", {
-                attrs: { type: "submit", name: "valve_state" },
-                domProps: { value: _vm.valueOpen },
+                attrs: {
+                  type: "button",
+                  name: "valve_state",
+                  value: _vm.valueOpen
+                },
                 on: {
                   click: function($event) {
                     ;(_vm.open = false),
                       (_vm.close = true),
                       (_vm.adjusted = false),
-                      (_vm.stateInput = _vm.valueOpen)
+                      (_vm.stateInput = _vm.valueOpen),
+                      _vm.updateOption()
                   }
                 }
               }),
               _vm._v(" "),
               _c("input", {
-                attrs: { type: "submit", name: "valve_state" },
-                domProps: { value: _vm.valueClose },
+                attrs: {
+                  type: "button",
+                  name: "valve_state",
+                  value: _vm.valueClose
+                },
                 on: {
                   click: function($event) {
                     ;(_vm.close = false),
                       (_vm.open = true),
                       (_vm.adjusted = false),
-                      (_vm.stateInput = _vm.valueClose)
+                      (_vm.stateInput = _vm.valueClose),
+                      _vm.updateOption()
                   }
                 }
               }),
               _vm._v(" "),
               _c("input", {
-                attrs: { type: "submit", name: "valve_state" },
-                domProps: { value: _vm.valueAdjusted },
+                attrs: {
+                  type: "button",
+                  name: "valve_state",
+                  value: _vm.valueAdjusted
+                },
                 on: {
                   click: function($event) {
                     ;(_vm.close = false),
                       (_vm.open = false),
                       (_vm.adjusted = true),
-                      (_vm.stateInput = _vm.valueAdjusted)
+                      (_vm.stateInput = _vm.valueAdjusted),
+                      _vm.updateOption()
                   }
                 }
               }),
               _vm._v(" "),
               _c("input", {
-                attrs: { type: "submit", name: "valve_lock" },
-                domProps: { value: _vm.valveLock },
+                attrs: {
+                  type: "button",
+                  name: "valve_lock",
+                  value: _vm.valveLock
+                },
                 on: {
                   click: function($event) {
                     _vm.lockInput = _vm.valveLock
@@ -38826,7 +39405,10 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _c("input", { attrs: { type: "submit", value: "メモを保存" } }),
+              _c("input", {
+                attrs: { type: "button", value: "メモを保存" },
+                on: { click: _vm.updateOption }
+              }),
               _vm._v(" "),
               _c("button", { on: { click: _vm.updateOption } }, [
                 _vm._v("\n                    DBへ送信\n                ")
@@ -38871,111 +39453,130 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c(
-      "span",
-      {
-        on: {
-          click: function($event) {
-            _vm.show = !_vm.show
-          }
-        }
-      },
-      [
-        _vm.adjusted
-          ? _c("img", {
-              staticClass: "adjustedV",
-              attrs: { src: "/img/adjusted_valve_2.png", alt: "調整開" }
-            })
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.open
-          ? _c("img", {
-              staticClass: "closeV",
-              attrs: { src: "/img/close_valve_2.png", alt: "弁「閉」" }
-            })
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.close
-          ? _c("img", {
-              staticClass: "openV",
-              attrs: { src: "/img/open_valve_2.png", alt: "弁「開」" }
-            })
-          : _vm._e(),
-        _vm._v(" "),
-        _c("form", { attrs: { action: "/SystemD", method: "post" } }, [
-          _vm.show
-            ? _c("div", [
-                _c("fieldset", { staticClass: "valve_option" }, [
-                  _vm._m(0),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      attrs: { name: "valve_state" },
-                      on: {
-                        click: function($event) {
-                          ;(_vm.open = false),
-                            (_vm.close = true),
-                            (_vm.adjusted = false)
-                        }
-                      }
-                    },
-                    [
-                      _vm._v(
-                        "\n                        開\n                    "
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      attrs: { name: "valve_state" },
-                      on: {
-                        click: function($event) {
-                          ;(_vm.close = false),
-                            (_vm.open = true),
-                            (_vm.adjusted = false)
-                        }
-                      }
-                    },
-                    [
-                      _vm._v(
-                        "\n                        閉\n                    "
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      attrs: { name: "valve_state" },
-                      on: {
-                        click: function($event) {
-                          ;(_vm.close = false),
-                            (_vm.open = false),
-                            (_vm.adjusted = true)
-                        }
-                      }
-                    },
-                    [
-                      _vm._v(
-                        "\n                        調整開\n                    "
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("button", [_vm._v("保安ロックへ追加")]),
-                  _vm._v(" "),
-                  _c("button", [_vm._v("メモ")]),
-                  _vm._v(" "),
-                  _c("textarea", { attrs: { name: "valve_memo" } })
-                ])
+    _c("span", [
+      _vm.adjusted
+        ? _c("img", {
+            staticClass: "adjustedV",
+            attrs: { src: "/img/adjusted_valve_2.png", alt: "調整開" }
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.open
+        ? _c("img", {
+            staticClass: "closeV",
+            attrs: { src: "/img/close_valve_2.png", alt: "弁「閉」" }
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.close
+        ? _c("img", {
+            staticClass: "openV",
+            attrs: { src: "/img/open_valve_2.png", alt: "弁「開」" }
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.show
+        ? _c("div", [
+            _c("fieldset", { staticClass: "valve_option" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("input", {
+                attrs: {
+                  type: "button",
+                  name: "valve_state",
+                  value: _vm.valueOpen
+                },
+                on: {
+                  click: function($event) {
+                    ;(_vm.open = false),
+                      (_vm.close = true),
+                      (_vm.adjusted = false),
+                      (_vm.stateInput = _vm.valueOpen),
+                      _vm.updateOption()
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("input", {
+                attrs: {
+                  type: "button",
+                  name: "valve_state",
+                  value: _vm.valueClose
+                },
+                on: {
+                  click: function($event) {
+                    ;(_vm.close = false),
+                      (_vm.open = true),
+                      (_vm.adjusted = false),
+                      (_vm.stateInput = _vm.valueClose),
+                      _vm.updateOption()
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("input", {
+                attrs: {
+                  type: "button",
+                  name: "valve_state",
+                  value: _vm.valueAdjusted
+                },
+                on: {
+                  click: function($event) {
+                    ;(_vm.close = false),
+                      (_vm.open = false),
+                      (_vm.adjusted = true),
+                      (_vm.stateInput = _vm.valueAdjusted),
+                      _vm.updateOption()
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("input", {
+                attrs: {
+                  type: "button",
+                  name: "valve_lock",
+                  value: _vm.valveLock
+                },
+                on: {
+                  click: function($event) {
+                    _vm.lockInput = _vm.valveLock
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.valveMemo,
+                    expression: "valveMemo"
+                  }
+                ],
+                attrs: { name: "valve_memo" },
+                domProps: { value: _vm.valveMemo },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.valveMemo = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("input", {
+                attrs: { type: "button", value: "メモを保存" },
+                on: { click: _vm.updateOption }
+              }),
+              _vm._v(" "),
+              _c("button", { on: { click: _vm.updateOption } }, [
+                _vm._v("\n                    DBへ送信\n                ")
               ])
-            : _vm._e()
-        ])
-      ]
-    )
+            ])
+          ])
+        : _vm._e()
+    ])
   ])
 }
 var staticRenderFns = [
@@ -38996,10 +39597,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SystemDiagram/T1.vue?vue&type=template&id=828459da&":
-/*!*******************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SystemDiagram/T1.vue?vue&type=template&id=828459da& ***!
-  \*******************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SystemDiagrams/T1.vue?vue&type=template&id=474919c2&":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SystemDiagrams/T1.vue?vue&type=template&id=474919c2& ***!
+  \********************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -39021,25 +39622,71 @@ var render = function() {
             key: Valve.id,
             on: {
               click: function($event) {
-                return _vm.select(Valve.id)
+                return _vm.getId(Valve.id)
               }
             }
           },
           [
             _c("p", [_vm._v(_vm._s(Valve.id))]),
             _vm._v(" "),
-            _c(
-              "p",
-              [_c("UsuallyClose", { attrs: { "option-id": _vm.sendId } })],
-              1
-            )
+            _c("p", { class: _vm.assignClass + Valve.id }, [
+              Valve.valve_state === "開"
+                ? _c(
+                    "span",
+                    [_c("UsuallyOpen", { attrs: { "option-id": _vm.sendId } })],
+                    1
+                  )
+                : Valve.valve_state === "閉"
+                ? _c(
+                    "span",
+                    [
+                      _c("UsuallyClose", { attrs: { "option-id": _vm.sendId } })
+                    ],
+                    1
+                  )
+                : Valve.valve_state === "調整開"
+                ? _c(
+                    "span",
+                    [
+                      _c("UsuallyAdjusted", {
+                        attrs: { "option-id": _vm.sendId }
+                      })
+                    ],
+                    1
+                  )
+                : _vm._e()
+            ])
           ]
         )
       }),
-      _vm._v("\n    " + _vm._s(_vm.sendId) + "\n\n    ")
+      _vm._v("\n\n    " + _vm._s(_vm.sendId) + "  \n    ")
     ],
     2
   )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SystemDiagrams/T2.vue?vue&type=template&id=47573143&":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SystemDiagrams/T2.vue?vue&type=template&id=47573143& ***!
+  \********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [_vm._v("\n    " + _vm._s(_vm.T2) + "\n")])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -54407,9 +55054,12 @@ module.exports = function(module) {
 var map = {
 	"./components/ExampleComponent.vue": "./resources/js/components/ExampleComponent.vue",
 	"./components/Menus/SystemList.vue": "./resources/js/components/Menus/SystemList.vue",
+	"./components/Parts/BaseListBtn.vue": "./resources/js/components/Parts/BaseListBtn.vue",
+	"./components/Parts/UsuallyAdjusted.vue": "./resources/js/components/Parts/UsuallyAdjusted.vue",
 	"./components/Parts/UsuallyClose.vue": "./resources/js/components/Parts/UsuallyClose.vue",
 	"./components/Parts/UsuallyOpen.vue": "./resources/js/components/Parts/UsuallyOpen.vue",
-	"./components/SystemDiagram/T1.vue": "./resources/js/components/SystemDiagram/T1.vue",
+	"./components/SystemDiagrams/T1.vue": "./resources/js/components/SystemDiagrams/T1.vue",
+	"./components/SystemDiagrams/T2.vue": "./resources/js/components/SystemDiagrams/T2.vue",
 	"./components/csrfトークン用.vue": "./resources/js/components/csrfトークン用.vue"
 };
 
@@ -54458,15 +55108,17 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // Vueの
 
 
 
+ // Vuexで使用
+// import store from "./store";
+// デフォルトで書いてるやつ
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js"); // Vueのrouterを使う際には以下追加
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]); // Vueのrouterを使う際に「router」追加
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]); // Vueのrouterを使う際に「router」追加(一番下の行に記述している。一番下でないと、コンポーネントが読み込めない)
+// const app = new Vue({  
+//     router
+// });
 
-var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
-  el: "#app",
-  router: _router__WEBPACK_IMPORTED_MODULE_2__["default"]
-});
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -54482,6 +55134,9 @@ files.keys().map(function (key) {
   return vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(key.split('/').pop().split('.')[0], files(key)["default"]);
 }); // 下記はコンポーネントの登録
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// Vue.component('UsuallyOpen', require('./components/Parts/UsuallyOpen.vue').default);
+// Vue.component('T1', require('./components/SystemDiagram/T1.vue').default);
+// Vue.component('UsuallyClose', require('./components/Parts/UsuallyClose.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -54491,6 +55146,14 @@ files.keys().map(function (key) {
 // const app = new Vue({
 //     el: "#app"
 // });
+// Vueのrouterを使う際に「router」追加
+
+var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
+  el: "#app",
+  router: _router__WEBPACK_IMPORTED_MODULE_2__["default"] // 以下Vuex使用に際に記述
+  // store,
+
+});
 
 /***/ }),
 
@@ -54677,6 +55340,162 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Parts/BaseListBtn.vue":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/Parts/BaseListBtn.vue ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _BaseListBtn_vue_vue_type_template_id_2ea3ebba___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BaseListBtn.vue?vue&type=template&id=2ea3ebba& */ "./resources/js/components/Parts/BaseListBtn.vue?vue&type=template&id=2ea3ebba&");
+/* harmony import */ var _BaseListBtn_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BaseListBtn.vue?vue&type=script&lang=js& */ "./resources/js/components/Parts/BaseListBtn.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _BaseListBtn_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _BaseListBtn_vue_vue_type_template_id_2ea3ebba___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _BaseListBtn_vue_vue_type_template_id_2ea3ebba___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Parts/BaseListBtn.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Parts/BaseListBtn.vue?vue&type=script&lang=js&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/Parts/BaseListBtn.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BaseListBtn_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./BaseListBtn.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Parts/BaseListBtn.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BaseListBtn_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Parts/BaseListBtn.vue?vue&type=template&id=2ea3ebba&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/Parts/BaseListBtn.vue?vue&type=template&id=2ea3ebba& ***!
+  \**************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BaseListBtn_vue_vue_type_template_id_2ea3ebba___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./BaseListBtn.vue?vue&type=template&id=2ea3ebba& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Parts/BaseListBtn.vue?vue&type=template&id=2ea3ebba&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BaseListBtn_vue_vue_type_template_id_2ea3ebba___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BaseListBtn_vue_vue_type_template_id_2ea3ebba___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Parts/UsuallyAdjusted.vue":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/Parts/UsuallyAdjusted.vue ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _UsuallyAdjusted_vue_vue_type_template_id_552e94f3_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UsuallyAdjusted.vue?vue&type=template&id=552e94f3&scoped=true& */ "./resources/js/components/Parts/UsuallyAdjusted.vue?vue&type=template&id=552e94f3&scoped=true&");
+/* harmony import */ var _UsuallyAdjusted_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UsuallyAdjusted.vue?vue&type=script&lang=js& */ "./resources/js/components/Parts/UsuallyAdjusted.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _UsuallyAdjusted_vue_vue_type_style_index_0_id_552e94f3_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./UsuallyAdjusted.vue?vue&type=style&index=0&id=552e94f3&scoped=true&lang=css& */ "./resources/js/components/Parts/UsuallyAdjusted.vue?vue&type=style&index=0&id=552e94f3&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _UsuallyAdjusted_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _UsuallyAdjusted_vue_vue_type_template_id_552e94f3_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _UsuallyAdjusted_vue_vue_type_template_id_552e94f3_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "552e94f3",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Parts/UsuallyAdjusted.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Parts/UsuallyAdjusted.vue?vue&type=script&lang=js&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/Parts/UsuallyAdjusted.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UsuallyAdjusted_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./UsuallyAdjusted.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Parts/UsuallyAdjusted.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UsuallyAdjusted_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Parts/UsuallyAdjusted.vue?vue&type=style&index=0&id=552e94f3&scoped=true&lang=css&":
+/*!********************************************************************************************************************!*\
+  !*** ./resources/js/components/Parts/UsuallyAdjusted.vue?vue&type=style&index=0&id=552e94f3&scoped=true&lang=css& ***!
+  \********************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_UsuallyAdjusted_vue_vue_type_style_index_0_id_552e94f3_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./UsuallyAdjusted.vue?vue&type=style&index=0&id=552e94f3&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Parts/UsuallyAdjusted.vue?vue&type=style&index=0&id=552e94f3&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_UsuallyAdjusted_vue_vue_type_style_index_0_id_552e94f3_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_UsuallyAdjusted_vue_vue_type_style_index_0_id_552e94f3_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_UsuallyAdjusted_vue_vue_type_style_index_0_id_552e94f3_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_UsuallyAdjusted_vue_vue_type_style_index_0_id_552e94f3_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_UsuallyAdjusted_vue_vue_type_style_index_0_id_552e94f3_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Parts/UsuallyAdjusted.vue?vue&type=template&id=552e94f3&scoped=true&":
+/*!******************************************************************************************************!*\
+  !*** ./resources/js/components/Parts/UsuallyAdjusted.vue?vue&type=template&id=552e94f3&scoped=true& ***!
+  \******************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UsuallyAdjusted_vue_vue_type_template_id_552e94f3_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./UsuallyAdjusted.vue?vue&type=template&id=552e94f3&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Parts/UsuallyAdjusted.vue?vue&type=template&id=552e94f3&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UsuallyAdjusted_vue_vue_type_template_id_552e94f3_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UsuallyAdjusted_vue_vue_type_template_id_552e94f3_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Parts/UsuallyClose.vue":
 /*!********************************************************!*\
   !*** ./resources/js/components/Parts/UsuallyClose.vue ***!
@@ -54851,18 +55670,20 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/SystemDiagram/T1.vue":
-/*!******************************************************!*\
-  !*** ./resources/js/components/SystemDiagram/T1.vue ***!
-  \******************************************************/
+/***/ "./resources/js/components/SystemDiagrams/T1.vue":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/SystemDiagrams/T1.vue ***!
+  \*******************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _T1_vue_vue_type_template_id_828459da___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./T1.vue?vue&type=template&id=828459da& */ "./resources/js/components/SystemDiagram/T1.vue?vue&type=template&id=828459da&");
-/* harmony import */ var _T1_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./T1.vue?vue&type=script&lang=js& */ "./resources/js/components/SystemDiagram/T1.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _T1_vue_vue_type_template_id_474919c2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./T1.vue?vue&type=template&id=474919c2& */ "./resources/js/components/SystemDiagrams/T1.vue?vue&type=template&id=474919c2&");
+/* harmony import */ var _T1_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./T1.vue?vue&type=script&lang=js& */ "./resources/js/components/SystemDiagrams/T1.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _T1_vue_vue_type_style_index_0_scope_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./T1.vue?vue&type=style&index=0&scope=true&lang=css& */ "./resources/js/components/SystemDiagrams/T1.vue?vue&type=style&index=0&scope=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -54870,10 +55691,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _T1_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _T1_vue_vue_type_template_id_828459da___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _T1_vue_vue_type_template_id_828459da___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _T1_vue_vue_type_template_id_474919c2___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _T1_vue_vue_type_template_id_474919c2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -54883,38 +55704,123 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/SystemDiagram/T1.vue"
+component.options.__file = "resources/js/components/SystemDiagrams/T1.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/SystemDiagram/T1.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************!*\
-  !*** ./resources/js/components/SystemDiagram/T1.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************/
+/***/ "./resources/js/components/SystemDiagrams/T1.vue?vue&type=script&lang=js&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/SystemDiagrams/T1.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_T1_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./T1.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SystemDiagram/T1.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_T1_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./T1.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SystemDiagrams/T1.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_T1_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/SystemDiagram/T1.vue?vue&type=template&id=828459da&":
-/*!*************************************************************************************!*\
-  !*** ./resources/js/components/SystemDiagram/T1.vue?vue&type=template&id=828459da& ***!
-  \*************************************************************************************/
+/***/ "./resources/js/components/SystemDiagrams/T1.vue?vue&type=style&index=0&scope=true&lang=css&":
+/*!***************************************************************************************************!*\
+  !*** ./resources/js/components/SystemDiagrams/T1.vue?vue&type=style&index=0&scope=true&lang=css& ***!
+  \***************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_T1_vue_vue_type_style_index_0_scope_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./T1.vue?vue&type=style&index=0&scope=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SystemDiagrams/T1.vue?vue&type=style&index=0&scope=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_T1_vue_vue_type_style_index_0_scope_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_T1_vue_vue_type_style_index_0_scope_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_T1_vue_vue_type_style_index_0_scope_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_T1_vue_vue_type_style_index_0_scope_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_T1_vue_vue_type_style_index_0_scope_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/SystemDiagrams/T1.vue?vue&type=template&id=474919c2&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/SystemDiagrams/T1.vue?vue&type=template&id=474919c2& ***!
+  \**************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_T1_vue_vue_type_template_id_828459da___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./T1.vue?vue&type=template&id=828459da& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SystemDiagram/T1.vue?vue&type=template&id=828459da&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_T1_vue_vue_type_template_id_828459da___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_T1_vue_vue_type_template_id_474919c2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./T1.vue?vue&type=template&id=474919c2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SystemDiagrams/T1.vue?vue&type=template&id=474919c2&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_T1_vue_vue_type_template_id_474919c2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_T1_vue_vue_type_template_id_828459da___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_T1_vue_vue_type_template_id_474919c2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/SystemDiagrams/T2.vue":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/SystemDiagrams/T2.vue ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _T2_vue_vue_type_template_id_47573143___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./T2.vue?vue&type=template&id=47573143& */ "./resources/js/components/SystemDiagrams/T2.vue?vue&type=template&id=47573143&");
+/* harmony import */ var _T2_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./T2.vue?vue&type=script&lang=js& */ "./resources/js/components/SystemDiagrams/T2.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _T2_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _T2_vue_vue_type_template_id_47573143___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _T2_vue_vue_type_template_id_47573143___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/SystemDiagrams/T2.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/SystemDiagrams/T2.vue?vue&type=script&lang=js&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/SystemDiagrams/T2.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_T2_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./T2.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SystemDiagrams/T2.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_T2_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/SystemDiagrams/T2.vue?vue&type=template&id=47573143&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/SystemDiagrams/T2.vue?vue&type=template&id=47573143& ***!
+  \**************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_T2_vue_vue_type_template_id_47573143___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./T2.vue?vue&type=template&id=47573143& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SystemDiagrams/T2.vue?vue&type=template&id=47573143&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_T2_vue_vue_type_template_id_47573143___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_T2_vue_vue_type_template_id_47573143___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -55017,8 +55923,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var _components_SystemDiagram_T1_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/SystemDiagram/T1.vue */ "./resources/js/components/SystemDiagram/T1.vue");
-/* harmony import */ var _components_Parts_UsuallyClose_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Parts/UsuallyClose.vue */ "./resources/js/components/Parts/UsuallyClose.vue");
+/* harmony import */ var _components_SystemDiagrams_T1_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/SystemDiagrams/T1.vue */ "./resources/js/components/SystemDiagrams/T1.vue");
+/* harmony import */ var _components_SystemDiagrams_T2_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/SystemDiagrams/T2.vue */ "./resources/js/components/SystemDiagrams/T2.vue");
  // import SystemList from "./components/Menus/SystemList.vue";
 
 
@@ -55033,11 +55939,11 @@ __webpack_require__.r(__webpack_exports__);
   {
     path: "/T1",
     name: "T-1系統線図",
-    component: _components_SystemDiagram_T1_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    component: _components_SystemDiagrams_T1_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   }, {
-    path: "/UsuallyClose",
-    name: "閉のバルブ",
-    component: _components_Parts_UsuallyClose_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+    path: "/T2",
+    name: "T-2系統線図",
+    component: _components_SystemDiagrams_T2_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   }]
 }));
 

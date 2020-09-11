@@ -1,7 +1,7 @@
 import Router from "vue-router";
 // import SystemList from "./components/Menus/SystemList.vue";
-import SystemDiagram from "./components/SystemDiagram/T1.vue";
-import UsuallyClose from "./components/Parts/UsuallyClose.vue";
+import T1 from "./components/SystemDiagrams/T1.vue";
+import T2 from "./components/SystemDiagrams/T2.vue";
 
 export default new Router({
     mode: "history",
@@ -14,12 +14,12 @@ export default new Router({
         {
             path: "/T1",
             name: "T-1系統線図",
-            component: SystemDiagram
+            component: T1
         },
         {
-            path: "/UsuallyClose",
-            name: "閉のバルブ",
-            component: UsuallyClose
+            path: "/T2",
+            name: "T-2系統線図",
+            component: T2
         }
     ]
 });

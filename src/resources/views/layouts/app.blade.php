@@ -13,10 +13,13 @@
     <!-- Scripts -->
     <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
     <!-- <script src="{{ secure_asset('js/app.js') }}" defer></script> -->
-    
+
     <!-- 普通はVue.jsコンポーネントを使うページのbodyの最後付近で記述するが、
     deferを書いているので読み込みが最後になる。 -->
     <script src=" {{ mix('js/app.js') }} " defer></script>
+
+    <!-- Vueをblade.phpで使えるようにする。この書き方はダメ。仮使用のみOK。 -->
+    <!-- <script src="https://unpkg.com/vue"></script> -->
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">

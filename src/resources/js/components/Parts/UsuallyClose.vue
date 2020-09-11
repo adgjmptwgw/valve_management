@@ -27,46 +27,53 @@
                         <p class="valve_names">弁番号</p>
                     </fieldset>
                     <input
-                        type="submit"
+                        type="button"
                         name="valve_state"
                         :value="valueOpen"
                         @click="
                             (open = false),
                                 (close = true),
                                 (adjusted = false),
-                                (stateInput = valueOpen)
+                                (stateInput = valueOpen),
+                                updateOption()
                         "
                     />
                     <input
-                        type="submit"
+                        type="button"
                         name="valve_state"
                         :value="valueClose"
                         @click="
                             (close = false),
                                 (open = true),
                                 (adjusted = false),
-                                (stateInput = valueClose)
+                                (stateInput = valueClose),
+                                updateOption()
                         "
                     />
                     <input
-                        type="submit"
+                        type="button"
                         name="valve_state"
                         :value="valueAdjusted"
                         @click="
                             (close = false),
                                 (open = false),
                                 (adjusted = true),
-                                (stateInput = valueAdjusted)
+                                (stateInput = valueAdjusted),
+                                updateOption()
                         "
                     />
                     <input
-                        type="submit"
+                        type="button"
                         name="valve_lock"
                         :value="valveLock"
                         @click="lockInput = valveLock"
                     />
                     <textarea name="valve_memo" v-model="valveMemo"></textarea>
-                    <input type="submit" value="メモを保存" />
+                    <input
+                        type="button"
+                        value="メモを保存"
+                        @click="updateOption"
+                    />
                     <button @click="updateOption">
                         DBへ送信
                     </button>
@@ -91,22 +98,28 @@ export default {
             stateInput: "",
             valveMemo: "",
             valveLock: "保安ロック",
-            lockInput: "",
+            lockInput: ""
         };
     },
     props: ["optionId"],
     methods: {
         updateOption() {
-            axios
-                .put("/api/System/" + this.optionId, {
-                // .put("/api/System/" + 1, {
-                    valve_state: this.stateInput,
-                    valve_lock: this.lockInput,
-                    valve_memo: this.valveMemo
-                })
-                .then(response => {
-                    console.log(response);
-                });
+            // タイマーで遅らせる理由
+            // propsに弁1番が入っている時に弁2番を操作する→弁2番の操作が弁1番の方に反映されてしまう。
+            setTimeout(
+                () =>
+                    axios
+                        .put("/api/System/" + this.optionId, {
+                            // .put("/api/System/" + 1, {
+                            valve_state: this.stateInput,
+                            valve_lock: this.lockInput,
+                            valve_memo: this.valveMemo
+                        })
+                        .then(response => {
+                            console.log(response);
+                        }),
+                200
+            );
         }
     }
 };

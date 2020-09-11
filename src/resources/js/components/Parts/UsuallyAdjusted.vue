@@ -3,12 +3,6 @@
         <span>
             <!-- <span @click="show = !show"> -->
             <img
-                :src="'/img/adjusted_valve_2.png'"
-                alt="調整開"
-                class="adjustedV"
-                v-if="adjusted"
-            />
-            <img
                 :src="'/img/close_valve_2.png'"
                 alt="弁「閉」"
                 class="closeV"
@@ -19,6 +13,12 @@
                 alt="弁「開」"
                 class="openV"
                 v-if="close"
+            />
+            <img
+                :src="'/img/adjusted_valve_2.png'"
+                alt="調整開"
+                class="adjustedV"
+                v-if="adjusted"
             />
             <div v-if="show">
                 <fieldset class="valve_option">

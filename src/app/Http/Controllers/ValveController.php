@@ -15,29 +15,43 @@ class ValveController extends Controller
      */
     public function ListIndex()
     {
-        // $ValveOptionsの変数にValveOptionモデルから取ってきたデータをid順に昇順で代入する。
-        // $ValveOptions = ValveOption::orderBy('id', 'asc')->get();
-
-
-        // $ValveOptions2 = ValveOption::orderBy('id', 'desc')->get();
-        
+        // $ValveOptionsの変数にValveOptionモデルから取ってきたデータをid順に昇順で代入する。        
         $T1 = ValveOption::orderBy('id', 'asc')->get();
         $ValveOptions = json_encode($T1);
-
         // ddd($ValveOptions);
-        //   ※$ValveOptionsのデータの中身を確認。
-        // ValveOptionという名前のオブジェクトに$ValveOptionsを代入する。このオブジェクトはview以下で使用。
-        // return view('SystemList', [
-        //     'ValveOptions' => $ValveOptions,
-        //     'ValveOptions2' => $ValveOptions2
-        // ]);
-
+        
         return view('SystemList')->with('ValveOptions', $ValveOptions);
     }
+
+    // public function json($id = -1)
+    // {
+    //     if($id = -1)
+    //     {
+    //         return ValveOption::get()->toJson();
+    //     }
+    //     else
+    //     {
+    //         return ValveOption::find($id)->toJson();
+    //     }
+    // }
 
     public function HomeIndex()
     {
         return view('Home');
+    }
+    
+    public function Index()
+    {
+        // $ValveOptionsの変数にValveOptionモデルから取ってきたデータをid順に昇順で代入する。
+        // $ValveOptions = ValveOption::orderBy('id', 'asc')->get();
+
+         // ddd($ValveOptions);
+        //   ※$ValveOptionsのデータの中身を確認。
+        // ValveOptionという名前のオブジェクトに$ValveOptionsを代入する。このオブジェクトはview以下で使用。
+        // return view('SystemD', [
+        //     'ValveOptions' => $ValveOptions,
+        //     'ValveOptions2' => $ValveOptions2
+        // ]);
     }
 
     /**
