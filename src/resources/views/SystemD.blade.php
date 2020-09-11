@@ -6,9 +6,9 @@
 <p>T-1系統図</p>
 
 
-<!-- <div id="app">
-  <usually-close :csrf="{{json_encode(csrf_token())}}"></usually-close>
-</div> -->
+<div id="app">
+  <store-valve :csrf="{{json_encode(csrf_token())}}"></store-valve>
+</div>
 
 <!-- ---------------表示領域------------------>
 

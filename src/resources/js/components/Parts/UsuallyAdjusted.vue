@@ -1,18 +1,18 @@
 <template>
     <div>
-        <span>
-            <!-- <span @click="show = !show"> -->
-            <img
-                :src="'/img/close_valve_2.png'"
-                alt="弁「閉」"
-                class="closeV"
-                v-if="open"
-            />
+        <!-- <span> -->
+        <span @click="show = !show">
             <img
                 :src="'/img/open_valve_2.png'"
                 alt="弁「開」"
                 class="openV"
                 v-if="close"
+            />
+            <img
+                :src="'/img/close_valve_2.png'"
+                alt="弁「閉」"
+                class="closeV"
+                v-if="open"
             />
             <img
                 :src="'/img/adjusted_valve_2.png'"
@@ -23,8 +23,8 @@
             <div v-if="show">
                 <fieldset class="valve_option">
                     <fieldset>
-                        <p class="valve_names">弁名称</p>
-                        <p class="valve_names">弁番号</p>
+                        <p class="valve_names">{{ optionName }}</p>
+                        <p class="valve_names">{{ optionNumber }}</p>
                     </fieldset>
                     <input
                         type="button"
@@ -74,9 +74,6 @@
                         value="メモを保存"
                         @click="updateOption"
                     />
-                    <button @click="updateOption">
-                        DBへ送信
-                    </button>
                 </fieldset>
             </div>
         </span>
@@ -87,8 +84,8 @@
 export default {
     data() {
         return {
-            show: true,
-            // show: false,
+            // show: true,
+            show: false,
             open: true,
             close: true,
             adjusted: true,
@@ -98,16 +95,28 @@ export default {
             stateInput: "",
             valveMemo: "",
             valveLock: "保安ロック",
-            lockInput: ""
+            lockInput: "",
+            optionNumber: "23"
         };
     },
-    props: ["optionId"],
+    props: {
+        optionId: {
+            default: ""
+        },
+        optionNumber: {
+            default: ""
+        },
+        optionName: {
+            default: ""
+        }
+    },
     methods: {
         updateOption() {
             // タイマーで遅らせる理由
             // propsに弁1番が入っている時に弁2番を操作する→弁2番の操作が弁1番の方に反映されてしまう。
             setTimeout(
                 () =>
+                    // axiosでデータを送る(このコンポーネント=>app/Http/Request/StoreOption.php=>ValveController=>DB)
                     axios
                         .put("/api/System/" + this.optionId, {
                             // .put("/api/System/" + 1, {

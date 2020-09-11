@@ -1990,6 +1990,106 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Parts/StoreValve.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Parts/StoreValve.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      show: true,
+      // show: false,
+      open: true,
+      close: true,
+      adjusted: true
+    };
+  },
+  props: {
+    csrf: {
+      type: String,
+      required: true
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Parts/UsuallyAdjusted.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Parts/UsuallyAdjusted.vue?vue&type=script&lang=js& ***!
@@ -2081,14 +2181,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      show: true,
-      // show: false,
+      // show: true,
+      show: false,
       open: true,
       close: true,
       adjusted: true,
@@ -2098,10 +2195,21 @@ __webpack_require__.r(__webpack_exports__);
       stateInput: "",
       valveMemo: "",
       valveLock: "保安ロック",
-      lockInput: ""
+      lockInput: "",
+      optionNumber: "23"
     };
   },
-  props: ["optionId"],
+  props: {
+    optionId: {
+      "default": ""
+    },
+    optionNumber: {
+      "default": ""
+    },
+    optionName: {
+      "default": ""
+    }
+  },
   methods: {
     updateOption: function updateOption() {
       var _this = this;
@@ -2109,14 +2217,16 @@ __webpack_require__.r(__webpack_exports__);
       // タイマーで遅らせる理由
       // propsに弁1番が入っている時に弁2番を操作する→弁2番の操作が弁1番の方に反映されてしまう。
       setTimeout(function () {
-        return axios.put("/api/System/" + _this.optionId, {
-          // .put("/api/System/" + 1, {
-          valve_state: _this.stateInput,
-          valve_lock: _this.lockInput,
-          valve_memo: _this.valveMemo
-        }).then(function (response) {
-          console.log(response);
-        });
+        return (// axiosでデータを送る(このコンポーネント=>app/Http/Request/StoreOption.php=>ValveController=>DB)
+          axios.put("/api/System/" + _this.optionId, {
+            // .put("/api/System/" + 1, {
+            valve_state: _this.stateInput,
+            valve_lock: _this.lockInput,
+            valve_memo: _this.valveMemo
+          }).then(function (response) {
+            console.log(response);
+          })
+        );
       }, 200);
     }
   }
@@ -2215,14 +2325,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      show: true,
-      // show: false,
+      // show: true,
+      show: false,
       open: true,
       close: true,
       adjusted: true,
@@ -2232,10 +2339,21 @@ __webpack_require__.r(__webpack_exports__);
       stateInput: "",
       valveMemo: "",
       valveLock: "保安ロック",
-      lockInput: ""
+      lockInput: "",
+      optionNumber: "23"
     };
   },
-  props: ["optionId"],
+  props: {
+    optionId: {
+      "default": ""
+    },
+    optionNumber: {
+      "default": ""
+    },
+    optionName: {
+      "default": ""
+    }
+  },
   methods: {
     updateOption: function updateOption() {
       var _this = this;
@@ -2243,14 +2361,16 @@ __webpack_require__.r(__webpack_exports__);
       // タイマーで遅らせる理由
       // propsに弁1番が入っている時に弁2番を操作する→弁2番の操作が弁1番の方に反映されてしまう。
       setTimeout(function () {
-        return axios.put("/api/System/" + _this.optionId, {
-          // .put("/api/System/" + 1, {
-          valve_state: _this.stateInput,
-          valve_lock: _this.lockInput,
-          valve_memo: _this.valveMemo
-        }).then(function (response) {
-          console.log(response);
-        });
+        return (// axiosでデータを送る(このコンポーネント=>app/Http/Request/StoreOption.php=>ValveController=>DB)
+          axios.put("/api/System/" + _this.optionId, {
+            // .put("/api/System/" + 1, {
+            valve_state: _this.stateInput,
+            valve_lock: _this.lockInput,
+            valve_memo: _this.valveMemo
+          }).then(function (response) {
+            console.log(response);
+          })
+        );
       }, 200);
     }
   }
@@ -2349,14 +2469,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      show: true,
-      // show: false,
+      // show: true,
+      show: false,
       open: true,
       close: true,
       adjusted: true,
@@ -2366,10 +2483,21 @@ __webpack_require__.r(__webpack_exports__);
       stateInput: "",
       valveMemo: "",
       valveLock: "保安ロック",
-      lockInput: ""
+      lockInput: "",
+      optionNumber: "23"
     };
   },
-  props: ["optionId"],
+  props: {
+    optionId: {
+      "default": ""
+    },
+    optionNumber: {
+      "default": ""
+    },
+    optionName: {
+      "default": ""
+    }
+  },
   methods: {
     updateOption: function updateOption() {
       var _this = this;
@@ -2377,14 +2505,16 @@ __webpack_require__.r(__webpack_exports__);
       // タイマーで遅らせる理由
       // propsに弁1番が入っている時に弁2番を操作する→弁2番の操作が弁1番の方に反映されてしまう。
       setTimeout(function () {
-        return axios.put("/api/System/" + _this.optionId, {
-          // .put("/api/System/" + 1, {
-          valve_state: _this.stateInput,
-          valve_lock: _this.lockInput,
-          valve_memo: _this.valveMemo
-        }).then(function (response) {
-          console.log(response);
-        });
+        return (// axiosでデータを送る(このコンポーネント=>app/Http/Request/StoreOption.php=>ValveController=>DB)
+          axios.put("/api/System/" + _this.optionId, {
+            // .put("/api/System/" + 1, {
+            valve_state: _this.stateInput,
+            valve_lock: _this.lockInput,
+            valve_memo: _this.valveMemo
+          }).then(function (response) {
+            console.log(response);
+          })
+        );
       }, 200);
     }
   }
@@ -2392,108 +2522,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SystemDiagrams/T1.vue?vue&type=script&lang=js&":
-/*!****************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SystemDiagrams/T1.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-// const axios = require('axios');
-/* harmony default export */ __webpack_exports__["default"] = ({
-  props: {
-    T1: {
-      type: Object
-    }
-  },
-  data: function data() {
-    return {
-      sendId: "",
-      // バルブのコンポーネントに送る弁のid(弁をクリック時に送信される)
-      assignClass: "t1_" // ValveOptions:[]
-
-    };
-  },
-  methods: {
-    getId: function getId(ValveId) {
-      return this.sendId = ValveId;
-    }
-  } // mounted() {
-  //     axios.get('/SystemList/json')
-  //          .then(response =>{
-  //              this.ValveOptions = response.data;
-  //          })
-  // },
-
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SystemDiagrams/T2.vue?vue&type=script&lang=js&":
-/*!****************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SystemDiagrams/T2.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      sendId: "",
-      // バルブのコンポーネントに送る弁のid(弁をクリック時に送信される)
-      roadClose: true
-    };
-  },
-  props: ["T2"],
-  // {
-  //     type: Oxbject
-  // }
-  methods: {
-    getId: function getId(ValveId) {
-      return this.sendId = ValveId;
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/csrfトークン用.vue?vue&type=script&lang=js&":
-/*!********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/csrfトークン用.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Parts/csrfトークン用.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Parts/csrfトークン用.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2586,6 +2618,148 @@ __webpack_require__.r(__webpack_exports__);
   //     }
   // }
 
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SystemDiagrams/T1.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SystemDiagrams/T1.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Parts_UsuallyClose_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Parts/UsuallyClose.vue */ "./resources/js/components/Parts/UsuallyClose.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+ // const axios = require('axios');
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    // SystemList.blade.phpから送られてきた、ValveOptionテーブルのデータ
+    T1: {
+      type: Object
+    }
+  },
+  data: function data() {
+    return {
+      sendId: "",
+      // UsuallyOpen/Close/adjusted.vueに送信する、弁のid(弁をクリック時に送信される)
+      sendName: "",
+      // UsuallyOpen/Close/adjusted.vueに送信する、弁のid(弁をクリック時に送信される)
+      sendNumber: "",
+      // UsuallyOpen/Close/adjusted.vueに送信する、弁の番号(弁をクリック時に送信される)
+      assignClass: "t1_" // v-forで展開した各弁にclassを自動で割り振る。
+      // 例: class="t1_3" => 系統図=t1,id=3の弁
+      // ValveOptions:[]
+
+    };
+  },
+  methods: {
+    // SystemList.blade.phpから送られてきたデータがv-forで展開される。v-forで展開された各idとvalve_nameを
+    // propsを用いて、UsuallyOpen/Close/Adjusted.Vueにデータを送信する。
+    getId: function getId(ValveId) {
+      return this.sendId = ValveId;
+    },
+    getNumber: function getNumber(ValveNumber) {
+      return this.sendNumber = ValveNumber;
+    },
+    getName: function getName(ValveName) {
+      return this.sendName = ValveName;
+    }
+  } // mounted() {
+  //     axios.get('/SystemList/json')
+  //          .then(response =>{
+  //              this.ValveOptions = response.data;
+  //          })
+  // },
+
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SystemDiagrams/T2.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SystemDiagrams/T2.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      sendId: "",
+      // バルブのコンポーネントに送る弁のid(弁をクリック時に送信される)
+      roadClose: true
+    };
+  },
+  props: ["T2"],
+  // {
+  //     type: Oxbject
+  // }
+  methods: {
+    getId: function getId(ValveId) {
+      return this.sendId = ValveId;
+    }
+  }
 });
 
 /***/ }),
@@ -7010,6 +7184,25 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Parts/StoreValve.vue?vue&type=style&index=0&id=0dd28749&scoped=true&lang=css&":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Parts/StoreValve.vue?vue&type=style&index=0&id=0dd28749&scoped=true&lang=css& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* 通常「閉」のバルブimg */\n.closeV[data-v-0dd28749] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n    /* top: 100px;\n    left: 300px; */\n}\n\n/* 通常「開」のバルブimg */\n.openV[data-v-0dd28749] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n    /* top: 100px;\n    left: 300px; */\n}\n\n/* 「調整開」のバルブimg */\n.adjustedV[data-v-0dd28749] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n    /* top: 100px;\n    left: 300px; */\n}\n\n/* バルブオプション */\n.valve_option[data-v-0dd28749] {\n    width: 200px;\n    height: 600px;\n    /* display: flex;\n    justify-content: center;\n    flex-direction: column;\n    border-radius: 5px; */\n}\n\n/* バルブオプション内の各ボタン(開閉等のボタン) */\n.valve_option > button[data-v-0dd28749] {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    margin: 30px auto;\n    width: 200px;\n    height: 50px;\n    border-radius: 5px;\n    border-bottom: solid 5px #444;\n    border-right: solid 5px #444;\n}\n\n/* オプション内のメモ欄 */\n.valve_option > textarea[data-v-0dd28749] {\n    width: 200px;\n    height: 50px;\n    border-radius: 5px;\n}\n.valve_names[data-v-0dd28749] {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-direction: column;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Parts/UsuallyAdjusted.vue?vue&type=style&index=0&id=552e94f3&scoped=true&lang=css&":
 /*!***************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Parts/UsuallyAdjusted.vue?vue&type=style&index=0&id=552e94f3&scoped=true&lang=css& ***!
@@ -7022,7 +7215,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* 通常「閉」のバルブimg */\n.closeV[data-v-552e94f3] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n}\n\n/* 通常「開」のバルブimg */\n.openV[data-v-552e94f3] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n}\n\n/* 「調整開」のバルブimg */\n.adjustedV[data-v-552e94f3] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n}\n\n/* バルブオプション */\n.valve_option[data-v-552e94f3] {\n    width: 200px;\n    height: 600px;\n    display: flex;\n    justify-content: center;\n    flex-direction: column;\n    border-radius: 5px;\n}\n\n/* バルブオプション内の各ボタン(開閉等のボタン) */\n.valve_option > input[data-v-552e94f3] {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    margin: 30px auto;\n    width: 200px;\n    height: 50px;\n    border-radius: 5px;\n    border-bottom: solid 5px #444;\n    border-right: solid 5px #444;\n}\n\n/* オプション内のメモ欄 */\n.valve_option > textarea[data-v-552e94f3] {\n    width: 200px;\n    height: 50px;\n    border-radius: 5px;\n}\n.valve_names[data-v-552e94f3] {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-direction: column;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* 通常「閉」のバルブimg */\n.closeV[data-v-552e94f3] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n}\n\n/* 通常「開」のバルブimg */\n.openV[data-v-552e94f3] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n}\n\n/* 「調整開」のバルブimg */\n.adjustedV[data-v-552e94f3] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n}\n\n/* バルブオプション */\n.valve_option[data-v-552e94f3] {\n    width: 200px;\n    height: 600px;\n    display: flex;\n    justify-content: center;\n    flex-direction: column;\n    border-radius: 5px;\n}\n\n/* バルブオプション内の各ボタン(開閉等のボタン) */\n.valve_option > input[data-v-552e94f3] {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    margin: 30px auto;\n    width: 200px;\n    height: 50px;\n    border-radius: 5px;\n    border-bottom: solid 5px #444;\n    border-right: solid 5px #444;\n}\n\n/* オプション内のメモ欄 */\n.valve_option > textarea[data-v-552e94f3] {\n    width: 200px;\n    height: 50px;\n    border-radius: 5px;\n}\n.valve_names[data-v-552e94f3] {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-direction: column;\n}\n", ""]);
 
 // exports
 
@@ -7041,7 +7234,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* 通常「閉」のバルブimg */\n.closeV[data-v-616696c3] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n}\n\n/* 通常「開」のバルブimg */\n.openV[data-v-616696c3] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n}\n\n/* 「調整開」のバルブimg */\n.adjustedV[data-v-616696c3] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n}\n\n/* バルブオプション */\n.valve_option[data-v-616696c3] {\n    width: 200px;\n    height: 600px;\n    display: flex;\n    justify-content: center;\n    flex-direction: column;\n    border-radius: 5px;\n}\n\n/* バルブオプション内の各ボタン(開閉等のボタン) */\n.valve_option > input[data-v-616696c3] {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    margin: 30px auto;\n    width: 200px;\n    height: 50px;\n    border-radius: 5px;\n    border-bottom: solid 5px #444;\n    border-right: solid 5px #444;\n}\n\n/* オプション内のメモ欄 */\n.valve_option > textarea[data-v-616696c3] {\n    width: 200px;\n    height: 50px;\n    border-radius: 5px;\n}\n.valve_names[data-v-616696c3] {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-direction: column;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* 通常「閉」のバルブimg */\n.closeV[data-v-616696c3] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n}\n\n/* 通常「開」のバルブimg */\n.openV[data-v-616696c3] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n}\n\n/* 「調整開」のバルブimg */\n.adjustedV[data-v-616696c3] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n}\n\n/* バルブオプション */\n.valve_option[data-v-616696c3] {\n    width: 200px;\n    height: 600px;\n    display: flex;\n    justify-content: center;\n    flex-direction: column;\n    border-radius: 5px;\n}\n\n/* バルブオプション内の各ボタン(開閉等のボタン) */\n.valve_option > input[data-v-616696c3] {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    margin: 30px auto;\n    width: 200px;\n    height: 50px;\n    border-radius: 5px;\n    border-bottom: solid 5px #444;\n    border-right: solid 5px #444;\n}\n\n/* オプション内のメモ欄 */\n.valve_option > textarea[data-v-616696c3] {\n    width: 200px;\n    height: 50px;\n    border-radius: 5px;\n}\n.valve_names[data-v-616696c3] {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-direction: column;\n}\n\n", ""]);
 
 // exports
 
@@ -7060,17 +7253,17 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* 通常「閉」のバルブimg */\n.closeV[data-v-e9d36162] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n}\n\n/* 通常「開」のバルブimg */\n.openV[data-v-e9d36162] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n}\n\n/* 「調整開」のバルブimg */\n.adjustedV[data-v-e9d36162] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n}\n\n/* バルブオプション */\n.valve_option[data-v-e9d36162] {\n    width: 200px;\n    height: 600px;\n    display: flex;\n    justify-content: center;\n    flex-direction: column;\n    border-radius: 5px;\n}\n\n/* バルブオプション内の各ボタン(開閉等のボタン) */\n.valve_option > input[data-v-e9d36162] {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    margin: 30px auto;\n    width: 200px;\n    height: 50px;\n    border-radius: 5px;\n    border-bottom: solid 5px #444;\n    border-right: solid 5px #444;\n}\n\n/* オプション内のメモ欄 */\n.valve_option > textarea[data-v-e9d36162] {\n    width: 200px;\n    height: 50px;\n    border-radius: 5px;\n}\n.valve_names[data-v-e9d36162] {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-direction: column;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* 通常「閉」のバルブimg */\n.closeV[data-v-e9d36162] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n}\n\n/* 通常「開」のバルブimg */\n.openV[data-v-e9d36162] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n}\n\n/* 「調整開」のバルブimg */\n.adjustedV[data-v-e9d36162] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n}\n\n/* バルブオプション */\n.valve_option[data-v-e9d36162] {\n    width: 200px;\n    height: 600px;\n    display: flex;\n    justify-content: center;\n    flex-direction: column;\n    border-radius: 5px;\n}\n\n/* バルブオプション内の各ボタン(開閉等のボタン) */\n.valve_option > input[data-v-e9d36162] {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    margin: 30px auto;\n    width: 200px;\n    height: 50px;\n    border-radius: 5px;\n    border-bottom: solid 5px #444;\n    border-right: solid 5px #444;\n}\n\n/* オプション内のメモ欄 */\n.valve_option > textarea[data-v-e9d36162] {\n    width: 200px;\n    height: 50px;\n    border-radius: 5px;\n}\n.valve_names[data-v-e9d36162] {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-direction: column;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SystemDiagrams/T1.vue?vue&type=style&index=0&scope=true&lang=css&":
-/*!**********************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SystemDiagrams/T1.vue?vue&type=style&index=0&scope=true&lang=css& ***!
-  \**********************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Parts/csrfトークン用.vue?vue&type=style&index=0&id=37d079bc&scoped=true&lang=css&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Parts/csrfトークン用.vue?vue&type=style&index=0&id=37d079bc&scoped=true&lang=css& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7079,26 +7272,26 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.t1_2 {\n    color: red;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* 通常「閉」のバルブimg */\n.closeV[data-v-37d079bc] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n    /* top: 100px;\n    left: 300px; */\n}\n\n/* 通常「開」のバルブimg */\n.openV[data-v-37d079bc] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n    /* top: 100px;\n    left: 300px; */\n}\n\n/* 「調整開」のバルブimg */\n.adjustedV[data-v-37d079bc] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n    /* top: 100px;\n    left: 300px; */\n}\n\n/* バルブオプション */\n.valve_option[data-v-37d079bc] {\n    width: 200px;\n    height: 600px;\n    /* display: flex;\n    justify-content: center;\n    flex-direction: column;\n    border-radius: 5px; */\n}\n\n/* バルブオプション内の各ボタン(開閉等のボタン) */\n.valve_option > button[data-v-37d079bc] {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    margin: 30px auto;\n    width: 200px;\n    height: 50px;\n    border-radius: 5px;\n    border-bottom: solid 5px #444;\n    border-right: solid 5px #444;\n}\n\n/* オプション内のメモ欄 */\n.valve_option > textarea[data-v-37d079bc] {\n    width: 200px;\n    height: 50px;\n    border-radius: 5px;\n}\n.valve_names[data-v-37d079bc] {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-direction: column;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/csrfトークン用.vue?vue&type=style&index=0&id=7430cc1e&scoped=true&lang=css&":
-/*!***************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/csrfトークン用.vue?vue&type=style&index=0&id=7430cc1e&scoped=true&lang=css& ***!
-  \***************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SystemDiagrams/T1.vue?vue&type=style&index=0&id=474919c2&scoped=true&lang=css&":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SystemDiagrams/T1.vue?vue&type=style&index=0&id=474919c2&scoped=true&lang=css& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* 通常「閉」のバルブimg */\n.closeV[data-v-7430cc1e] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n    /* top: 100px;\n    left: 300px; */\n}\n\n/* 通常「開」のバルブimg */\n.openV[data-v-7430cc1e] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n    /* top: 100px;\n    left: 300px; */\n}\n\n/* 「調整開」のバルブimg */\n.adjustedV[data-v-7430cc1e] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n    /* top: 100px;\n    left: 300px; */\n}\n\n/* バルブオプション */\n.valve_option[data-v-7430cc1e] {\n    width: 200px;\n    height: 600px;\n    /* display: flex;\n    justify-content: center;\n    flex-direction: column;\n    border-radius: 5px; */\n}\n\n/* バルブオプション内の各ボタン(開閉等のボタン) */\n.valve_option > button[data-v-7430cc1e] {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    margin: 30px auto;\n    width: 200px;\n    height: 50px;\n    border-radius: 5px;\n    border-bottom: solid 5px #444;\n    border-right: solid 5px #444;\n}\n\n/* オプション内のメモ欄 */\n.valve_option > textarea[data-v-7430cc1e] {\n    width: 200px;\n    height: 50px;\n    border-radius: 5px;\n}\n.valve_names[data-v-7430cc1e] {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-direction: column;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* .t1_3 {\n    color: red;\n    position: absolute;\n    top:100px;\n    right: 100px;\n} */\n", ""]);
 
 // exports
 
@@ -38264,6 +38457,36 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Parts/StoreValve.vue?vue&type=style&index=0&id=0dd28749&scoped=true&lang=css&":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Parts/StoreValve.vue?vue&type=style&index=0&id=0dd28749&scoped=true&lang=css& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./StoreValve.vue?vue&type=style&index=0&id=0dd28749&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Parts/StoreValve.vue?vue&type=style&index=0&id=0dd28749&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Parts/UsuallyAdjusted.vue?vue&type=style&index=0&id=552e94f3&scoped=true&lang=css&":
 /*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Parts/UsuallyAdjusted.vue?vue&type=style&index=0&id=552e94f3&scoped=true&lang=css& ***!
@@ -38354,15 +38577,15 @@ if(false) {}
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SystemDiagrams/T1.vue?vue&type=style&index=0&scope=true&lang=css&":
-/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SystemDiagrams/T1.vue?vue&type=style&index=0&scope=true&lang=css& ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Parts/csrfトークン用.vue?vue&type=style&index=0&id=37d079bc&scoped=true&lang=css&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Parts/csrfトークン用.vue?vue&type=style&index=0&id=37d079bc&scoped=true&lang=css& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./T1.vue?vue&type=style&index=0&scope=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SystemDiagrams/T1.vue?vue&type=style&index=0&scope=true&lang=css&");
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./csrfトークン用.vue?vue&type=style&index=0&id=37d079bc&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Parts/csrfトークン用.vue?vue&type=style&index=0&id=37d079bc&scoped=true&lang=css&");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -38384,15 +38607,15 @@ if(false) {}
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/csrfトークン用.vue?vue&type=style&index=0&id=7430cc1e&scoped=true&lang=css&":
-/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/csrfトークン用.vue?vue&type=style&index=0&id=7430cc1e&scoped=true&lang=css& ***!
-  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SystemDiagrams/T1.vue?vue&type=style&index=0&id=474919c2&scoped=true&lang=css&":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SystemDiagrams/T1.vue?vue&type=style&index=0&id=474919c2&scoped=true&lang=css& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./csrfトークン用.vue?vue&type=style&index=0&id=7430cc1e&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/csrfトークン用.vue?vue&type=style&index=0&id=7430cc1e&scoped=true&lang=css&");
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./T1.vue?vue&type=style&index=0&id=474919c2&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SystemDiagrams/T1.vue?vue&type=style&index=0&id=474919c2&scoped=true&lang=css&");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -38406,7 +38629,7 @@ var options = {"hmr":true}
 options.transform = transform
 options.insertInto = undefined;
 
-var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
 
 if(content.locals) module.exports = content.locals;
 
@@ -39117,6 +39340,136 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Parts/StoreValve.vue?vue&type=template&id=0dd28749&scoped=true&":
+/*!*******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Parts/StoreValve.vue?vue&type=template&id=0dd28749&scoped=true& ***!
+  \*******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("span", [
+      _vm.close
+        ? _c("img", {
+            staticClass: "openV",
+            attrs: { src: "/img/open_valve_2.png", alt: "弁「開」" }
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.adjusted
+        ? _c("img", {
+            staticClass: "adjustedV",
+            attrs: { src: "/img/adjusted_valve_2.png", alt: "調整開" }
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.open
+        ? _c("img", {
+            staticClass: "closeV",
+            attrs: { src: "/img/close_valve_2.png", alt: "弁「閉」" }
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _c("form", { attrs: { action: "/SystemD", method: "post" } }, [
+        _c("input", {
+          attrs: { type: "hidden", name: "_token" },
+          domProps: { value: _vm.csrf }
+        }),
+        _vm._v(" "),
+        _vm.show
+          ? _c("div", [
+              _c("fieldset", { staticClass: "valve_option" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    attrs: { name: "valve_state" },
+                    on: {
+                      click: function($event) {
+                        ;(_vm.open = false),
+                          (_vm.close = true),
+                          (_vm.adjusted = false)
+                      }
+                    }
+                  },
+                  [_vm._v("\n                        開\n                    ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    attrs: { name: "valve_state" },
+                    on: {
+                      click: function($event) {
+                        ;(_vm.close = false),
+                          (_vm.open = true),
+                          (_vm.adjusted = false)
+                      }
+                    }
+                  },
+                  [_vm._v("\n                        閉\n                    ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    attrs: { name: "valve_state" },
+                    on: {
+                      click: function($event) {
+                        ;(_vm.close = false),
+                          (_vm.open = false),
+                          (_vm.adjusted = true)
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                        調整開\n                    "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("button", [_vm._v("保安ロックへ追加")]),
+                _vm._v(" "),
+                _c("button", [_vm._v("メモ")]),
+                _vm._v(" "),
+                _c("textarea", { attrs: { name: "valve_memo" } }),
+                _vm._v(" "),
+                _c("button", { attrs: { type: "submit" } }, [_vm._v("save")])
+              ])
+            ])
+          : _vm._e()
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("fieldset", [
+      _c("p", { staticClass: "valve_names" }, [_vm._v("弁名称")]),
+      _vm._v(" "),
+      _c("p", { staticClass: "valve_names" }, [_vm._v("弁番号")])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Parts/UsuallyAdjusted.vue?vue&type=template&id=552e94f3&scoped=true&":
 /*!************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Parts/UsuallyAdjusted.vue?vue&type=template&id=552e94f3&scoped=true& ***!
@@ -39133,144 +39486,147 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("span", [
-      _vm.open
-        ? _c("img", {
-            staticClass: "closeV",
-            attrs: { src: "/img/close_valve_2.png", alt: "弁「閉」" }
-          })
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.close
-        ? _c("img", {
-            staticClass: "openV",
-            attrs: { src: "/img/open_valve_2.png", alt: "弁「開」" }
-          })
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.adjusted
-        ? _c("img", {
-            staticClass: "adjustedV",
-            attrs: { src: "/img/adjusted_valve_2.png", alt: "調整開" }
-          })
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.show
-        ? _c("div", [
-            _c("fieldset", { staticClass: "valve_option" }, [
-              _vm._m(0),
-              _vm._v(" "),
-              _c("input", {
-                attrs: {
-                  type: "button",
-                  name: "valve_state",
-                  value: _vm.valueOpen
-                },
-                on: {
-                  click: function($event) {
-                    ;(_vm.open = false),
-                      (_vm.close = true),
-                      (_vm.adjusted = false),
-                      (_vm.stateInput = _vm.valueOpen),
-                      _vm.updateOption()
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("input", {
-                attrs: {
-                  type: "button",
-                  name: "valve_state",
-                  value: _vm.valueClose
-                },
-                on: {
-                  click: function($event) {
-                    ;(_vm.close = false),
-                      (_vm.open = true),
-                      (_vm.adjusted = false),
-                      (_vm.stateInput = _vm.valueClose),
-                      _vm.updateOption()
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("input", {
-                attrs: {
-                  type: "button",
-                  name: "valve_state",
-                  value: _vm.valueAdjusted
-                },
-                on: {
-                  click: function($event) {
-                    ;(_vm.close = false),
-                      (_vm.open = false),
-                      (_vm.adjusted = true),
-                      (_vm.stateInput = _vm.valueAdjusted),
-                      _vm.updateOption()
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("input", {
-                attrs: {
-                  type: "button",
-                  name: "valve_lock",
-                  value: _vm.valveLock
-                },
-                on: {
-                  click: function($event) {
-                    _vm.lockInput = _vm.valveLock
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("textarea", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.valveMemo,
-                    expression: "valveMemo"
-                  }
-                ],
-                attrs: { name: "valve_memo" },
-                domProps: { value: _vm.valveMemo },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
+    _c(
+      "span",
+      {
+        on: {
+          click: function($event) {
+            _vm.show = !_vm.show
+          }
+        }
+      },
+      [
+        _vm.close
+          ? _c("img", {
+              staticClass: "openV",
+              attrs: { src: "/img/open_valve_2.png", alt: "弁「開」" }
+            })
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.open
+          ? _c("img", {
+              staticClass: "closeV",
+              attrs: { src: "/img/close_valve_2.png", alt: "弁「閉」" }
+            })
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.adjusted
+          ? _c("img", {
+              staticClass: "adjustedV",
+              attrs: { src: "/img/adjusted_valve_2.png", alt: "調整開" }
+            })
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.show
+          ? _c("div", [
+              _c("fieldset", { staticClass: "valve_option" }, [
+                _c("fieldset", [
+                  _c("p", { staticClass: "valve_names" }, [
+                    _vm._v(_vm._s(_vm.optionName))
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "valve_names" }, [
+                    _vm._v(_vm._s(_vm.optionNumber))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  attrs: {
+                    type: "button",
+                    name: "valve_state",
+                    value: _vm.valueOpen
+                  },
+                  on: {
+                    click: function($event) {
+                      ;(_vm.open = false),
+                        (_vm.close = true),
+                        (_vm.adjusted = false),
+                        (_vm.stateInput = _vm.valueOpen),
+                        _vm.updateOption()
                     }
-                    _vm.valveMemo = $event.target.value
                   }
-                }
-              }),
-              _vm._v(" "),
-              _c("input", {
-                attrs: { type: "button", value: "メモを保存" },
-                on: { click: _vm.updateOption }
-              }),
-              _vm._v(" "),
-              _c("button", { on: { click: _vm.updateOption } }, [
-                _vm._v("\n                    DBへ送信\n                ")
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  attrs: {
+                    type: "button",
+                    name: "valve_state",
+                    value: _vm.valueClose
+                  },
+                  on: {
+                    click: function($event) {
+                      ;(_vm.close = false),
+                        (_vm.open = true),
+                        (_vm.adjusted = false),
+                        (_vm.stateInput = _vm.valueClose),
+                        _vm.updateOption()
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  attrs: {
+                    type: "button",
+                    name: "valve_state",
+                    value: _vm.valueAdjusted
+                  },
+                  on: {
+                    click: function($event) {
+                      ;(_vm.close = false),
+                        (_vm.open = false),
+                        (_vm.adjusted = true),
+                        (_vm.stateInput = _vm.valueAdjusted),
+                        _vm.updateOption()
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  attrs: {
+                    type: "button",
+                    name: "valve_lock",
+                    value: _vm.valveLock
+                  },
+                  on: {
+                    click: function($event) {
+                      _vm.lockInput = _vm.valveLock
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.valveMemo,
+                      expression: "valveMemo"
+                    }
+                  ],
+                  attrs: { name: "valve_memo" },
+                  domProps: { value: _vm.valveMemo },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.valveMemo = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  attrs: { type: "button", value: "メモを保存" },
+                  on: { click: _vm.updateOption }
+                })
               ])
             ])
-          ])
-        : _vm._e()
-    ])
+          : _vm._e()
+      ]
+    )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("fieldset", [
-      _c("p", { staticClass: "valve_names" }, [_vm._v("弁名称")]),
-      _vm._v(" "),
-      _c("p", { staticClass: "valve_names" }, [_vm._v("弁番号")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -39293,144 +39649,147 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("span", [
-      _vm.close
-        ? _c("img", {
-            staticClass: "openV",
-            attrs: { src: "/img/open_valve_2.png", alt: "弁「開」" }
-          })
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.adjusted
-        ? _c("img", {
-            staticClass: "adjustedV",
-            attrs: { src: "/img/adjusted_valve_2.png", alt: "調整開" }
-          })
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.open
-        ? _c("img", {
-            staticClass: "closeV",
-            attrs: { src: "/img/close_valve_2.png", alt: "弁「閉」" }
-          })
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.show
-        ? _c("div", [
-            _c("fieldset", { staticClass: "valve_option" }, [
-              _vm._m(0),
-              _vm._v(" "),
-              _c("input", {
-                attrs: {
-                  type: "button",
-                  name: "valve_state",
-                  value: _vm.valueOpen
-                },
-                on: {
-                  click: function($event) {
-                    ;(_vm.open = false),
-                      (_vm.close = true),
-                      (_vm.adjusted = false),
-                      (_vm.stateInput = _vm.valueOpen),
-                      _vm.updateOption()
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("input", {
-                attrs: {
-                  type: "button",
-                  name: "valve_state",
-                  value: _vm.valueClose
-                },
-                on: {
-                  click: function($event) {
-                    ;(_vm.close = false),
-                      (_vm.open = true),
-                      (_vm.adjusted = false),
-                      (_vm.stateInput = _vm.valueClose),
-                      _vm.updateOption()
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("input", {
-                attrs: {
-                  type: "button",
-                  name: "valve_state",
-                  value: _vm.valueAdjusted
-                },
-                on: {
-                  click: function($event) {
-                    ;(_vm.close = false),
-                      (_vm.open = false),
-                      (_vm.adjusted = true),
-                      (_vm.stateInput = _vm.valueAdjusted),
-                      _vm.updateOption()
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("input", {
-                attrs: {
-                  type: "button",
-                  name: "valve_lock",
-                  value: _vm.valveLock
-                },
-                on: {
-                  click: function($event) {
-                    _vm.lockInput = _vm.valveLock
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("textarea", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.valveMemo,
-                    expression: "valveMemo"
-                  }
-                ],
-                attrs: { name: "valve_memo" },
-                domProps: { value: _vm.valveMemo },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
+    _c(
+      "span",
+      {
+        on: {
+          click: function($event) {
+            _vm.show = !_vm.show
+          }
+        }
+      },
+      [
+        _vm.close
+          ? _c("img", {
+              staticClass: "openV",
+              attrs: { src: "/img/open_valve_2.png", alt: "弁「開」" }
+            })
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.adjusted
+          ? _c("img", {
+              staticClass: "adjustedV",
+              attrs: { src: "/img/adjusted_valve_2.png", alt: "調整開" }
+            })
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.open
+          ? _c("img", {
+              staticClass: "closeV",
+              attrs: { src: "/img/close_valve_2.png", alt: "弁「閉」" }
+            })
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.show
+          ? _c("div", [
+              _c("fieldset", { staticClass: "valve_option" }, [
+                _c("fieldset", [
+                  _c("p", { staticClass: "valve_names" }, [
+                    _vm._v(_vm._s(_vm.optionName))
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "valve_names" }, [
+                    _vm._v(_vm._s(_vm.optionNumber))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  attrs: {
+                    type: "button",
+                    name: "valve_state",
+                    value: _vm.valueOpen
+                  },
+                  on: {
+                    click: function($event) {
+                      ;(_vm.open = false),
+                        (_vm.close = true),
+                        (_vm.adjusted = false),
+                        (_vm.stateInput = _vm.valueOpen),
+                        _vm.updateOption()
                     }
-                    _vm.valveMemo = $event.target.value
                   }
-                }
-              }),
-              _vm._v(" "),
-              _c("input", {
-                attrs: { type: "button", value: "メモを保存" },
-                on: { click: _vm.updateOption }
-              }),
-              _vm._v(" "),
-              _c("button", { on: { click: _vm.updateOption } }, [
-                _vm._v("\n                    DBへ送信\n                ")
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  attrs: {
+                    type: "button",
+                    name: "valve_state",
+                    value: _vm.valueClose
+                  },
+                  on: {
+                    click: function($event) {
+                      ;(_vm.close = false),
+                        (_vm.open = true),
+                        (_vm.adjusted = false),
+                        (_vm.stateInput = _vm.valueClose),
+                        _vm.updateOption()
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  attrs: {
+                    type: "button",
+                    name: "valve_state",
+                    value: _vm.valueAdjusted
+                  },
+                  on: {
+                    click: function($event) {
+                      ;(_vm.close = false),
+                        (_vm.open = false),
+                        (_vm.adjusted = true),
+                        (_vm.stateInput = _vm.valueAdjusted),
+                        _vm.updateOption()
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  attrs: {
+                    type: "button",
+                    name: "valve_lock",
+                    value: _vm.valveLock
+                  },
+                  on: {
+                    click: function($event) {
+                      _vm.lockInput = _vm.valveLock
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.valveMemo,
+                      expression: "valveMemo"
+                    }
+                  ],
+                  attrs: { name: "valve_memo" },
+                  domProps: { value: _vm.valveMemo },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.valveMemo = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  attrs: { type: "button", value: "メモを保存" },
+                  on: { click: _vm.updateOption }
+                })
               ])
             ])
-          ])
-        : _vm._e()
-    ])
+          : _vm._e()
+      ]
+    )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("fieldset", [
-      _c("p", { staticClass: "valve_names" }, [_vm._v("弁名称")]),
-      _vm._v(" "),
-      _c("p", { staticClass: "valve_names" }, [_vm._v("弁番号")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -39453,217 +39812,146 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("span", [
-      _vm.adjusted
-        ? _c("img", {
-            staticClass: "adjustedV",
-            attrs: { src: "/img/adjusted_valve_2.png", alt: "調整開" }
-          })
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.open
-        ? _c("img", {
-            staticClass: "closeV",
-            attrs: { src: "/img/close_valve_2.png", alt: "弁「閉」" }
-          })
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.close
-        ? _c("img", {
-            staticClass: "openV",
-            attrs: { src: "/img/open_valve_2.png", alt: "弁「開」" }
-          })
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.show
-        ? _c("div", [
-            _c("fieldset", { staticClass: "valve_option" }, [
-              _vm._m(0),
-              _vm._v(" "),
-              _c("input", {
-                attrs: {
-                  type: "button",
-                  name: "valve_state",
-                  value: _vm.valueOpen
-                },
-                on: {
-                  click: function($event) {
-                    ;(_vm.open = false),
-                      (_vm.close = true),
-                      (_vm.adjusted = false),
-                      (_vm.stateInput = _vm.valueOpen),
-                      _vm.updateOption()
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("input", {
-                attrs: {
-                  type: "button",
-                  name: "valve_state",
-                  value: _vm.valueClose
-                },
-                on: {
-                  click: function($event) {
-                    ;(_vm.close = false),
-                      (_vm.open = true),
-                      (_vm.adjusted = false),
-                      (_vm.stateInput = _vm.valueClose),
-                      _vm.updateOption()
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("input", {
-                attrs: {
-                  type: "button",
-                  name: "valve_state",
-                  value: _vm.valueAdjusted
-                },
-                on: {
-                  click: function($event) {
-                    ;(_vm.close = false),
-                      (_vm.open = false),
-                      (_vm.adjusted = true),
-                      (_vm.stateInput = _vm.valueAdjusted),
-                      _vm.updateOption()
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("input", {
-                attrs: {
-                  type: "button",
-                  name: "valve_lock",
-                  value: _vm.valveLock
-                },
-                on: {
-                  click: function($event) {
-                    _vm.lockInput = _vm.valveLock
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("textarea", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.valveMemo,
-                    expression: "valveMemo"
-                  }
-                ],
-                attrs: { name: "valve_memo" },
-                domProps: { value: _vm.valveMemo },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
+    _c(
+      "span",
+      {
+        on: {
+          click: function($event) {
+            _vm.show = !_vm.show
+          }
+        }
+      },
+      [
+        _vm.adjusted
+          ? _c("img", {
+              staticClass: "adjustedV",
+              attrs: { src: "/img/adjusted_valve_2.png", alt: "調整開" }
+            })
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.open
+          ? _c("img", {
+              staticClass: "closeV",
+              attrs: { src: "/img/close_valve_2.png", alt: "弁「閉」" }
+            })
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.close
+          ? _c("img", {
+              staticClass: "openV",
+              attrs: { src: "/img/open_valve_2.png", alt: "弁「開」" }
+            })
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.show
+          ? _c("div", [
+              _c("fieldset", { staticClass: "valve_option" }, [
+                _c("fieldset", [
+                  _c("p", { staticClass: "valve_names" }, [
+                    _vm._v(_vm._s(_vm.optionName))
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "valve_names" }, [
+                    _vm._v(_vm._s(_vm.optionNumber))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  attrs: {
+                    type: "button",
+                    name: "valve_state",
+                    value: _vm.valueOpen
+                  },
+                  on: {
+                    click: function($event) {
+                      ;(_vm.open = false),
+                        (_vm.close = true),
+                        (_vm.adjusted = false),
+                        (_vm.stateInput = _vm.valueOpen),
+                        _vm.updateOption()
                     }
-                    _vm.valveMemo = $event.target.value
                   }
-                }
-              }),
-              _vm._v(" "),
-              _c("input", {
-                attrs: { type: "button", value: "メモを保存" },
-                on: { click: _vm.updateOption }
-              }),
-              _vm._v(" "),
-              _c("button", { on: { click: _vm.updateOption } }, [
-                _vm._v("\n                    DBへ送信\n                ")
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  attrs: {
+                    type: "button",
+                    name: "valve_state",
+                    value: _vm.valueClose
+                  },
+                  on: {
+                    click: function($event) {
+                      ;(_vm.close = false),
+                        (_vm.open = true),
+                        (_vm.adjusted = false),
+                        (_vm.stateInput = _vm.valueClose),
+                        _vm.updateOption()
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  attrs: {
+                    type: "button",
+                    name: "valve_state",
+                    value: _vm.valueAdjusted
+                  },
+                  on: {
+                    click: function($event) {
+                      ;(_vm.close = false),
+                        (_vm.open = false),
+                        (_vm.adjusted = true),
+                        (_vm.stateInput = _vm.valueAdjusted),
+                        _vm.updateOption()
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  attrs: {
+                    type: "button",
+                    name: "valve_lock",
+                    value: _vm.valveLock
+                  },
+                  on: {
+                    click: function($event) {
+                      _vm.lockInput = _vm.valveLock
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.valveMemo,
+                      expression: "valveMemo"
+                    }
+                  ],
+                  attrs: { name: "valve_memo" },
+                  domProps: { value: _vm.valveMemo },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.valveMemo = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  attrs: { type: "button", value: "メモを保存" },
+                  on: { click: _vm.updateOption }
+                })
               ])
             ])
-          ])
-        : _vm._e()
-    ])
+          : _vm._e()
+      ]
+    )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("fieldset", [
-      _c("p", { staticClass: "valve_names" }, [_vm._v("弁名称")]),
-      _vm._v(" "),
-      _c("p", { staticClass: "valve_names" }, [_vm._v("弁番号")])
-    ])
-  }
-]
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SystemDiagrams/T1.vue?vue&type=template&id=474919c2&":
-/*!********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SystemDiagrams/T1.vue?vue&type=template&id=474919c2& ***!
-  \********************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _vm._l(_vm.T1, function(Valve) {
-        return _c(
-          "div",
-          {
-            key: Valve.id,
-            on: {
-              click: function($event) {
-                return _vm.getId(Valve.id)
-              }
-            }
-          },
-          [
-            _c("p", [_vm._v(_vm._s(Valve.id))]),
-            _vm._v(" "),
-            _c("p", { class: _vm.assignClass + Valve.id }, [
-              Valve.valve_state === "開"
-                ? _c(
-                    "span",
-                    [_c("UsuallyOpen", { attrs: { "option-id": _vm.sendId } })],
-                    1
-                  )
-                : Valve.valve_state === "閉"
-                ? _c(
-                    "span",
-                    [
-                      _c("UsuallyClose", { attrs: { "option-id": _vm.sendId } })
-                    ],
-                    1
-                  )
-                : Valve.valve_state === "調整開"
-                ? _c(
-                    "span",
-                    [
-                      _c("UsuallyAdjusted", {
-                        attrs: { "option-id": _vm.sendId }
-                      })
-                    ],
-                    1
-                  )
-                : _vm._e()
-            ])
-          ]
-        )
-      }),
-      _vm._v("\n\n    " + _vm._s(_vm.sendId) + "  \n    ")
-    ],
-    2
-  )
-}
 var staticRenderFns = []
 render._withStripped = true
 
@@ -39671,34 +39959,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SystemDiagrams/T2.vue?vue&type=template&id=47573143&":
-/*!********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SystemDiagrams/T2.vue?vue&type=template&id=47573143& ***!
-  \********************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n    " + _vm._s(_vm.T2) + "\n")])
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/csrfトークン用.vue?vue&type=template&id=7430cc1e&scoped=true&":
-/*!************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/csrfトークン用.vue?vue&type=template&id=7430cc1e&scoped=true& ***!
-  \************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Parts/csrfトークン用.vue?vue&type=template&id=37d079bc&scoped=true&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Parts/csrfトークン用.vue?vue&type=template&id=37d079bc&scoped=true& ***!
+  \******************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -39810,6 +40074,134 @@ var staticRenderFns = [
     ])
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SystemDiagrams/T1.vue?vue&type=template&id=474919c2&scoped=true&":
+/*!********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SystemDiagrams/T1.vue?vue&type=template&id=474919c2&scoped=true& ***!
+  \********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _vm._l(_vm.T1, function(Valve) {
+        return _c(
+          "div",
+          {
+            key: Valve.id,
+            on: {
+              click: function($event) {
+                _vm.getId(Valve.id),
+                  _vm.getNumber(
+                    Valve.valve_number,
+                    _vm.getName(Valve.valve_name)
+                  )
+              }
+            }
+          },
+          [
+            _c("p", { class: _vm.assignClass + Valve.id }, [
+              _vm._v(_vm._s(Valve.valve_number))
+            ]),
+            _vm._v(" "),
+            _c("p", { class: _vm.assignClass + Valve.id }, [
+              Valve.valve_state === "開"
+                ? _c(
+                    "span",
+                    [
+                      _c("UsuallyOpen", {
+                        attrs: {
+                          "option-id": _vm.sendId,
+                          "option-number": _vm.sendNumber,
+                          "option-name": _vm.sendName
+                        }
+                      })
+                    ],
+                    1
+                  )
+                : Valve.valve_state === "閉"
+                ? _c(
+                    "span",
+                    [
+                      _c("UsuallyClose", {
+                        attrs: {
+                          "option-id": _vm.sendId,
+                          "option-name": _vm.sendName,
+                          "option-number": _vm.sendNumber
+                        }
+                      })
+                    ],
+                    1
+                  )
+                : Valve.valve_state === "調整開"
+                ? _c(
+                    "span",
+                    [
+                      _c("UsuallyAdjusted", {
+                        attrs: {
+                          "option-id": _vm.sendId,
+                          "option-name": _vm.sendName,
+                          "option-number": _vm.sendNumber
+                        }
+                      })
+                    ],
+                    1
+                  )
+                : _vm._e()
+            ])
+          ]
+        )
+      }),
+      _vm._v(
+        "\n\n    " +
+          _vm._s(_vm.sendId) +
+          "\n    " +
+          _vm._s(_vm.sendName) +
+          "\n\n    "
+      )
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SystemDiagrams/T2.vue?vue&type=template&id=47573143&":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SystemDiagrams/T2.vue?vue&type=template&id=47573143& ***!
+  \********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [_vm._v("\n    " + _vm._s(_vm.T2) + "\n")])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -55055,12 +55447,13 @@ var map = {
 	"./components/ExampleComponent.vue": "./resources/js/components/ExampleComponent.vue",
 	"./components/Menus/SystemList.vue": "./resources/js/components/Menus/SystemList.vue",
 	"./components/Parts/BaseListBtn.vue": "./resources/js/components/Parts/BaseListBtn.vue",
+	"./components/Parts/StoreValve.vue": "./resources/js/components/Parts/StoreValve.vue",
 	"./components/Parts/UsuallyAdjusted.vue": "./resources/js/components/Parts/UsuallyAdjusted.vue",
 	"./components/Parts/UsuallyClose.vue": "./resources/js/components/Parts/UsuallyClose.vue",
 	"./components/Parts/UsuallyOpen.vue": "./resources/js/components/Parts/UsuallyOpen.vue",
+	"./components/Parts/csrfトークン用.vue": "./resources/js/components/Parts/csrfトークン用.vue",
 	"./components/SystemDiagrams/T1.vue": "./resources/js/components/SystemDiagrams/T1.vue",
-	"./components/SystemDiagrams/T2.vue": "./resources/js/components/SystemDiagrams/T2.vue",
-	"./components/csrfトークン用.vue": "./resources/js/components/csrfトークン用.vue"
+	"./components/SystemDiagrams/T2.vue": "./resources/js/components/SystemDiagrams/T2.vue"
 };
 
 
@@ -55409,6 +55802,93 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Parts/StoreValve.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/components/Parts/StoreValve.vue ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _StoreValve_vue_vue_type_template_id_0dd28749_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./StoreValve.vue?vue&type=template&id=0dd28749&scoped=true& */ "./resources/js/components/Parts/StoreValve.vue?vue&type=template&id=0dd28749&scoped=true&");
+/* harmony import */ var _StoreValve_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./StoreValve.vue?vue&type=script&lang=js& */ "./resources/js/components/Parts/StoreValve.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _StoreValve_vue_vue_type_style_index_0_id_0dd28749_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./StoreValve.vue?vue&type=style&index=0&id=0dd28749&scoped=true&lang=css& */ "./resources/js/components/Parts/StoreValve.vue?vue&type=style&index=0&id=0dd28749&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _StoreValve_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _StoreValve_vue_vue_type_template_id_0dd28749_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _StoreValve_vue_vue_type_template_id_0dd28749_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "0dd28749",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Parts/StoreValve.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Parts/StoreValve.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/Parts/StoreValve.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_StoreValve_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./StoreValve.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Parts/StoreValve.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_StoreValve_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Parts/StoreValve.vue?vue&type=style&index=0&id=0dd28749&scoped=true&lang=css&":
+/*!***************************************************************************************************************!*\
+  !*** ./resources/js/components/Parts/StoreValve.vue?vue&type=style&index=0&id=0dd28749&scoped=true&lang=css& ***!
+  \***************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_StoreValve_vue_vue_type_style_index_0_id_0dd28749_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./StoreValve.vue?vue&type=style&index=0&id=0dd28749&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Parts/StoreValve.vue?vue&type=style&index=0&id=0dd28749&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_StoreValve_vue_vue_type_style_index_0_id_0dd28749_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_StoreValve_vue_vue_type_style_index_0_id_0dd28749_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_StoreValve_vue_vue_type_style_index_0_id_0dd28749_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_StoreValve_vue_vue_type_style_index_0_id_0dd28749_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_StoreValve_vue_vue_type_style_index_0_id_0dd28749_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Parts/StoreValve.vue?vue&type=template&id=0dd28749&scoped=true&":
+/*!*************************************************************************************************!*\
+  !*** ./resources/js/components/Parts/StoreValve.vue?vue&type=template&id=0dd28749&scoped=true& ***!
+  \*************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_StoreValve_vue_vue_type_template_id_0dd28749_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./StoreValve.vue?vue&type=template&id=0dd28749&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Parts/StoreValve.vue?vue&type=template&id=0dd28749&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_StoreValve_vue_vue_type_template_id_0dd28749_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_StoreValve_vue_vue_type_template_id_0dd28749_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Parts/UsuallyAdjusted.vue":
 /*!***********************************************************!*\
   !*** ./resources/js/components/Parts/UsuallyAdjusted.vue ***!
@@ -55670,6 +56150,93 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Parts/csrfトークン用.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/Parts/csrfトークン用.vue ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _csrf_vue_vue_type_template_id_37d079bc_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./csrfトークン用.vue?vue&type=template&id=37d079bc&scoped=true& */ "./resources/js/components/Parts/csrfトークン用.vue?vue&type=template&id=37d079bc&scoped=true&");
+/* harmony import */ var _csrf_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./csrfトークン用.vue?vue&type=script&lang=js& */ "./resources/js/components/Parts/csrfトークン用.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _csrf_vue_vue_type_style_index_0_id_37d079bc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./csrfトークン用.vue?vue&type=style&index=0&id=37d079bc&scoped=true&lang=css& */ "./resources/js/components/Parts/csrfトークン用.vue?vue&type=style&index=0&id=37d079bc&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _csrf_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _csrf_vue_vue_type_template_id_37d079bc_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _csrf_vue_vue_type_template_id_37d079bc_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "37d079bc",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Parts/csrfトークン用.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Parts/csrfトークン用.vue?vue&type=script&lang=js&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/Parts/csrfトークン用.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_csrf_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./csrfトークン用.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Parts/csrfトークン用.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_csrf_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Parts/csrfトークン用.vue?vue&type=style&index=0&id=37d079bc&scoped=true&lang=css&":
+/*!**************************************************************************************************************!*\
+  !*** ./resources/js/components/Parts/csrfトークン用.vue?vue&type=style&index=0&id=37d079bc&scoped=true&lang=css& ***!
+  \**************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_csrf_vue_vue_type_style_index_0_id_37d079bc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./csrfトークン用.vue?vue&type=style&index=0&id=37d079bc&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Parts/csrfトークン用.vue?vue&type=style&index=0&id=37d079bc&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_csrf_vue_vue_type_style_index_0_id_37d079bc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_csrf_vue_vue_type_style_index_0_id_37d079bc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_csrf_vue_vue_type_style_index_0_id_37d079bc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_csrf_vue_vue_type_style_index_0_id_37d079bc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_csrf_vue_vue_type_style_index_0_id_37d079bc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Parts/csrfトークン用.vue?vue&type=template&id=37d079bc&scoped=true&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/components/Parts/csrfトークン用.vue?vue&type=template&id=37d079bc&scoped=true& ***!
+  \************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_csrf_vue_vue_type_template_id_37d079bc_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./csrfトークン用.vue?vue&type=template&id=37d079bc&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Parts/csrfトークン用.vue?vue&type=template&id=37d079bc&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_csrf_vue_vue_type_template_id_37d079bc_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_csrf_vue_vue_type_template_id_37d079bc_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/SystemDiagrams/T1.vue":
 /*!*******************************************************!*\
   !*** ./resources/js/components/SystemDiagrams/T1.vue ***!
@@ -55679,9 +56246,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _T1_vue_vue_type_template_id_474919c2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./T1.vue?vue&type=template&id=474919c2& */ "./resources/js/components/SystemDiagrams/T1.vue?vue&type=template&id=474919c2&");
+/* harmony import */ var _T1_vue_vue_type_template_id_474919c2_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./T1.vue?vue&type=template&id=474919c2&scoped=true& */ "./resources/js/components/SystemDiagrams/T1.vue?vue&type=template&id=474919c2&scoped=true&");
 /* harmony import */ var _T1_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./T1.vue?vue&type=script&lang=js& */ "./resources/js/components/SystemDiagrams/T1.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _T1_vue_vue_type_style_index_0_scope_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./T1.vue?vue&type=style&index=0&scope=true&lang=css& */ "./resources/js/components/SystemDiagrams/T1.vue?vue&type=style&index=0&scope=true&lang=css&");
+/* empty/unused harmony star reexport *//* harmony import */ var _T1_vue_vue_type_style_index_0_id_474919c2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./T1.vue?vue&type=style&index=0&id=474919c2&scoped=true&lang=css& */ "./resources/js/components/SystemDiagrams/T1.vue?vue&type=style&index=0&id=474919c2&scoped=true&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -55693,11 +56260,11 @@ __webpack_require__.r(__webpack_exports__);
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _T1_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _T1_vue_vue_type_template_id_474919c2___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _T1_vue_vue_type_template_id_474919c2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _T1_vue_vue_type_template_id_474919c2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _T1_vue_vue_type_template_id_474919c2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  null,
+  "474919c2",
   null
   
 )
@@ -55723,35 +56290,35 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/SystemDiagrams/T1.vue?vue&type=style&index=0&scope=true&lang=css&":
-/*!***************************************************************************************************!*\
-  !*** ./resources/js/components/SystemDiagrams/T1.vue?vue&type=style&index=0&scope=true&lang=css& ***!
-  \***************************************************************************************************/
+/***/ "./resources/js/components/SystemDiagrams/T1.vue?vue&type=style&index=0&id=474919c2&scoped=true&lang=css&":
+/*!****************************************************************************************************************!*\
+  !*** ./resources/js/components/SystemDiagrams/T1.vue?vue&type=style&index=0&id=474919c2&scoped=true&lang=css& ***!
+  \****************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_T1_vue_vue_type_style_index_0_scope_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./T1.vue?vue&type=style&index=0&scope=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SystemDiagrams/T1.vue?vue&type=style&index=0&scope=true&lang=css&");
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_T1_vue_vue_type_style_index_0_scope_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_T1_vue_vue_type_style_index_0_scope_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_T1_vue_vue_type_style_index_0_scope_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_T1_vue_vue_type_style_index_0_scope_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_T1_vue_vue_type_style_index_0_scope_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_T1_vue_vue_type_style_index_0_id_474919c2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./T1.vue?vue&type=style&index=0&id=474919c2&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SystemDiagrams/T1.vue?vue&type=style&index=0&id=474919c2&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_T1_vue_vue_type_style_index_0_id_474919c2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_T1_vue_vue_type_style_index_0_id_474919c2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_T1_vue_vue_type_style_index_0_id_474919c2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_T1_vue_vue_type_style_index_0_id_474919c2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_T1_vue_vue_type_style_index_0_id_474919c2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
-/***/ "./resources/js/components/SystemDiagrams/T1.vue?vue&type=template&id=474919c2&":
-/*!**************************************************************************************!*\
-  !*** ./resources/js/components/SystemDiagrams/T1.vue?vue&type=template&id=474919c2& ***!
-  \**************************************************************************************/
+/***/ "./resources/js/components/SystemDiagrams/T1.vue?vue&type=template&id=474919c2&scoped=true&":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/components/SystemDiagrams/T1.vue?vue&type=template&id=474919c2&scoped=true& ***!
+  \**************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_T1_vue_vue_type_template_id_474919c2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./T1.vue?vue&type=template&id=474919c2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SystemDiagrams/T1.vue?vue&type=template&id=474919c2&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_T1_vue_vue_type_template_id_474919c2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_T1_vue_vue_type_template_id_474919c2_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./T1.vue?vue&type=template&id=474919c2&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SystemDiagrams/T1.vue?vue&type=template&id=474919c2&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_T1_vue_vue_type_template_id_474919c2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_T1_vue_vue_type_template_id_474919c2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_T1_vue_vue_type_template_id_474919c2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -55821,93 +56388,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_T2_vue_vue_type_template_id_47573143___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_T2_vue_vue_type_template_id_47573143___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/components/csrfトークン用.vue":
-/*!***********************************************!*\
-  !*** ./resources/js/components/csrfトークン用.vue ***!
-  \***********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _csrf_vue_vue_type_template_id_7430cc1e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./csrfトークン用.vue?vue&type=template&id=7430cc1e&scoped=true& */ "./resources/js/components/csrfトークン用.vue?vue&type=template&id=7430cc1e&scoped=true&");
-/* harmony import */ var _csrf_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./csrfトークン用.vue?vue&type=script&lang=js& */ "./resources/js/components/csrfトークン用.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _csrf_vue_vue_type_style_index_0_id_7430cc1e_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./csrfトークン用.vue?vue&type=style&index=0&id=7430cc1e&scoped=true&lang=css& */ "./resources/js/components/csrfトークン用.vue?vue&type=style&index=0&id=7430cc1e&scoped=true&lang=css&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
-  _csrf_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _csrf_vue_vue_type_template_id_7430cc1e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _csrf_vue_vue_type_template_id_7430cc1e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  "7430cc1e",
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/csrfトークン用.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/csrfトークン用.vue?vue&type=script&lang=js&":
-/*!************************************************************************!*\
-  !*** ./resources/js/components/csrfトークン用.vue?vue&type=script&lang=js& ***!
-  \************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_csrf_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./csrfトークン用.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/csrfトークン用.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_csrf_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/csrfトークン用.vue?vue&type=style&index=0&id=7430cc1e&scoped=true&lang=css&":
-/*!********************************************************************************************************!*\
-  !*** ./resources/js/components/csrfトークン用.vue?vue&type=style&index=0&id=7430cc1e&scoped=true&lang=css& ***!
-  \********************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_csrf_vue_vue_type_style_index_0_id_7430cc1e_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./csrfトークン用.vue?vue&type=style&index=0&id=7430cc1e&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/csrfトークン用.vue?vue&type=style&index=0&id=7430cc1e&scoped=true&lang=css&");
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_csrf_vue_vue_type_style_index_0_id_7430cc1e_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_csrf_vue_vue_type_style_index_0_id_7430cc1e_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_csrf_vue_vue_type_style_index_0_id_7430cc1e_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_csrf_vue_vue_type_style_index_0_id_7430cc1e_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_csrf_vue_vue_type_style_index_0_id_7430cc1e_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
-/***/ "./resources/js/components/csrfトークン用.vue?vue&type=template&id=7430cc1e&scoped=true&":
-/*!******************************************************************************************!*\
-  !*** ./resources/js/components/csrfトークン用.vue?vue&type=template&id=7430cc1e&scoped=true& ***!
-  \******************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_csrf_vue_vue_type_template_id_7430cc1e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./csrfトークン用.vue?vue&type=template&id=7430cc1e&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/csrfトークン用.vue?vue&type=template&id=7430cc1e&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_csrf_vue_vue_type_template_id_7430cc1e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_csrf_vue_vue_type_template_id_7430cc1e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

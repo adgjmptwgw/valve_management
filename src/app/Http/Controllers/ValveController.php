@@ -43,15 +43,14 @@ class ValveController extends Controller
     public function Index()
     {
         // $ValveOptionsの変数にValveOptionモデルから取ってきたデータをid順に昇順で代入する。
-        // $ValveOptions = ValveOption::orderBy('id', 'asc')->get();
+        $ValveOptions = ValveOption::orderBy('id', 'asc')->get();
 
-         // ddd($ValveOptions);
+        //  ddd($ValveOptions);
         //   ※$ValveOptionsのデータの中身を確認。
         // ValveOptionという名前のオブジェクトに$ValveOptionsを代入する。このオブジェクトはview以下で使用。
-        // return view('SystemD', [
-        //     'ValveOptions' => $ValveOptions,
-        //     'ValveOptions2' => $ValveOptions2
-        // ]);
+        return view('SystemD', [
+            'ValveOptions' => $ValveOptions,
+        ]);
     }
 
     /**
@@ -85,6 +84,8 @@ class ValveController extends Controller
         // Eloquentモデル
         $valveOption = new ValveOption;
         $valveOption->valve_name = 'CWP出口弁';
+        $valveOption->valve_number = 'SW-1';
+        $valveOption->valve_usually_state = '開';
         $valveOption->valve_state = '閉';
         $valveOption->valve_lock = '保安ロック';
         $valveOption->valve_memo = $request->valve_memo;

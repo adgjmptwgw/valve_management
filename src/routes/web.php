@@ -38,7 +38,7 @@ Route::get('/SystemList', 'ValveController@ListIndex');
 // 編集処理
 // Route::post('/SystemD', 'ValveController@update');
 
-// 弁のオプション
+// ValveOptionsのテーブルにデータを登録する処理
 // Route::post('/SystemD', 'ValveController@store');
 
 // Route::resource('SystemD', 'ValveController')->only([
