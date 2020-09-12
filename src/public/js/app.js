@@ -2325,11 +2325,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      // show: true,
-      show: false,
+      show: true,
+      // show: false,
       open: true,
       close: true,
       adjusted: true,
@@ -2372,6 +2374,9 @@ __webpack_require__.r(__webpack_exports__);
           })
         );
       }, 200);
+    },
+    TestEmit: function TestEmit() {
+      this.$emit("HogeEmit");
     }
   }
 });
@@ -2631,7 +2636,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Parts_UsuallyClose_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Parts/UsuallyClose.vue */ "./resources/js/components/Parts/UsuallyClose.vue");
 //
 //
 //
@@ -2681,8 +2685,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
- // const axios = require('axios');
-
+//
+//
+// import UsuallyCloseVue from "../Parts/UsuallyClose.vue";
+// const axios = require('axios');
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     // SystemList.blade.phpから送られてきた、ValveOptionテーブルのデータ
@@ -2698,10 +2704,11 @@ __webpack_require__.r(__webpack_exports__);
       // UsuallyOpen/Close/adjusted.vueに送信する、弁のid(弁をクリック時に送信される)
       sendNumber: "",
       // UsuallyOpen/Close/adjusted.vueに送信する、弁の番号(弁をクリック時に送信される)
-      assignClass: "t1_" // v-forで展開した各弁にclassを自動で割り振る。
+      assignClass: "t1_",
+      // v-forで展開した各弁にclassを自動で割り振る。
       // 例: class="t1_3" => 系統図=t1,id=3の弁
       // ValveOptions:[]
-
+      test: "/img/open_valve_2.png"
     };
   },
   methods: {
@@ -2715,6 +2722,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     getName: function getName(ValveName) {
       return this.sendName = ValveName;
+    },
+    hogeAction: function hogeAction() {
+      return this.test = "/img/close_valve_2.png";
     }
   } // mounted() {
   //     axios.get('/SystemList/json')
@@ -7233,7 +7243,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* 通常「閉」のバルブimg */\n.closeV[data-v-616696c3] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n}\n\n/* 通常「開」のバルブimg */\n.openV[data-v-616696c3] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n}\n\n/* 「調整開」のバルブimg */\n.adjustedV[data-v-616696c3] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n}\n\n/* バルブオプション */\n.valve_option[data-v-616696c3] {\n    width: 200px;\n    height: 600px;\n    display: flex;\n    justify-content: center;\n    flex-direction: column;\n    border-radius: 5px;\n}\n\n/* バルブオプション内の各ボタン(開閉等のボタン) */\n.valve_option > input[data-v-616696c3] {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    margin: 30px auto;\n    width: 200px;\n    height: 50px;\n    border-radius: 5px;\n    border-bottom: solid 5px #444;\n    border-right: solid 5px #444;\n}\n\n/* オプション内のメモ欄 */\n.valve_option > textarea[data-v-616696c3] {\n    width: 200px;\n    height: 50px;\n    border-radius: 5px;\n}\n.valve_names[data-v-616696c3] {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-direction: column;\n}\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* 通常「閉」のバルブimg */\n.closeV[data-v-616696c3] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n}\n\n/* 通常「開」のバルブimg */\n.openV[data-v-616696c3] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n}\n\n/* 「調整開」のバルブimg */\n.adjustedV[data-v-616696c3] {\n    width: 5%;\n    height: 5%;\n    position: absolute;\n}\n\n/* バルブオプション */\n.valve_option[data-v-616696c3] {\n    width: 200px;\n    height: 600px;\n    display: flex;\n    justify-content: center;\n    flex-direction: column;\n    border-radius: 5px;\n}\n\n/* バルブオプション内の各ボタン(開閉等のボタン) */\n.valve_option > input[data-v-616696c3] {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    margin: 30px auto;\n    width: 200px;\n    height: 50px;\n    border-radius: 5px;\n    border-bottom: solid 5px #444;\n    border-right: solid 5px #444;\n}\n\n/* オプション内のメモ欄 */\n.valve_option > textarea[data-v-616696c3] {\n    width: 200px;\n    height: 50px;\n    border-radius: 5px;\n}\n.valve_names[data-v-616696c3] {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-direction: column;\n}\n", ""]);
 
 // exports
 
@@ -7290,7 +7300,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* .t1_3 {\n    color: red;\n    position: absolute;\n    top:100px;\n    right: 100px;\n} */\n", ""]);
+exports.push([module.i, "\n.t1_3[data-v-474919c2] {\n    color: red;\n    position: absolute;\n    top:100px;\n    right: 100px;\n}\n", ""]);
 
 // exports
 
@@ -39648,144 +39658,135 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c(
-      "span",
-      {
-        on: {
-          click: function($event) {
-            _vm.show = !_vm.show
-          }
-        }
-      },
-      [
-        _vm.close
-          ? _c("img", {
-              staticClass: "openV",
-              attrs: { src: "/img/open_valve_2.png", alt: "弁「開」" }
-            })
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.adjusted
-          ? _c("img", {
-              staticClass: "adjustedV",
-              attrs: { src: "/img/adjusted_valve_2.png", alt: "調整開" }
-            })
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.open
-          ? _c("img", {
-              staticClass: "closeV",
-              attrs: { src: "/img/close_valve_2.png", alt: "弁「閉」" }
-            })
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.show
-          ? _c("div", [
-              _c("fieldset", { staticClass: "valve_option" }, [
-                _c("fieldset", [
-                  _c("p", { staticClass: "valve_names" }, [
-                    _vm._v(_vm._s(_vm.optionName))
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "valve_names" }, [
-                    _vm._v(_vm._s(_vm.optionNumber))
-                  ])
+    _c("span", [
+      _vm.close
+        ? _c("img", {
+            staticClass: "openV",
+            attrs: { src: "/img/open_valve_2.png", alt: "弁「開」" }
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.adjusted
+        ? _c("img", {
+            staticClass: "adjustedV",
+            attrs: { src: "/img/adjusted_valve_2.png", alt: "調整開" }
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.open
+        ? _c("img", {
+            staticClass: "closeV",
+            attrs: { src: "/img/close_valve_2.png", alt: "弁「閉」" }
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.show
+        ? _c("div", [
+            _c("fieldset", { staticClass: "valve_option" }, [
+              _c("fieldset", [
+                _c("p", { staticClass: "valve_names" }, [
+                  _vm._v(_vm._s(_vm.optionName))
                 ]),
                 _vm._v(" "),
-                _c("input", {
-                  attrs: {
-                    type: "button",
-                    name: "valve_state",
-                    value: _vm.valueOpen
-                  },
-                  on: {
-                    click: function($event) {
-                      ;(_vm.open = false),
-                        (_vm.close = true),
-                        (_vm.adjusted = false),
-                        (_vm.stateInput = _vm.valueOpen),
-                        _vm.updateOption()
-                    }
+                _c("p", { staticClass: "valve_names" }, [
+                  _vm._v(_vm._s(_vm.optionNumber))
+                ])
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                attrs: {
+                  type: "button",
+                  name: "valve_state",
+                  value: _vm.valueOpen
+                },
+                on: {
+                  click: function($event) {
+                    ;(_vm.open = false),
+                      (_vm.close = true),
+                      (_vm.adjusted = false),
+                      (_vm.stateInput = _vm.valueOpen),
+                      _vm.updateOption()
                   }
-                }),
-                _vm._v(" "),
-                _c("input", {
-                  attrs: {
-                    type: "button",
-                    name: "valve_state",
-                    value: _vm.valueClose
-                  },
-                  on: {
-                    click: function($event) {
-                      ;(_vm.close = false),
-                        (_vm.open = true),
-                        (_vm.adjusted = false),
-                        (_vm.stateInput = _vm.valueClose),
-                        _vm.updateOption()
-                    }
+                }
+              }),
+              _vm._v(" "),
+              _c("input", {
+                attrs: {
+                  type: "button",
+                  name: "valve_state",
+                  value: _vm.valueClose
+                },
+                on: {
+                  click: function($event) {
+                    ;(_vm.close = false),
+                      (_vm.open = true),
+                      (_vm.adjusted = false),
+                      (_vm.stateInput = _vm.valueClose),
+                      _vm.updateOption(),
+                      _vm.TestEmit()
                   }
-                }),
-                _vm._v(" "),
-                _c("input", {
-                  attrs: {
-                    type: "button",
-                    name: "valve_state",
-                    value: _vm.valueAdjusted
-                  },
-                  on: {
-                    click: function($event) {
-                      ;(_vm.close = false),
-                        (_vm.open = false),
-                        (_vm.adjusted = true),
-                        (_vm.stateInput = _vm.valueAdjusted),
-                        _vm.updateOption()
-                    }
+                }
+              }),
+              _vm._v(" "),
+              _c("input", {
+                attrs: {
+                  type: "button",
+                  name: "valve_state",
+                  value: _vm.valueAdjusted
+                },
+                on: {
+                  click: function($event) {
+                    ;(_vm.close = false),
+                      (_vm.open = false),
+                      (_vm.adjusted = true),
+                      (_vm.stateInput = _vm.valueAdjusted),
+                      _vm.updateOption()
                   }
-                }),
-                _vm._v(" "),
-                _c("input", {
-                  attrs: {
-                    type: "button",
-                    name: "valve_lock",
-                    value: _vm.valveLock
-                  },
-                  on: {
-                    click: function($event) {
-                      _vm.lockInput = _vm.valveLock
-                    }
+                }
+              }),
+              _vm._v(" "),
+              _c("input", {
+                attrs: {
+                  type: "button",
+                  name: "valve_lock",
+                  value: _vm.valveLock
+                },
+                on: {
+                  click: function($event) {
+                    _vm.lockInput = _vm.valveLock
                   }
-                }),
-                _vm._v(" "),
-                _c("textarea", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.valveMemo,
-                      expression: "valveMemo"
-                    }
-                  ],
-                  attrs: { name: "valve_memo" },
-                  domProps: { value: _vm.valveMemo },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.valveMemo = $event.target.value
-                    }
+                }
+              }),
+              _vm._v(" "),
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.valveMemo,
+                    expression: "valveMemo"
                   }
-                }),
-                _vm._v(" "),
-                _c("input", {
-                  attrs: { type: "button", value: "メモを保存" },
-                  on: { click: _vm.updateOption }
-                })
-              ])
+                ],
+                attrs: { name: "valve_memo" },
+                domProps: { value: _vm.valveMemo },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.valveMemo = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("input", {
+                attrs: { type: "button", value: "メモを保存" },
+                on: { click: _vm.updateOption }
+              })
             ])
-          : _vm._e()
-      ]
-    )
+          ])
+        : _vm._e()
+    ])
   ])
 }
 var staticRenderFns = []
@@ -40096,84 +40097,75 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    [
-      _vm._l(_vm.T1, function(Valve) {
-        return _c(
-          "div",
-          {
-            key: Valve.id,
-            on: {
-              click: function($event) {
-                _vm.getId(Valve.id),
-                  _vm.getNumber(
-                    Valve.valve_number,
-                    _vm.getName(Valve.valve_name)
-                  )
-              }
+    _vm._l(_vm.T1, function(Valve) {
+      return _c(
+        "div",
+        {
+          key: Valve.id,
+          on: {
+            click: function($event) {
+              _vm.getId(Valve.id),
+                _vm.getNumber(Valve.valve_number, _vm.getName(Valve.valve_name))
             }
-          },
-          [
-            _c("p", { class: _vm.assignClass + Valve.id }, [
-              _vm._v(_vm._s(Valve.valve_number))
-            ]),
-            _vm._v(" "),
-            _c("p", { class: _vm.assignClass + Valve.id }, [
-              Valve.valve_state === "開"
-                ? _c(
-                    "span",
-                    [
-                      _c("UsuallyOpen", {
-                        attrs: {
-                          "option-id": _vm.sendId,
-                          "option-number": _vm.sendNumber,
-                          "option-name": _vm.sendName
-                        }
-                      })
-                    ],
-                    1
-                  )
-                : Valve.valve_state === "閉"
-                ? _c(
-                    "span",
-                    [
-                      _c("UsuallyClose", {
-                        attrs: {
-                          "option-id": _vm.sendId,
-                          "option-name": _vm.sendName,
-                          "option-number": _vm.sendNumber
-                        }
-                      })
-                    ],
-                    1
-                  )
-                : Valve.valve_state === "調整開"
-                ? _c(
-                    "span",
-                    [
-                      _c("UsuallyAdjusted", {
-                        attrs: {
-                          "option-id": _vm.sendId,
-                          "option-name": _vm.sendName,
-                          "option-number": _vm.sendNumber
-                        }
-                      })
-                    ],
-                    1
-                  )
-                : _vm._e()
-            ])
-          ]
-        )
-      }),
-      _vm._v(
-        "\n\n    " +
-          _vm._s(_vm.sendId) +
-          "\n    " +
-          _vm._s(_vm.sendName) +
-          "\n    "
+          }
+        },
+        [
+          _c("p", { class: _vm.assignClass + Valve.id }, [
+            _vm._v(_vm._s(Valve.valve_number))
+          ]),
+          _vm._v(" "),
+          _c("p", { class: _vm.assignClass + Valve.id }, [
+            Valve.valve_state === "開"
+              ? _c(
+                  "span",
+                  [
+                    _c("UsuallyOpen", {
+                      attrs: {
+                        "option-id": _vm.sendId,
+                        "option-number": _vm.sendNumber,
+                        "option-name": _vm.sendName
+                      }
+                    })
+                  ],
+                  1
+                )
+              : Valve.valve_state === "閉"
+              ? _c(
+                  "span",
+                  [
+                    _c("UsuallyClose", {
+                      attrs: {
+                        "option-id": _vm.sendId,
+                        "option-name": _vm.sendName,
+                        "option-number": _vm.sendNumber
+                      },
+                      on: { HogeEmit: _vm.hogeAction }
+                    }),
+                    _vm._v(" "),
+                    _c("img", { attrs: { src: _vm.test, alt: "" } })
+                  ],
+                  1
+                )
+              : Valve.valve_state === "調整開"
+              ? _c(
+                  "span",
+                  [
+                    _c("UsuallyAdjusted", {
+                      attrs: {
+                        "option-id": _vm.sendId,
+                        "option-name": _vm.sendName,
+                        "option-number": _vm.sendNumber
+                      }
+                    })
+                  ],
+                  1
+                )
+              : _vm._e()
+          ])
+        ]
       )
-    ],
-    2
+    }),
+    0
   )
 }
 var staticRenderFns = []

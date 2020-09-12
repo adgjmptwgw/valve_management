@@ -27,9 +27,10 @@
                         :option-id="sendId"
                         :option-name="sendName"
                         :option-number="sendNumber"
+                        @HogeEmit="hogeAction"
                     >
-                        <!-- <img :src="'/img/open_valve_2.png'" alt="" /> -->
                     </UsuallyClose>
+                    <img :src="test" alt="" />
                 </span>
                 <span v-else-if="Valve.valve_state === '調整開'">
                     <UsuallyAdjusted
@@ -41,14 +42,15 @@
             </p>
         </div>
 
-        {{ sendId }}
-        {{ sendName }}
+        <!-- {{ sendId }}
+        {{ sendName }} -->
+        <!-- {{ test }} -->
         <!-- {{ValveOptions.id}} -->
     </div>
 </template>
 
 <script>
-import UsuallyCloseVue from "../Parts/UsuallyClose.vue";
+// import UsuallyCloseVue from "../Parts/UsuallyClose.vue";
 // const axios = require('axios');
 export default {
     props: {
@@ -62,9 +64,10 @@ export default {
             sendId: "", // UsuallyOpen/Close/adjusted.vueに送信する、弁のid(弁をクリック時に送信される)
             sendName: "", // UsuallyOpen/Close/adjusted.vueに送信する、弁のid(弁をクリック時に送信される)
             sendNumber: "", // UsuallyOpen/Close/adjusted.vueに送信する、弁の番号(弁をクリック時に送信される)
-            assignClass: "t1_" // v-forで展開した各弁にclassを自動で割り振る。
+            assignClass: "t1_", // v-forで展開した各弁にclassを自動で割り振る。
             // 例: class="t1_3" => 系統図=t1,id=3の弁
             // ValveOptions:[]
+            test: "/img/open_valve_2.png",
         };
     },
     methods: {
@@ -78,6 +81,9 @@ export default {
         },
         getName: function(ValveName) {
             return (this.sendName = ValveName);
+        },
+        hogeAction() {
+            return (this.test = "/img/close_valve_2.png");
         }
     }
 
@@ -91,10 +97,10 @@ export default {
 </script>
 
 <style scoped>
-/* .t1_3 {
+.t1_3 {
     color: red;
     position: absolute;
     top:100px;
     right: 100px;
-} */
+}
 </style>

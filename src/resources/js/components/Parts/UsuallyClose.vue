@@ -1,7 +1,7 @@
 <template>
     <div>
-        <!-- <span> -->
-        <span @click="show = !show">
+        <span>
+        <!-- <span @click="show = !show"> -->
             <img
                 :src="'/img/open_valve_2.png'"
                 alt="弁「開」"
@@ -47,7 +47,8 @@
                                 (open = true),
                                 (adjusted = false),
                                 (stateInput = valueClose),
-                                updateOption()
+                                (updateOption()),
+                                (TestEmit())
                         "
                     />
                     <input
@@ -74,6 +75,7 @@
                         value="メモを保存"
                         @click="updateOption"
                     />
+                    <!-- <button @click="TestEmit">成功ボタン</button> -->
                 </fieldset>
             </div>
         </span>
@@ -84,8 +86,8 @@
 export default {
     data() {
         return {
-            // show: true,
-            show: false,
+            show: true,
+            // show: false,
             open: true,
             close: true,
             adjusted: true,
@@ -129,7 +131,10 @@ export default {
                         }),
                 200
             );
-        }
+        },
+        TestEmit() {
+            this.$emit("HogeEmit");
+        },
     }
 };
 </script>
@@ -192,5 +197,4 @@ export default {
     justify-content: center;
     flex-direction: column;
 }
-
 </style>
