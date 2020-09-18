@@ -40,12 +40,12 @@
   @{{test}}
 </div> -->
 
-<!-- <script>
+<script>
   new Vue({
     el: "#app2",
     data: {},
   });
-</script> -->
+</script>
 
 
 @endsection

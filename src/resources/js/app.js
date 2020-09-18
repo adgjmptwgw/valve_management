@@ -14,7 +14,7 @@ import VueRouter from "vue-router";
 import router from "./router";
 
 // Vuexで使用
-// import store from "./store";
+import store from "./store";
 
 // デフォルトで書いてるやつ
 window.Vue = require('vue');
@@ -59,5 +59,5 @@ const app = new Vue({
     el: "#app",
     router,
     // 以下Vuex使用に際に記述
-    // store,
+    store,
 });
