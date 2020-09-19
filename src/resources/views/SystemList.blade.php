@@ -6,7 +6,7 @@
 <div id="app">
   <!-- 各系統線図へのリンクを記述 <router-link to=""> => router.js => 行先のコンポーネント -->
   <p>
-    <router-link to="/T1">
+    <router-link to="/t1">
       <!-- 各系統線図へアクセスする際のボタンコンポーネント。ボタンに系統線図名を表示する為、slotを使用。 -->
       <base-list-btn>
         <template v-slot:btn-name>
@@ -18,7 +18,7 @@
 
   <div>
     <!-- DB => ValveOptionController => このblade.php => 各系統線図へ$ValveOptionsとして弁のデータを送る -->
-    <router-view :T1="{{ $ValveOptions }}" />
+    <router-view :t1="{{ $ValveOptions }}" />
   </div>
 
   <p>
@@ -35,21 +35,4 @@
   </div>
 </div>
 
-
-<!-- <div id="app2">
-  @{{test}}
-</div> -->
-
-<script>
-  new Vue({
-    el: "#app2",
-    data: {},
-  });
-</script>
-
-
 @endsection
-
-<style>
-  
-</style>

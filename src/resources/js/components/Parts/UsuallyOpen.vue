@@ -5,18 +5,21 @@
                 :src="'/img/adjusted_valve_2.png'"
                 alt="「調整開」"
                 class="adjustedV"
+                :class="{ unusual_valve: isDisplayUnusual }"
                 v-if="adjusted"
             />
             <img
                 :src="'/img/close_valve_2.png'"
                 alt="弁「閉」"
                 class="closeV"
+                :class="{ unusual_valve: isDisplayUnusual }"
                 v-if="close"
             />
             <img
                 :src="'/img/open_valve_2.png'"
                 alt="弁「開」"
                 class="openV"
+                :class="{ unusual_valve: isDisplayUnusual }"
                 v-if="open"
             />
         </div>
@@ -27,6 +30,9 @@
 export default {
     props: {
         optionId: {
+            default: ""
+        },
+        optionUsuallyState: {
             default: ""
         },
         openCommand: {
@@ -43,7 +49,8 @@ export default {
         return {
             open: true,
             close: true,
-            adjusted: true
+            adjusted: true,
+            isDisplayUnusual: false
         };
     },
     watch: {
@@ -53,6 +60,12 @@ export default {
                 this.open = true;
                 this.close = false;
                 this.adjusted = false;
+
+                if (this.optionUsuallyState == "開") {
+                    this.isDisplayUnusual = false;
+                } else if (this.optionUsuallyState != "開") {
+                    this.isDisplayUnusual = true;
+                }
             }
         },
         closeCommand: function() {
@@ -61,6 +74,12 @@ export default {
                 this.open = false;
                 this.close = true;
                 this.adjusted = false;
+
+                if (this.optionUsuallyState == "閉") {
+                    this.isDisplayUnusual = false;
+                } else if (this.optionUsuallyState != "閉") {
+                    this.isDisplayUnusual = true;
+                }
             }
         },
         adjustedCommand: function() {
@@ -69,7 +88,18 @@ export default {
                 this.open = false;
                 this.close = false;
                 this.adjusted = true;
+
+                if (this.optionUsuallyState == "調整開") {
+                    this.isDisplayUnusual = false;
+                } else if (this.optionUsuallyState != "調整開") {
+                    this.isDisplayUnusual = true;
+                }
             }
+        }
+    },
+    mounted() {
+        if (this.optionUsuallyState != "開") {
+            this.isDisplayUnusual = true;
         }
     }
 };
@@ -95,5 +125,8 @@ export default {
     width: 25px;
     height: 15px;
     position: absolute;
+}
+.unusual_valve {
+    background-color: yellow;
 }
 </style>

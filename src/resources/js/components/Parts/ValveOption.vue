@@ -61,7 +61,7 @@
 
 <script>
 export default {
-        props: {
+    props: {
         optionId: {
             default: ""
         },
@@ -71,6 +71,9 @@ export default {
         optionName: {
             default: ""
         },
+        optionUsuallyState: {
+            default: ""
+        }
     },
     data() {
         return {
@@ -81,7 +84,7 @@ export default {
             valveMemo: "",
             valveLock: "保安ロック",
             lockInput: "",
-            optionNumber: "23",
+            optionNumber: "23"
         };
     },
     methods: {
@@ -105,25 +108,24 @@ export default {
             );
         },
         commandOpen() {
-         this.$emit("push-open");
+            this.$emit("push-open");
         },
         commandClose() {
-         this.$emit("push-close");
+            this.$emit("push-close");
         },
         commandAdjusted() {
-         this.$emit("push-adjusted");
+            this.$emit("push-adjusted");
         },
-        resetOpen(){
+        resetOpen() {
             this.$emit("push-reset-open");
         },
-        resetClose(){
+        resetClose() {
             this.$emit("push-reset-close");
         },
-        resetAdjusted(){
+        resetAdjusted() {
             this.$emit("push-reset-adjusted");
-        }
-    },
-    
+        },
+    }
 };
 </script>
 
@@ -136,10 +138,6 @@ export default {
     justify-content: center;
     flex-direction: column;
     border-radius: 5px;
-    position: relative;
-    top: 0px;
-    right: 0px;
-    z-index: 1;
 }
 
 /* バルブオプション内の各ボタン(開閉等のボタン) */
@@ -168,5 +166,4 @@ export default {
     justify-content: center;
     flex-direction: column;
 }
-
 </style>
