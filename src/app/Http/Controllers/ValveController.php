@@ -15,12 +15,19 @@ class ValveController extends Controller
      */
     public function ListIndex()
     {
-        // $ValveOptionsの変数にValveOptionモデルから取ってきたデータをid順に昇順で代入する。        
-        $T1 = ValveOption::orderBy('id', 'asc')->get();
-        $ValveOptions = json_encode($T1);
-        // ddd($ValveOptions);
+        // $ValveOptionsの変数にValveOptionモデルから取ってきたデータをid順に昇順で代入する。   
+        $T1 = ValveOption::orderBy('id', 'asc')->find([1,2,3,4,5]);
+        $T2 = ValveOption::orderBy('id', 'asc')->find([1,2,3]);
+        // $T1 = ValveOption::orderBy('id', 'asc')->get();
         
-        return view('SystemList')->with('ValveOptions', $ValveOptions);
+        $ValveOptionsT1 = json_encode($T1);
+        $ValveOptionsT2 = json_encode($T2);
+        // ddd($ValveOptionsT2);
+        
+        return view('SystemList')->with(
+            ['ValveDataT1' => $ValveOptionsT1,
+             'ValveDataT2' => $ValveOptionsT2
+            ]);
     }
 
     // public function json($id = -1)

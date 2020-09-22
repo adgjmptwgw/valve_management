@@ -50,7 +50,7 @@ export default {
             open: true,
             close: true,
             adjusted: true,
-            isDisplayUnusual: false
+            isDisplayUnusual:false
         };
     },
     watch: {
@@ -60,17 +60,53 @@ export default {
                 this.open = true;
                 this.close = false;
                 this.adjusted = false;
+            }
+        },
+        closeCommand: function() {
+            // watchが変化した際に実行される処理
+            if (this.optionId == this.closeCommand) {
+                this.open = false;
+                this.close = true;
+                this.adjusted = false;
+            }
+        },
+        adjustedCommand: function() {
+            // watchが変化した際に実行される処理
+            if (this.optionId == this.adjustedCommand) {
+                this.open = false;
+                this.close = false;
+                this.adjusted = true;
+            }
+        }
+    },
+    mounted() {
+        // もしt1の系統線図であれば、store.state.storeT1のデータを使う。
+        if ((this.systemDiagram = "t1")) {
+            var systemDiagrams = this.$store.state.storeT1;
+        } else if ((this.systemDiagrams = "t2")) {
+            var systemDiagrams = this.$store.state.storeT2;
+        }
+
+        // Vuexのstore.stateの中から、state.idとクリックした弁のidが同じものを探し出して、変数にいれる。
+        let getStore = systemDiagrams.find(valvesStore => {
+            return valvesStore.id == this.optionId;
+        });
+        // propsで系統線図(B1.T1/vue等々)から送られてきたoptionId(弁のid)とstoreのidが同じものだけ、
+        // 系統線図ページを開く時に弁の開閉表示を切り替える。
+        // この処理をしない場合→開ボタンクリック後にページを開き直すと閉状態の弁全てが開表示に
+        // 切り替わってしまう。  ※UsuallyClose.vueの場合
+        if (this.optionId == getStore.id) {
+            if (getStore.valve_state == "開") {
+                this.open = true;
+                this.close = false;
+                this.adjusted = false;
 
                 if (this.optionUsuallyState == "開") {
                     this.isDisplayUnusual = false;
                 } else if (this.optionUsuallyState != "開") {
                     this.isDisplayUnusual = true;
                 }
-            }
-        },
-        closeCommand: function() {
-            // watchが変化した際に実行される処理
-            if (this.optionId == this.closeCommand) {
+            } else if (getStore.valve_state == "閉") {
                 this.open = false;
                 this.close = true;
                 this.adjusted = false;
@@ -80,11 +116,7 @@ export default {
                 } else if (this.optionUsuallyState != "閉") {
                     this.isDisplayUnusual = true;
                 }
-            }
-        },
-        adjustedCommand: function() {
-            // watchが変化した際に実行される処理
-            if (this.optionId == this.adjustedCommand) {
+            } else if (getStore.valve_state == "調整開") {
                 this.open = false;
                 this.close = false;
                 this.adjusted = true;
@@ -95,11 +127,6 @@ export default {
                     this.isDisplayUnusual = true;
                 }
             }
-        }
-    },
-    mounted() {
-        if (this.optionUsuallyState != "開") {
-            this.isDisplayUnusual = true;
         }
     }
 };

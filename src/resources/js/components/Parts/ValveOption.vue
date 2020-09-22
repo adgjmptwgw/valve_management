@@ -1,6 +1,6 @@
 <template>
     <div>
-        <fieldset class="valve_option" @click="show = !show">
+        <fieldset class="valve_option">
             <fieldset>
                 <p class="valve_names">{{ optionName }}</p>
                 <p class="valve_names">{{ optionNumber }}</p>
@@ -16,7 +16,8 @@
                         (stateInput = valueOpen),
                         updateOption(),
                         commandOpen(),
-                        resetOpen()
+                        resetOpen(),
+                        sendStore()
                 "
             />
             <input
@@ -30,7 +31,8 @@
                         (stateInput = valueClose),
                         updateOption(),
                         commandClose(),
-                        resetClose()
+                        resetClose(),
+                        sendStore()
                 "
             />
             <input
@@ -44,7 +46,8 @@
                         (stateInput = valueAdjusted),
                         updateOption(),
                         commandAdjusted(),
-                        resetAdjusted()
+                        resetAdjusted(),
+                        sendStore()
                 "
             />
             <input
@@ -62,29 +65,37 @@
 <script>
 export default {
     props: {
+        // 弁のid。元はデータベースからの取得したデータ。
         optionId: {
             default: ""
         },
+        // 以下はオプション画面で表示する情報。弁番号と弁名称。
         optionNumber: {
             default: ""
         },
         optionName: {
             default: ""
         },
+        // 弁の通常状態のデータ。通常状態の表示・非表示で用いる。
         optionUsuallyState: {
             default: ""
         }
     },
     data() {
         return {
+            // :valueに入っている値。
             valueOpen: "開",
             valueClose: "閉",
             valueAdjusted: "調整開",
+
+            // クリックした弁の:value値(開・閉・調整開)が入る。上記のvalueopen/close/adjustedが入る。
+            // axiosでデータベースに送ったり、Vuexのstoreにデータを渡す役割がある。
             stateInput: "",
+
+            // axiosでDBに送るデータ
             valveMemo: "",
             valveLock: "保安ロック",
-            lockInput: "",
-            optionNumber: "23"
+            lockInput: ""
         };
     },
     methods: {
@@ -107,6 +118,7 @@ export default {
                 200
             );
         },
+        // 開閉ボタンを押した際、開閉表示が変わる処理に使う。
         commandOpen() {
             this.$emit("push-open");
         },
@@ -116,6 +128,9 @@ export default {
         commandAdjusted() {
             this.$emit("push-adjusted");
         },
+        //系統線図(B1・T1.Vue等々)のイベントを発火する。
+        // これをしないと、1度「開」ボタンを押した後、2度目に押しても弁の開閉表示が変わらない。
+        // 系統線図(B1・T1.Vue等々)及び、UsuallyOpen/Close/Adjusted.Vueのwatch参照。
         resetOpen() {
             this.$emit("push-reset-open");
         },
@@ -125,6 +140,10 @@ export default {
         resetAdjusted() {
             this.$emit("push-reset-adjusted");
         },
+        // 弁オプションで開閉ボタンを押した際に、Vuexのstoreに状態を登録する処理
+        sendStore() {
+            this.$emit("push-state-button", this.stateInput);
+        }
     }
 };
 </script>

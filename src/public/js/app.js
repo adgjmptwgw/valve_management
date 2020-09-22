@@ -2143,6 +2143,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     adjustedCommand: {
       "default": ""
+    },
+    systemDiagram: {
+      "default": ""
     }
   },
   data: function data() {
@@ -2155,22 +2158,60 @@ __webpack_require__.r(__webpack_exports__);
   },
   watch: {
     openCommand: function openCommand() {
-      // watchが変化した際に実行される処理
+      // 開ボタンを押した時に弁の表示を変化させる処理。データの流れ:valveption => (例)T1.vue => UsuallyClose。
+      // その弁のidとクリックした弁のidが同じであれば、弁の開閉表示を切り替える。
+      // この処理をしないと、開ボタンクリック時に閉状態の弁全てが開表示に切り替わってしまう。※UsuallyClose.vueの場合
       if (this.optionId == this.openCommand) {
         this.open = true;
         this.close = false;
-        this.adjusted = false; // 開ボタンを押して、その弁が通常開であれば、変化なし。それ以外の状態はclassをtrue。
+        this.adjusted = false;
+      }
+    },
+    closeCommand: function closeCommand() {
+      if (this.optionId == this.closeCommand) {
+        this.open = false;
+        this.close = true;
+        this.adjusted = false;
+      }
+    },
+    adjustedCommand: function adjustedCommand() {
+      if (this.optionId == this.adjustedCommand) {
+        this.open = false;
+        this.close = false;
+        this.adjusted = true;
+      }
+    }
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    // もしt1の系統線図であれば、store.state.storeT1のデータを使う。
+    if (this.systemDiagram = "t1") {
+      var systemDiagrams = this.$store.state.storeT1;
+    } else if (this.systemDiagrams = "t2") {
+      var systemDiagrams = this.$store.state.storeT2;
+    } // Vuexのstore.stateの中から、state.idとクリックした弁のidが同じものを探し出して、変数にいれる。
+
+
+    var getStore = systemDiagrams.find(function (valvesStore) {
+      return valvesStore.id == _this.optionId;
+    }); // propsで系統線図(B1.T1/vue等々)から送られてきたoptionId(弁のid)とstoreのidが同じものだけ、
+    // 系統線図ページを開く時に弁の開閉表示を切り替える。
+    // この処理をしない場合→開ボタンクリック後にページを開き直すと閉状態の弁全てが開表示に
+    // 切り替わってしまう。  ※UsuallyClose.vueの場合
+
+    if (this.optionId == getStore.id) {
+      if (getStore.valve_state == "開") {
+        this.open = true;
+        this.close = false;
+        this.adjusted = false;
 
         if (this.optionUsuallyState == "開") {
           this.isDisplayUnusual = false;
         } else if (this.optionUsuallyState != "開") {
           this.isDisplayUnusual = true;
         }
-      }
-    },
-    closeCommand: function closeCommand() {
-      // watchが変化した際に実行される処理
-      if (this.optionId == this.closeCommand) {
+      } else if (getStore.valve_state == "閉") {
         this.open = false;
         this.close = true;
         this.adjusted = false;
@@ -2180,11 +2221,7 @@ __webpack_require__.r(__webpack_exports__);
         } else if (this.optionUsuallyState != "閉") {
           this.isDisplayUnusual = true;
         }
-      }
-    },
-    adjustedCommand: function adjustedCommand() {
-      // watchが変化した際に実行される処理
-      if (this.optionId == this.adjustedCommand) {
+      } else if (getStore.valve_state == "調整開") {
         this.open = false;
         this.close = false;
         this.adjusted = true;
@@ -2195,11 +2232,6 @@ __webpack_require__.r(__webpack_exports__);
           this.isDisplayUnusual = true;
         }
       }
-    }
-  },
-  mounted: function mounted() {
-    if (this.optionUsuallyState != "調整開") {
-      this.isDisplayUnusual = true;
     }
   }
 });
@@ -2404,6 +2436,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     adjustedCommand: {
       "default": ""
+    },
+    systemDiagram: {
+      "default": ""
     }
   },
   data: function data() {
@@ -2416,21 +2451,60 @@ __webpack_require__.r(__webpack_exports__);
   },
   watch: {
     openCommand: function openCommand() {
-      // 開ボタンを押した時に弁の表示を変化させる処理。データの流れ:valveption => T1 => UsuallyClose。
+      // 開ボタンを押した時に弁の表示を変化させる処理。データの流れ:valveption => (例)T1.vue => UsuallyClose。
+      // その弁のidとクリックした弁のidが同じであれば、弁の開閉表示を切り替える。
+      // この処理をしないと、開ボタンクリック時に閉状態の弁全てが開表示に切り替わってしまう。※UsuallyClose.vueの場合
       if (this.optionId == this.openCommand) {
         this.open = true;
         this.close = false;
-        this.adjusted = false; // 開ボタンを押して、その弁が通常開であれば、変化なし。それ以外の状態はclassをtrue。
+        this.adjusted = false;
+      }
+    },
+    closeCommand: function closeCommand() {
+      if (this.optionId == this.closeCommand) {
+        this.open = false;
+        this.close = true;
+        this.adjusted = false;
+      }
+    },
+    adjustedCommand: function adjustedCommand() {
+      if (this.optionId == this.adjustedCommand) {
+        this.open = false;
+        this.close = false;
+        this.adjusted = true;
+      }
+    }
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    // もしt1の系統線図であれば、store.state.storeT1のデータを使う。
+    if (this.systemDiagram = "t1") {
+      var systemDiagrams = this.$store.state.storeT1;
+    } else if (this.systemDiagrams = "t2") {
+      var systemDiagrams = this.$store.state.storeT2;
+    } // Vuexのstore.stateの中から、state.idとクリックした弁のidが同じものを探し出して、変数にいれる。
+
+
+    var getStore = systemDiagrams.find(function (valvesStore) {
+      return valvesStore.id == _this.optionId;
+    }); // propsで系統線図(B1.T1/vue等々)から送られてきたoptionId(弁のid)とstoreのidが同じものだけ、
+    // 系統線図ページを開く時に弁の開閉表示を切り替える。
+    // この処理をしない場合→開ボタンクリック後にページを開き直すと閉状態の弁全てが開表示に
+    // 切り替わってしまう。  ※UsuallyClose.vueの場合
+
+    if (this.optionId == getStore.id) {
+      if (getStore.valve_state == "開") {
+        this.open = true;
+        this.close = false;
+        this.adjusted = false;
 
         if (this.optionUsuallyState == "開") {
           this.isDisplayUnusual = false;
         } else if (this.optionUsuallyState != "開") {
           this.isDisplayUnusual = true;
         }
-      }
-    },
-    closeCommand: function closeCommand() {
-      if (this.optionId == this.closeCommand) {
+      } else if (getStore.valve_state == "閉") {
         this.open = false;
         this.close = true;
         this.adjusted = false;
@@ -2440,10 +2514,7 @@ __webpack_require__.r(__webpack_exports__);
         } else if (this.optionUsuallyState != "閉") {
           this.isDisplayUnusual = true;
         }
-      }
-    },
-    adjustedCommand: function adjustedCommand() {
-      if (this.optionId == this.adjustedCommand) {
+      } else if (getStore.valve_state == "調整開") {
         this.open = false;
         this.close = false;
         this.adjusted = true;
@@ -2454,11 +2525,6 @@ __webpack_require__.r(__webpack_exports__);
           this.isDisplayUnusual = true;
         }
       }
-    }
-  },
-  mounted: function mounted() {
-    if (this.optionUsuallyState != "閉") {
-      this.isDisplayUnusual = true;
     }
   }
 });
@@ -2888,17 +2954,55 @@ __webpack_require__.r(__webpack_exports__);
         this.open = true;
         this.close = false;
         this.adjusted = false;
+      }
+    },
+    closeCommand: function closeCommand() {
+      // watchが変化した際に実行される処理
+      if (this.optionId == this.closeCommand) {
+        this.open = false;
+        this.close = true;
+        this.adjusted = false;
+      }
+    },
+    adjustedCommand: function adjustedCommand() {
+      // watchが変化した際に実行される処理
+      if (this.optionId == this.adjustedCommand) {
+        this.open = false;
+        this.close = false;
+        this.adjusted = true;
+      }
+    }
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    // もしt1の系統線図であれば、store.state.storeT1のデータを使う。
+    if (this.systemDiagram = "t1") {
+      var systemDiagrams = this.$store.state.storeT1;
+    } else if (this.systemDiagrams = "t2") {
+      var systemDiagrams = this.$store.state.storeT2;
+    } // Vuexのstore.stateの中から、state.idとクリックした弁のidが同じものを探し出して、変数にいれる。
+
+
+    var getStore = systemDiagrams.find(function (valvesStore) {
+      return valvesStore.id == _this.optionId;
+    }); // propsで系統線図(B1.T1/vue等々)から送られてきたoptionId(弁のid)とstoreのidが同じものだけ、
+    // 系統線図ページを開く時に弁の開閉表示を切り替える。
+    // この処理をしない場合→開ボタンクリック後にページを開き直すと閉状態の弁全てが開表示に
+    // 切り替わってしまう。  ※UsuallyClose.vueの場合
+
+    if (this.optionId == getStore.id) {
+      if (getStore.valve_state == "開") {
+        this.open = true;
+        this.close = false;
+        this.adjusted = false;
 
         if (this.optionUsuallyState == "開") {
           this.isDisplayUnusual = false;
         } else if (this.optionUsuallyState != "開") {
           this.isDisplayUnusual = true;
         }
-      }
-    },
-    closeCommand: function closeCommand() {
-      // watchが変化した際に実行される処理
-      if (this.optionId == this.closeCommand) {
+      } else if (getStore.valve_state == "閉") {
         this.open = false;
         this.close = true;
         this.adjusted = false;
@@ -2908,11 +3012,7 @@ __webpack_require__.r(__webpack_exports__);
         } else if (this.optionUsuallyState != "閉") {
           this.isDisplayUnusual = true;
         }
-      }
-    },
-    adjustedCommand: function adjustedCommand() {
-      // watchが変化した際に実行される処理
-      if (this.optionId == this.adjustedCommand) {
+      } else if (getStore.valve_state == "調整開") {
         this.open = false;
         this.close = false;
         this.adjusted = true;
@@ -2923,11 +3023,6 @@ __webpack_require__.r(__webpack_exports__);
           this.isDisplayUnusual = true;
         }
       }
-    }
-  },
-  mounted: function mounted() {
-    if (this.optionUsuallyState != "開") {
-      this.isDisplayUnusual = true;
     }
   }
 });
@@ -3149,31 +3244,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
+    // 弁のid。元はデータベースからの取得したデータ。
     optionId: {
       "default": ""
     },
+    // 以下はオプション画面で表示する情報。弁番号と弁名称。
     optionNumber: {
       "default": ""
     },
     optionName: {
       "default": ""
     },
+    // 弁の通常状態のデータ。通常状態の表示・非表示で用いる。
     optionUsuallyState: {
       "default": ""
     }
   },
   data: function data() {
     return {
+      // :valueに入っている値。
       valueOpen: "開",
       valueClose: "閉",
       valueAdjusted: "調整開",
+      // クリックした弁の:value値(開・閉・調整開)が入る。上記のvalueopen/close/adjustedが入る。
+      // axiosでデータベースに送ったり、Vuexのstoreにデータを渡す役割がある。
       stateInput: "",
+      // axiosでDBに送るデータ
       valveMemo: "",
       valveLock: "保安ロック",
-      lockInput: "",
-      optionNumber: "23"
+      lockInput: ""
     };
   },
   methods: {
@@ -3195,6 +3299,7 @@ __webpack_require__.r(__webpack_exports__);
         );
       }, 200);
     },
+    // 開閉ボタンを押した際、開閉表示が変わる処理に使う。
     commandOpen: function commandOpen() {
       this.$emit("push-open");
     },
@@ -3204,6 +3309,9 @@ __webpack_require__.r(__webpack_exports__);
     commandAdjusted: function commandAdjusted() {
       this.$emit("push-adjusted");
     },
+    //系統線図(B1・T1.Vue等々)のイベントを発火する。
+    // これをしないと、1度「開」ボタンを押した後、2度目に押しても弁の開閉表示が変わらない。
+    // 系統線図(B1・T1.Vue等々)及び、UsuallyOpen/Close/Adjusted.Vueのwatch参照。
     resetOpen: function resetOpen() {
       this.$emit("push-reset-open");
     },
@@ -3212,6 +3320,10 @@ __webpack_require__.r(__webpack_exports__);
     },
     resetAdjusted: function resetAdjusted() {
       this.$emit("push-reset-adjusted");
+    },
+    // 弁オプションで開閉ボタンを押した際に、Vuexのstoreに状態を登録する処理
+    sendStore: function sendStore() {
+      this.$emit("push-state-button", this.stateInput);
     }
   }
 });
@@ -3398,6 +3510,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     // SystemList.blade.phpから送られてきた、ValveOptionテーブルのデータ
@@ -3424,7 +3539,11 @@ __webpack_require__.r(__webpack_exports__);
       closeCommand: "",
       adjustedCommand: "",
       // 弁オプション(valveOption)コンポーネントの表示と非表示に使用
-      show: false
+      show: false,
+      // 上記v-forで展開した弁をクリックした際に、その弁の配列の順番をVuexのstoreへ送る。
+      sendIndex: "",
+      // propsでUsuallyOpen/Close/adjustedへ送る。どのstoreへデータを送るか判断する為に使用。
+      systemDiagram: "t1"
     };
   },
   // computed: {
@@ -3442,6 +3561,19 @@ __webpack_require__.r(__webpack_exports__);
   //         }
   //     },
   // },
+  // t1ページを開いた際にVuexのstoreへ、現状の弁状態のデータ(DBからのデータ)を送る。
+  created: function created() {
+    this.$store.commit("getData", {
+      arrayData: this.t1,
+      systemDiagrams: this.systemDiagram
+    });
+  },
+  // pushStateButton(stateInput) {
+  //         this.$store.commit("changeStatus", {
+  //             index: this.sendIndex,
+  //             stateInput: stateInput
+  //         });
+  //     }
   methods: {
     // SystemList.blade.phpから送られてきたデータがv-forで展開される。v-forで展開された各idとvalve_nameを
     // propsを用いて、UsuallyOpen/Close/Adjusted.Vueにデータを送信する。
@@ -3457,6 +3589,11 @@ __webpack_require__.r(__webpack_exports__);
     getName: function getName(ValveName) {
       return this.sendName = ValveName;
     },
+    // forで展開した弁をクリックした際、当該弁の繰り返し回数をstoreへ送信する。引数は繰り返し回数。
+    getIndex: function getIndex(index) {
+      return this.sendIndex = index;
+    },
+    // 開閉ボタンを押した際、その弁のidを各UsuallyOpen/Close/Adjusted.Vueに送る。
     pushOpen: function pushOpen() {
       return this.openCommand = this.sendId;
     },
@@ -3466,6 +3603,9 @@ __webpack_require__.r(__webpack_exports__);
     pushAdjusted: function pushAdjusted() {
       return this.adjustedCommand = this.sendId;
     },
+    // open/close/adjustedCommandのdataの中身を0.3秒後空にリセットする。
+    // これをしないと、1度「開」ボタンを押した後、2度目に押しても弁の開閉表示が変わらない。
+    // UsuallyOpen/Close/Adjusted.Vueのwatch参照。
     pushResetOpen: function pushResetOpen() {
       var _this = this;
 
@@ -3486,11 +3626,14 @@ __webpack_require__.r(__webpack_exports__);
       setTimeout(function () {
         return _this3.adjustedCommand = "";
       }, 100);
-    } // refTest(){
-    //     let test = this.$refs.test;
-    //     test.style.display = "none";
-    // }
-
+    },
+    // 弁オプションで開閉ボタンを押した際に、Vuexのstoreに状態を登録する処理
+    pushStateButton: function pushStateButton(stateInput) {
+      this.$store.commit("changeStatus", {
+        index: this.sendIndex,
+        stateInput: stateInput
+      });
+    }
   }
 });
 
@@ -3511,21 +3654,188 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    // SystemList.blade.phpから送られてきた、ValveOptionテーブルのデータ
+    t2: {
+      // type: Object
+      "default": ""
+    }
+  },
   data: function data() {
     return {
+      // UsuallyOpen/Close/adjusted.vueに送信する、弁のid(弁をクリック時に送信される)
       sendId: "",
-      // バルブのコンポーネントに送る弁のid(弁をクリック時に送信される)
-      roadClose: true
+      // UsuallyOpen/Close/adjusted.vueに送信する、弁の通常状態(弁をクリック時に送信される)
+      sendUsuallyState: "",
+      // UsuallyOpen/Close/adjusted.vueに送信する、弁のid(弁をクリック時に送信される)
+      sendName: "",
+      // UsuallyOpen/Close/adjusted.vueに送信する、弁の番号(弁をクリック時に送信される)
+      sendNumber: "",
+      // v-forで展開した各弁にclassを自動で割り振る。// 例: class="t2_3" => 系統図=t2,id=3の弁
+      assignClass: "t2_",
+      // 弁オプションからemitで飛んできたイベントで用いる。各弁のコンポーネントにpropsで送る。
+      // クリックした弁のidがこのdataの中に入っている。
+      openCommand: "",
+      closeCommand: "",
+      adjustedCommand: "",
+      // 弁オプション(valveOption)コンポーネントの表示と非表示に使用
+      show: false,
+      // 上記v-forで展開した弁をクリックした際に、その弁の配列の順番をVuexのstoreへ送る。
+      sendIndex: "",
+      // propsでUsuallyOpen/Close/adjustedへ送る。どのstoreへデータを送るか判断する為に使用。
+      systemDiagram: "t2"
     };
   },
-  props: ["T2"],
-  // {
-  //     type: Oxbject
-  // }
+  // computed: {
+  //     watchState:function(){
+  //         return this.watchState + 1;
+  //     }
+  // },
+  // watch: {
+  //     openCommand: function() {
+  //         // watchが変化した際に実行される処理
+  //         if (ValveID == this.openCommand) {
+  //             this.isActive = false;
+  //             let test = this.$refs.test + ValveId
+  //             test.backgroundColor = "none"
+  //         }
+  //     },
+  // },
+  // t2ページを開いた際にVuexのstoreへ、現状の弁状態のデータ(DBからのデータ)を送る。
+  created: function created() {
+    this.$store.commit("getData", {
+      arrayData: this.t2,
+      systemDiagrams: this.systemDiagram
+    });
+  },
   methods: {
+    // SystemList.blade.phpから送られてきたデータがv-forで展開される。v-forで展開された各idとvalve_nameを
+    // propsを用いて、UsuallyOpen/Close/Adjusted.Vueにデータを送信する。
     getId: function getId(ValveId) {
       return this.sendId = ValveId;
+    },
+    getUsuallyState: function getUsuallyState(ValveUsuallyState) {
+      return this.sendUsuallyState = ValveUsuallyState;
+    },
+    getNumber: function getNumber(ValveNumber) {
+      return this.sendNumber = ValveNumber;
+    },
+    getName: function getName(ValveName) {
+      return this.sendName = ValveName;
+    },
+    // forで展開した弁をクリックした際、当該弁の繰り返し回数をstoreへ送信する。引数は繰り返し回数。
+    getIndex: function getIndex(index) {
+      return this.sendIndex = index;
+    },
+    // 開閉ボタンを押した際、その弁のidを各UsuallyOpen/Close/Adjusted.Vueに送る。
+    pushOpen: function pushOpen() {
+      return this.openCommand = this.sendId;
+    },
+    pushClose: function pushClose() {
+      return this.closeCommand = this.sendId;
+    },
+    pushAdjusted: function pushAdjusted() {
+      return this.adjustedCommand = this.sendId;
+    },
+    // open/close/adjustedCommandのdataの中身を0.3秒後空にリセットする。
+    // これをしないと、1度「開」ボタンを押した後、2度目に押しても弁の開閉表示が変わらない。
+    // UsuallyOpen/Close/Adjusted.Vueのwatch参照。
+    pushResetOpen: function pushResetOpen() {
+      var _this = this;
+
+      setTimeout(function () {
+        return _this.openCommand = "";
+      }, 100);
+    },
+    pushResetClose: function pushResetClose() {
+      var _this2 = this;
+
+      setTimeout(function () {
+        return _this2.closeCommand = "";
+      }, 100);
+    },
+    pushResetAdjusted: function pushResetAdjusted() {
+      var _this3 = this;
+
+      setTimeout(function () {
+        return _this3.adjustedCommand = "";
+      }, 100);
+    },
+    // 弁オプションで開閉ボタンを押した際に、Vuexのstoreに状態を登録する処理
+    pushStateButton: function pushStateButton(stateInput) {
+      this.$store.commit("changeStatus", {
+        index: this.sendIndex,
+        stateInput: stateInput
+      });
     }
   }
 });
@@ -8072,7 +8382,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* 通常「閉」のバルブimg */\n.closeV[data-v-552e94f3] {\n    width: 25px;\n    height: 15px;\n    position: absolute;\n}\n\n/* 通常「開」のバルブimg */\n.openV[data-v-552e94f3] {\n    width: 25px;\n    height: 15px;\n    position: absolute;\n}\n\n/* 「調整開」のバルブimg */\n.adjustedV[data-v-552e94f3] {\n    width: 25px;\n    height: 15px;\n    position: absolute;\n}\n.unusual_valve[data-v-552e94f3] {\n    background-color: yellow;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* 通常「閉」のバルブimg */\n.closeV[data-v-552e94f3] {\n    width: 25px;\n    height: 15px;\n    position: absolute;\n}\n\n/* 通常「開」のバルブimg */\n.openV[data-v-552e94f3] {\n    width: 25px;\n    height: 15px;\n    position: absolute;\n}\n\n/* 「調整開」のバルブimg */\n.adjustedV[data-v-552e94f3] {\n    width: 25px;\n    height: 15px;\n    position: absolute;\n}\n.unusual_valve[data-v-552e94f3] {\n    background-color: yellow;\n}\n", ""]);
 
 // exports
 
@@ -8110,7 +8420,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* 通常「閉」のバルブimg */\n.closeV[data-v-616696c3] {\n    width: 25px;\n    height: 15px;\n    position: absolute;\n}\n\n/* 通常「開」のバルブimg */\n.openV[data-v-616696c3] {\n    width: 25px;\n    height: 15px;\n    position: absolute;\n}\n\n/* 「調整開」のバルブimg */\n.adjustedV[data-v-616696c3] {\n    width: 25px;\n    height: 15px;\n    position: absolute;\n}\n.unusual_valve[data-v-616696c3] {\n    background-color: yellow;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* 通常「閉」のバルブimg */\n.closeV[data-v-616696c3] {\n    width: 25px;\n    height: 15px;\n    position: absolute;\n}\n\n/* 通常「開」のバルブimg */\n.openV[data-v-616696c3] {\n    width: 25px;\n    height: 15px;\n    position: absolute;\n}\n\n/* 「調整開」のバルブimg */\n.adjustedV[data-v-616696c3] {\n    width: 25px;\n    height: 15px;\n    position: absolute;\n}\n.unusual_valve[data-v-616696c3] {\n    background-color: yellow;\n}\n", ""]);
 
 // exports
 
@@ -8186,7 +8496,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* 通常「閉」のバルブimg */\n.closeV[data-v-e9d36162] {\n    width: 25px;\n    height: 15px;\n    position: absolute;\n}\n\n/* 通常「開」のバルブimg */\n.openV[data-v-e9d36162] {\n    width: 25px;\n    height: 15px;\n    position: absolute;\n}\n\n/* 「調整開」のバルブimg */\n.adjustedV[data-v-e9d36162] {\n    width: 25px;\n    height: 15px;\n    position: absolute;\n}\n.unusual_valve[data-v-e9d36162] {\n    background-color: yellow;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* 通常「閉」のバルブimg */\n.closeV[data-v-e9d36162] {\n    width: 25px;\n    height: 15px;\n    position: absolute;\n}\n\n/* 通常「開」のバルブimg */\n.openV[data-v-e9d36162] {\n    width: 25px;\n    height: 15px;\n    position: absolute;\n}\n\n/* 「調整開」のバルブimg */\n.adjustedV[data-v-e9d36162] {\n    width: 25px;\n    height: 15px;\n    position: absolute;\n}\n.unusual_valve[data-v-e9d36162] {\n    background-color: yellow;\n}\n", ""]);
 
 // exports
 
@@ -8224,7 +8534,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* バルブオプション */\n.valve_option[data-v-20b2c90a] {\n    width: 200px;\n    height: 600px;\n    display: flex;\n    justify-content: center;\n    flex-direction: column;\n    border-radius: 5px;\n}\n\n/* バルブオプション内の各ボタン(開閉等のボタン) */\n.valve_option > input[data-v-20b2c90a] {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    margin: 30px auto;\n    width: 200px;\n    height: 50px;\n    border-radius: 5px;\n    border-bottom: solid 5px #444;\n    border-right: solid 5px #444;\n}\n\n/* オプション内のメモ欄 */\n.valve_option > textarea[data-v-20b2c90a] {\n    width: 200px;\n    height: 50px;\n    border-radius: 5px;\n}\n.valve_names[data-v-20b2c90a] {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-direction: column;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* バルブオプション */\n.valve_option[data-v-20b2c90a] {\n    width: 200px;\n    height: 600px;\n    display: flex;\n    justify-content: center;\n    flex-direction: column;\n    border-radius: 5px;\n}\n\n/* バルブオプション内の各ボタン(開閉等のボタン) */\n.valve_option > input[data-v-20b2c90a] {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    margin: 30px auto;\n    width: 200px;\n    height: 50px;\n    border-radius: 5px;\n    border-bottom: solid 5px #444;\n    border-right: solid 5px #444;\n}\n\n/* オプション内のメモ欄 */\n.valve_option > textarea[data-v-20b2c90a] {\n    width: 200px;\n    height: 50px;\n    border-radius: 5px;\n}\n.valve_names[data-v-20b2c90a] {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-direction: column;\n}\n", ""]);
 
 // exports
 
@@ -8263,6 +8573,25 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 // module
 exports.push([module.i, "\n.t1_1[data-v-474919c2] {\n    position: absolute;\n    top: 250px;\n    left: 230px;\n}\n.t1_2[data-v-474919c2] {\n    position: absolute;\n    top: 250px;\n    left: 330px;\n}\n.t1_3[data-v-474919c2] {\n    position: absolute;\n    top: 250px;\n    left: 430px;\n}\n.t1_4[data-v-474919c2] {\n    position: absolute;\n    top: 250px;\n    left: 530px;\n}\n.t1_5[data-v-474919c2] {\n    position: absolute;\n    top: 250px;\n    left: 630px;\n}\n.valve_name[data-v-474919c2] {\n    margin-top: 20px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SystemDiagrams/T2.vue?vue&type=style&index=0&id=47573143&scoped=true&lang=css&":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SystemDiagrams/T2.vue?vue&type=style&index=0&id=47573143&scoped=true&lang=css& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.t2_1[data-v-47573143] {\n    position: absolute;\n    top: 250px;\n    left: 230px;\n}\n.t2_2[data-v-47573143] {\n    position: absolute;\n    top: 250px;\n    left: 330px;\n}\n.t2_3[data-v-47573143] {\n    position: absolute;\n    top: 250px;\n    left: 430px;\n}\n.t2_4[data-v-47573143] {\n    position: absolute;\n    top: 250px;\n    left: 530px;\n}\n.t2_5[data-v-47573143] {\n    position: absolute;\n    top: 250px;\n    left: 630px;\n}\n.valve_name[data-v-47573143] {\n    margin-top: 20px;\n}\n", ""]);
 
 // exports
 
@@ -39807,6 +40136,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SystemDiagrams/T2.vue?vue&type=style&index=0&id=47573143&scoped=true&lang=css&":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SystemDiagrams/T2.vue?vue&type=style&index=0&id=47573143&scoped=true&lang=css& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./T2.vue?vue&type=style&index=0&id=47573143&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SystemDiagrams/T2.vue?vue&type=style&index=0&id=47573143&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SystemDiagrams/t1copy.vue?vue&type=style&index=0&id=76eb8597&scoped=true&lang=css&":
 /*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SystemDiagrams/t1copy.vue?vue&type=style&index=0&id=76eb8597&scoped=true&lang=css& ***!
@@ -41581,112 +41940,104 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c(
-      "fieldset",
-      {
-        staticClass: "valve_option",
-        on: {
-          click: function($event) {
-            _vm.show = !_vm.show
-          }
-        }
-      },
-      [
-        _c("fieldset", [
-          _c("p", { staticClass: "valve_names" }, [
-            _vm._v(_vm._s(_vm.optionName))
-          ]),
-          _vm._v(" "),
-          _c("p", { staticClass: "valve_names" }, [
-            _vm._v(_vm._s(_vm.optionNumber))
-          ])
+    _c("fieldset", { staticClass: "valve_option" }, [
+      _c("fieldset", [
+        _c("p", { staticClass: "valve_names" }, [
+          _vm._v(_vm._s(_vm.optionName))
         ]),
         _vm._v(" "),
-        _c("input", {
-          attrs: { type: "button", name: "valve_state", value: _vm.valueOpen },
-          on: {
-            click: function($event) {
-              ;(_vm.open = false),
-                (_vm.close = true),
-                (_vm.adjusted = false),
-                (_vm.stateInput = _vm.valueOpen),
-                _vm.updateOption(),
-                _vm.commandOpen(),
-                _vm.resetOpen()
-            }
+        _c("p", { staticClass: "valve_names" }, [
+          _vm._v(_vm._s(_vm.optionNumber))
+        ])
+      ]),
+      _vm._v(" "),
+      _c("input", {
+        attrs: { type: "button", name: "valve_state", value: _vm.valueOpen },
+        on: {
+          click: function($event) {
+            ;(_vm.open = false),
+              (_vm.close = true),
+              (_vm.adjusted = false),
+              (_vm.stateInput = _vm.valueOpen),
+              _vm.updateOption(),
+              _vm.commandOpen(),
+              _vm.resetOpen(),
+              _vm.sendStore()
           }
-        }),
-        _vm._v(" "),
-        _c("input", {
-          attrs: { type: "button", name: "valve_state", value: _vm.valueClose },
-          on: {
-            click: function($event) {
-              ;(_vm.close = false),
-                (_vm.open = true),
-                (_vm.adjusted = false),
-                (_vm.stateInput = _vm.valueClose),
-                _vm.updateOption(),
-                _vm.commandClose(),
-                _vm.resetClose()
-            }
+        }
+      }),
+      _vm._v(" "),
+      _c("input", {
+        attrs: { type: "button", name: "valve_state", value: _vm.valueClose },
+        on: {
+          click: function($event) {
+            ;(_vm.close = false),
+              (_vm.open = true),
+              (_vm.adjusted = false),
+              (_vm.stateInput = _vm.valueClose),
+              _vm.updateOption(),
+              _vm.commandClose(),
+              _vm.resetClose(),
+              _vm.sendStore()
           }
-        }),
-        _vm._v(" "),
-        _c("input", {
-          attrs: {
-            type: "button",
-            name: "valve_state",
-            value: _vm.valueAdjusted
-          },
-          on: {
-            click: function($event) {
-              ;(_vm.close = false),
-                (_vm.open = false),
-                (_vm.adjusted = true),
-                (_vm.stateInput = _vm.valueAdjusted),
-                _vm.updateOption(),
-                _vm.commandAdjusted(),
-                _vm.resetAdjusted()
-            }
+        }
+      }),
+      _vm._v(" "),
+      _c("input", {
+        attrs: {
+          type: "button",
+          name: "valve_state",
+          value: _vm.valueAdjusted
+        },
+        on: {
+          click: function($event) {
+            ;(_vm.close = false),
+              (_vm.open = false),
+              (_vm.adjusted = true),
+              (_vm.stateInput = _vm.valueAdjusted),
+              _vm.updateOption(),
+              _vm.commandAdjusted(),
+              _vm.resetAdjusted(),
+              _vm.sendStore()
           }
-        }),
-        _vm._v(" "),
-        _c("input", {
-          attrs: { type: "button", name: "valve_lock", value: _vm.valveLock },
-          on: {
-            click: function($event) {
-              _vm.lockInput = _vm.valveLock
-            }
+        }
+      }),
+      _vm._v(" "),
+      _c("input", {
+        attrs: { type: "button", name: "valve_lock", value: _vm.valveLock },
+        on: {
+          click: function($event) {
+            _vm.lockInput = _vm.valveLock
           }
-        }),
-        _vm._v(" "),
-        _c("textarea", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.valveMemo,
-              expression: "valveMemo"
-            }
-          ],
-          attrs: { name: "valve_memo" },
-          domProps: { value: _vm.valveMemo },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.valveMemo = $event.target.value
-            }
+        }
+      }),
+      _vm._v(" "),
+      _c("textarea", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.valveMemo,
+            expression: "valveMemo"
           }
-        }),
-        _vm._v(" "),
-        _c("input", {
-          attrs: { type: "button", value: "メモを保存" },
-          on: { click: _vm.updateOption }
-        })
-      ]
-    )
+        ],
+        attrs: { name: "valve_memo" },
+        domProps: { value: _vm.valveMemo },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.valveMemo = $event.target.value
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("input", {
+        attrs: { type: "button", value: "メモを保存" },
+        on: { click: _vm.updateOption }
+      })
+    ])
   ])
 }
 var staticRenderFns = []
@@ -41835,7 +42186,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _vm._l(_vm.t1, function(Valve) {
+      _vm._l(_vm.t1, function(Valve, index) {
         return _c(
           "div",
           {
@@ -41845,7 +42196,8 @@ var render = function() {
                 _vm.getId(Valve.id),
                   _vm.getNumber(Valve.valve_number),
                   _vm.getName(Valve.valve_name),
-                  _vm.getUsuallyState(Valve.valve_usually_state)
+                  _vm.getUsuallyState(Valve.valve_usually_state),
+                  _vm.getIndex(index)
               }
             }
           },
@@ -41881,30 +42233,30 @@ var render = function() {
                             "option-usually-state": Valve.valve_usually_state,
                             "open-command": _vm.openCommand,
                             "close-command": _vm.closeCommand,
-                            "adjusted-command": _vm.adjustedCommand
+                            "adjusted-command": _vm.adjustedCommand,
+                            "system-diagram": _vm.systemDiagram
                           }
                         })
                       ],
                       1
                     )
                   : Valve.valve_state === "閉"
-                  ? _c("span", [
-                      _c(
-                        "div",
-                        [
-                          _c("UsuallyClose", {
-                            attrs: {
-                              "option-id": Valve.id,
-                              "option-usually-state": Valve.valve_usually_state,
-                              "open-command": _vm.openCommand,
-                              "close-command": _vm.closeCommand,
-                              "adjusted-command": _vm.adjustedCommand
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ])
+                  ? _c(
+                      "span",
+                      [
+                        _c("UsuallyClose", {
+                          attrs: {
+                            "option-id": Valve.id,
+                            "option-usually-state": Valve.valve_usually_state,
+                            "open-command": _vm.openCommand,
+                            "close-command": _vm.closeCommand,
+                            "adjusted-command": _vm.adjustedCommand,
+                            "system-diagram": _vm.systemDiagram
+                          }
+                        })
+                      ],
+                      1
+                    )
                   : Valve.valve_state === "調整開"
                   ? _c(
                       "span",
@@ -41915,7 +42267,8 @@ var render = function() {
                             "option-usually-state": Valve.valve_usually_state,
                             "open-command": _vm.openCommand,
                             "close-command": _vm.closeCommand,
-                            "adjusted-command": _vm.adjustedCommand
+                            "adjusted-command": _vm.adjustedCommand,
+                            "system-diagram": _vm.systemDiagram
                           }
                         })
                       ],
@@ -41952,7 +42305,8 @@ var render = function() {
                   "push-adjusted": _vm.pushAdjusted,
                   "push-reset-open": _vm.pushResetOpen,
                   "push-reset-close": _vm.pushResetClose,
-                  "push-reset-adjusted": _vm.pushResetAdjusted
+                  "push-reset-adjusted": _vm.pushResetAdjusted,
+                  "push-state-button": _vm.pushStateButton
                 }
               })
             ],
@@ -41970,10 +42324,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SystemDiagrams/T2.vue?vue&type=template&id=47573143&":
-/*!********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SystemDiagrams/T2.vue?vue&type=template&id=47573143& ***!
-  \********************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SystemDiagrams/T2.vue?vue&type=template&id=47573143&scoped=true&":
+/*!********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SystemDiagrams/T2.vue?vue&type=template&id=47573143&scoped=true& ***!
+  \********************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -41985,7 +42339,139 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n    " + _vm._s(_vm.T2) + "\n")])
+  return _c(
+    "div",
+    [
+      _vm._l(_vm.t2, function(Valve, index) {
+        return _c(
+          "div",
+          {
+            key: Valve.id,
+            on: {
+              click: function($event) {
+                _vm.getId(Valve.id),
+                  _vm.getNumber(Valve.valve_number),
+                  _vm.getName(Valve.valve_name),
+                  _vm.getUsuallyState(Valve.valve_usually_state),
+                  _vm.getIndex(index)
+              }
+            }
+          },
+          [
+            _c(
+              "p",
+              { staticClass: "valve_name", class: _vm.assignClass + Valve.id },
+              [
+                _vm._v(
+                  "\n            " + _vm._s(Valve.valve_number) + "\n        "
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "p",
+              {
+                class: _vm.assignClass + Valve.id,
+                on: {
+                  click: function($event) {
+                    _vm.show = !_vm.show
+                  }
+                }
+              },
+              [
+                Valve.valve_state === "開"
+                  ? _c(
+                      "span",
+                      [
+                        _c("UsuallyOpen", {
+                          attrs: {
+                            "option-id": Valve.id,
+                            "option-usually-state": Valve.valve_usually_state,
+                            "open-command": _vm.openCommand,
+                            "close-command": _vm.closeCommand,
+                            "adjusted-command": _vm.adjustedCommand,
+                            "system-diagram": _vm.systemDiagram
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  : Valve.valve_state === "閉"
+                  ? _c(
+                      "span",
+                      [
+                        _c("UsuallyClose", {
+                          attrs: {
+                            "option-id": Valve.id,
+                            "option-usually-state": Valve.valve_usually_state,
+                            "open-command": _vm.openCommand,
+                            "close-command": _vm.closeCommand,
+                            "adjusted-command": _vm.adjustedCommand,
+                            "system-diagram": _vm.systemDiagram
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  : Valve.valve_state === "調整開"
+                  ? _c(
+                      "span",
+                      [
+                        _c("UsuallyAdjusted", {
+                          attrs: {
+                            "option-id": Valve.id,
+                            "option-usually-state": Valve.valve_usually_state,
+                            "open-command": _vm.openCommand,
+                            "close-command": _vm.closeCommand,
+                            "adjusted-command": _vm.adjustedCommand,
+                            "system-diagram": _vm.systemDiagram
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  : _vm._e()
+              ]
+            )
+          ]
+        )
+      }),
+      _vm._v(" "),
+      _vm.show
+        ? _c(
+            "div",
+            {
+              on: {
+                click: function($event) {
+                  _vm.show = !_vm.show
+                }
+              }
+            },
+            [
+              _c("ValveOption", {
+                attrs: {
+                  "option-id": _vm.sendId,
+                  "option-name": _vm.sendName,
+                  "option-number": _vm.sendNumber,
+                  "option-usually-state": _vm.sendUsuallyState
+                },
+                on: {
+                  "push-open": _vm.pushOpen,
+                  "push-close": _vm.pushClose,
+                  "push-adjusted": _vm.pushAdjusted,
+                  "push-reset-open": _vm.pushResetOpen,
+                  "push-reset-close": _vm.pushResetClose,
+                  "push-reset-adjusted": _vm.pushResetAdjusted,
+                  "push-state-button": _vm.pushStateButton
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e()
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -60010,9 +60496,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _T2_vue_vue_type_template_id_47573143___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./T2.vue?vue&type=template&id=47573143& */ "./resources/js/components/SystemDiagrams/T2.vue?vue&type=template&id=47573143&");
+/* harmony import */ var _T2_vue_vue_type_template_id_47573143_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./T2.vue?vue&type=template&id=47573143&scoped=true& */ "./resources/js/components/SystemDiagrams/T2.vue?vue&type=template&id=47573143&scoped=true&");
 /* harmony import */ var _T2_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./T2.vue?vue&type=script&lang=js& */ "./resources/js/components/SystemDiagrams/T2.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _T2_vue_vue_type_style_index_0_id_47573143_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./T2.vue?vue&type=style&index=0&id=47573143&scoped=true&lang=css& */ "./resources/js/components/SystemDiagrams/T2.vue?vue&type=style&index=0&id=47573143&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -60020,13 +60508,13 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _T2_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _T2_vue_vue_type_template_id_47573143___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _T2_vue_vue_type_template_id_47573143___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _T2_vue_vue_type_template_id_47573143_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _T2_vue_vue_type_template_id_47573143_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  null,
+  "47573143",
   null
   
 )
@@ -60052,19 +60540,35 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/SystemDiagrams/T2.vue?vue&type=template&id=47573143&":
-/*!**************************************************************************************!*\
-  !*** ./resources/js/components/SystemDiagrams/T2.vue?vue&type=template&id=47573143& ***!
-  \**************************************************************************************/
+/***/ "./resources/js/components/SystemDiagrams/T2.vue?vue&type=style&index=0&id=47573143&scoped=true&lang=css&":
+/*!****************************************************************************************************************!*\
+  !*** ./resources/js/components/SystemDiagrams/T2.vue?vue&type=style&index=0&id=47573143&scoped=true&lang=css& ***!
+  \****************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_T2_vue_vue_type_style_index_0_id_47573143_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./T2.vue?vue&type=style&index=0&id=47573143&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SystemDiagrams/T2.vue?vue&type=style&index=0&id=47573143&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_T2_vue_vue_type_style_index_0_id_47573143_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_T2_vue_vue_type_style_index_0_id_47573143_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_T2_vue_vue_type_style_index_0_id_47573143_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_T2_vue_vue_type_style_index_0_id_47573143_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_T2_vue_vue_type_style_index_0_id_47573143_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/SystemDiagrams/T2.vue?vue&type=template&id=47573143&scoped=true&":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/components/SystemDiagrams/T2.vue?vue&type=template&id=47573143&scoped=true& ***!
+  \**************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_T2_vue_vue_type_template_id_47573143___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./T2.vue?vue&type=template&id=47573143& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SystemDiagrams/T2.vue?vue&type=template&id=47573143&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_T2_vue_vue_type_template_id_47573143___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_T2_vue_vue_type_template_id_47573143_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./T2.vue?vue&type=template&id=47573143&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SystemDiagrams/T2.vue?vue&type=template&id=47573143&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_T2_vue_vue_type_template_id_47573143_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_T2_vue_vue_type_template_id_47573143___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_T2_vue_vue_type_template_id_47573143_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -60217,7 +60721,33 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
   //     valveState,
   // }
   state: {
-    count: 2
+    storeT1: [],
+    storeT2: []
+  },
+  mutations: {
+    // Vue読み込み時、stateにDB(DB→T1.Vue経由)から引っ張ってきた配列データをpushで挿入する。
+    getData: function getData(state, _ref) {
+      var arrayData = _ref.arrayData,
+          systemDiagrams = _ref.systemDiagrams;
+
+      if (systemDiagrams == "t1") {
+        var stateVariable = state.storeT1;
+      } else if (systemDiagrams == "t2") {
+        var stateVariable = state.storeT2;
+      } // console.log(stateVariable);
+
+
+      for (var i = 0; i < arrayData.length; i++) {
+        stateVariable.push(arrayData[i]);
+      } // console.log(state.storeT1[0].valve_state);
+
+    },
+    // 開閉ボタンをクリックした際に対象の弁のidとvalve_stateをstateに挿入、値を更新する。
+    changeStatus: function changeStatus(state, _ref2) {
+      var index = _ref2.index,
+          stateInput = _ref2.stateInput;
+      state.storeT1[index].valve_state = stateInput;
+    }
   }
 }));
 

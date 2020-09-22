@@ -18,7 +18,7 @@
 
   <div>
     <!-- DB => ValveOptionController => このblade.php => 各系統線図へ$ValveOptionsとして弁のデータを送る -->
-    <router-view :t1="{{ $ValveOptions }}" />
+    <router-view :t1="{{ $ValveDataT1 }}" />
   </div>
 
   <p>
@@ -31,7 +31,7 @@
     </router-link>
   </p>
   <div>
-    <router-view :T2="{{ $ValveOptions }}" />
+    <router-view :t2="{{ $ValveDataT2 }}" />
   </div>
 </div>
 
