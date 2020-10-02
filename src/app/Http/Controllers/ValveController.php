@@ -16,17 +16,21 @@ class ValveController extends Controller
     public function ListIndex()
     {
         // $ValveOptionsの変数にValveOptionモデルから取ってきたデータをid順に昇順で代入する。   
-        $T1 = ValveOption::orderBy('id', 'asc')->find([1,2,3,4,5]);
-        $T2 = ValveOption::orderBy('id', 'asc')->find([1,2,3]);
-        // $T1 = ValveOption::orderBy('id', 'asc')->get();
+        $U1_T1 = ValveOption::orderBy('id', 'asc')->find([1,2,3,4,5]);
+        $U1_T2 = ValveOption::orderBy('id', 'asc')->find([1,2,3,4,5]);
+        $U1_B1 = ValveOption::orderBy('id', 'asc')->find([1,2,3,4,5]);
+        // $U1_T1 = ValveOption::orderBy('id', 'asc')->get();
         
-        $ValveOptionsT1 = json_encode($T1);
-        $ValveOptionsT2 = json_encode($T2);
-        // ddd($ValveOptionsT2);
+        $ValveOptions_U1_T1 = json_encode($U1_T1);
+        $ValveOptions_U1_T2 = json_encode($U1_T2);
+        $ValveOptions_U1_B1 = json_encode($U1_B1);
+        // ddd($ValveOptionsT2_1u);
         
         return view('SystemList')->with(
-            ['ValveDataT1' => $ValveOptionsT1,
-             'ValveDataT2' => $ValveOptionsT2
+            [
+             'ValveData_U1_T1' => $ValveOptions_U1_T1,
+             'ValveData_U1_T2' => $ValveOptions_U1_T2,
+             'ValveData_U1_B1' => $ValveOptions_U1_B1,
             ]);
     }
 

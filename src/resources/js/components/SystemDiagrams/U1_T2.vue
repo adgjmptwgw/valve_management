@@ -1,9 +1,9 @@
 <template>
     <div>
         <!-- SystemList.blade.phpから送られてきたデータをv-forで展開
-             弁をクリックしたら、UsuallyOpen/Close/adjusted.vueに弁のidと名前と弁番号のデータを送る -->
+             弁をクリックしたら、BaseValve.vueに弁のidと名前と弁番号のデータを送る -->
         <div
-            v-for="(Valve, index) in t2"
+            v-for="(Valve, index) in u1_t2"
             :key="Valve.id"
             @click="
                 getId(Valve.id),
@@ -18,38 +18,16 @@
                 {{ Valve.valve_number }}
             </p>
 
-            <!-- v-forで展開する際、弁が「開」であれば、「開」表示のコンポーネントを表示する。 -->
+            <!-- v-forで展開する弁 -->
             <p :class="assignClass + Valve.id" @click="show = !show">
-                <span v-if="Valve.valve_state === '開'">
-                    <UsuallyOpen
-                        :option-id="Valve.id"
-                        :option-usually-state="Valve.valve_usually_state"
-                        :open-command="openCommand"
-                        :close-command="closeCommand"
-                        :adjusted-command="adjustedCommand"
-                        :system-diagram="systemDiagram"
-                    ></UsuallyOpen>
-                </span>
-                <span v-else-if="Valve.valve_state === '閉'">
-                    <UsuallyClose
-                        :option-id="Valve.id"
-                        :option-usually-state="Valve.valve_usually_state"
-                        :open-command="openCommand"
-                        :close-command="closeCommand"
-                        :adjusted-command="adjustedCommand"
-                        :system-diagram="systemDiagram"
-                    ></UsuallyClose>
-                </span>
-                <span v-else-if="Valve.valve_state === '調整開'">
-                    <UsuallyAdjusted
-                        :option-id="Valve.id"
-                        :option-usually-state="Valve.valve_usually_state"
-                        :open-command="openCommand"
-                        :close-command="closeCommand"
-                        :adjusted-command="adjustedCommand"
-                        :system-diagram="systemDiagram"
-                    ></UsuallyAdjusted>
-                </span>
+                <BaseValve
+                    :option-id="Valve.id"
+                    :option-usually-state="Valve.valve_usually_state"
+                    :open-command="openCommand"
+                    :close-command="closeCommand"
+                    :adjusted-command="adjustedCommand"
+                    :system-diagram="systemDiagram"
+                ></BaseValve>
             </p>
         </div>
 
@@ -76,24 +54,24 @@
 export default {
     props: {
         // SystemList.blade.phpから送られてきた、ValveOptionテーブルのデータ
-        t2: {
+        u1_t2: {
             // type: Object
             default: ""
         }
     },
     data() {
         return {
-            // UsuallyOpen/Close/adjusted.vueに送信する、弁のid(弁をクリック時に送信される)
+            // BaseValve.vueに送信する、弁のid(弁をクリック時に送信される)
             sendId: "",
-            // UsuallyOpen/Close/adjusted.vueに送信する、弁の通常状態(弁をクリック時に送信される)
+            // BaseValve.vueに送信する、弁の通常状態(弁をクリック時に送信される)
             sendUsuallyState: "",
-            // UsuallyOpen/Close/adjusted.vueに送信する、弁のid(弁をクリック時に送信される)
+            // BaseValve.vueに送信する、弁のid(弁をクリック時に送信される)
             sendName: "",
-            // UsuallyOpen/Close/adjusted.vueに送信する、弁の番号(弁をクリック時に送信される)
+            // BaseValve.vueに送信する、弁の番号(弁をクリック時に送信される)
             sendNumber: "",
 
             // v-forで展開した各弁にclassを自動で割り振る。// 例: class="t2_3" => 系統図=t2,id=3の弁
-            assignClass: "t2_",
+            assignClass: "u1_t2_",
 
             // 弁オプションからemitで飛んできたイベントで用いる。各弁のコンポーネントにpropsで送る。
             // クリックした弁のidがこのdataの中に入っている。
@@ -107,8 +85,8 @@ export default {
             // 上記v-forで展開した弁をクリックした際に、その弁の配列の順番をVuexのstoreへ送る。
             sendIndex: "",
 
-            // propsでUsuallyOpen/Close/adjustedへ送る。どのstoreへデータを送るか判断する為に使用。
-            systemDiagram: "t2"
+            // propsでBaseValve.vueへ送る。どのstoreへデータを送るか判断する為に使用。
+            systemDiagram: "u1_t2"
         };
     },
     // computed: {
@@ -128,15 +106,21 @@ export default {
     //     },
     // },
     // t2ページを開いた際にVuexのstoreへ、現状の弁状態のデータ(DBからのデータ)を送る。
-    created() {
-        this.$store.commit("getData", {
-            arrayData: this.t2,
-            systemDiagrams: this.systemDiagram
-        });
-    },
+    // created() {
+    //     this.$store.commit("getData", {
+    //         arrayData: this.u1_t2,
+    //         systemDiagrams: this.systemDiagram
+    //     });
+    // },
+    // pushStateButton(stateInput) {
+    //         this.$store.commit("changeStatus", {
+    //             index: this.sendIndex,
+    //             stateInput: stateInput
+    //         });
+    //     }
     methods: {
         // SystemList.blade.phpから送られてきたデータがv-forで展開される。v-forで展開された各idとvalve_nameを
-        // propsを用いて、UsuallyOpen/Close/Adjusted.Vueにデータを送信する。
+        // propsを用いて、BaseValve.vueにデータを送信する。
         getId: function(ValveId) {
             return (this.sendId = ValveId);
         },
@@ -155,7 +139,7 @@ export default {
             return (this.sendIndex = index);
         },
 
-        // 開閉ボタンを押した際、その弁のidを各UsuallyOpen/Close/Adjusted.Vueに送る。
+        // 開閉ボタンを押した際、その弁のidを各BaseValve.vueに送る。
         pushOpen: function() {
             return (this.openCommand = this.sendId);
         },
@@ -168,7 +152,7 @@ export default {
 
         // open/close/adjustedCommandのdataの中身を0.3秒後空にリセットする。
         // これをしないと、1度「開」ボタンを押した後、2度目に押しても弁の開閉表示が変わらない。
-        // UsuallyOpen/Close/Adjusted.Vueのwatch参照。
+        // BaseValve.vueのwatch参照。
         pushResetOpen: function() {
             setTimeout(() => {
                 return (this.openCommand = "");
@@ -188,8 +172,10 @@ export default {
         // 弁オプションで開閉ボタンを押した際に、Vuexのstoreに状態を登録する処理
         pushStateButton(stateInput) {
             this.$store.commit("changeStatus", {
-                index: this.sendIndex,
-                stateInput: stateInput
+                // index: this.sendIndex,
+                // stateInput: stateInput
+                id: this.sendId,
+                stateInput: stateInput,
             });
         }
     }
@@ -197,27 +183,27 @@ export default {
 </script>
 
 <style scoped>
-.t2_1 {
+.u1_t2_1 {
     position: absolute;
     top: 250px;
     left: 230px;
 }
-.t2_2 {
+.u1_t2_2 {
     position: absolute;
     top: 250px;
     left: 330px;
 }
-.t2_3 {
+.u1_t2_3 {
     position: absolute;
     top: 250px;
     left: 430px;
 }
-.t2_4 {
+.u1_t2_4 {
     position: absolute;
     top: 250px;
     left: 530px;
 }
-.t2_5 {
+.u1_t2_5 {
     position: absolute;
     top: 250px;
     left: 630px;

@@ -56,8 +56,12 @@
                 :value="valveLock"
                 @click="lockInput = valveLock"
             />
-            <textarea name="valve_memo" v-model="valveMemo"></textarea>
-            <input type="button" value="メモを保存" @click="updateOption" />
+            <!-- <textarea name="valve_memo" v-model="valveMemo"></textarea> -->
+            <input
+                type="button"
+                value="その他オプション"
+                @click="othersOption()"
+            />
         </fieldset>
     </div>
 </template>
@@ -93,7 +97,6 @@ export default {
             stateInput: "",
 
             // axiosでDBに送るデータ
-            valveMemo: "",
             valveLock: "保安ロック",
             lockInput: ""
         };
@@ -107,10 +110,8 @@ export default {
                     // axiosでデータを送る(このコンポーネント=>app/Http/Request/StoreOption.php=>ValveController=>DB)
                     axios
                         .put("/api/System/" + this.optionId, {
-                            // .put("/api/System/" + 1, {
                             valve_state: this.stateInput,
-                            valve_lock: this.lockInput,
-                            valve_memo: this.valveMemo
+                            valve_lock: this.lockInput
                         })
                         .then(response => {
                             console.log(response);
@@ -143,6 +144,9 @@ export default {
         // 弁オプションで開閉ボタンを押した際に、Vuexのstoreに状態を登録する処理
         sendStore() {
             this.$emit("push-state-button", this.stateInput);
+        },
+        othersOption() {
+            this.$emit("push-others-button");
         }
     }
 };

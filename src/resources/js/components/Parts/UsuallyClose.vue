@@ -2,21 +2,21 @@
     <div>
         <div>
             <img
-                :src="'/img/adjusted_valve_2.png'"
+                :src="'/img/Parts/adjusted_valve_2.png'"
                 alt="「調整開」"
                 class="adjustedV"
                 :class="{ unusual_valve: isDisplayUnusual }"
                 v-if="adjusted"
             />
             <img
-                :src="'/img/open_valve_2.png'"
+                :src="'/img/Parts/open_valve_2.png'"
                 alt="弁「開」"
                 class="openV"
                 :class="{ unusual_valve: isDisplayUnusual }"
                 v-if="open"
             />
             <img
-                :src="'/img/close_valve_2.png'"
+                :src="'/img/Parts/close_valve_2.png'"
                 alt="弁「閉」"
                 class="closeV"
                 :class="{ unusual_valve: isDisplayUnusual }"
@@ -65,6 +65,12 @@ export default {
                 this.open = true;
                 this.close = false;
                 this.adjusted = false;
+
+                if (this.optionUsuallyState == "開") {
+                    this.isDisplayUnusual = false;
+                } else if (this.optionUsuallyState != "開") {
+                    this.isDisplayUnusual = true;
+                }
             }
         },
         closeCommand: function() {
@@ -72,6 +78,12 @@ export default {
                 this.open = false;
                 this.close = true;
                 this.adjusted = false;
+
+                if (this.optionUsuallyState == "閉") {
+                    this.isDisplayUnusual = false;
+                } else if (this.optionUsuallyState != "閉") {
+                    this.isDisplayUnusual = true;
+                }
             }
         },
         adjustedCommand: function() {
@@ -79,6 +91,12 @@ export default {
                 this.open = false;
                 this.close = false;
                 this.adjusted = true;
+
+                if (this.optionUsuallyState == "調整開") {
+                    this.isDisplayUnusual = false;
+                } else if (this.optionUsuallyState != "調整開") {
+                    this.isDisplayUnusual = true;
+                }
             }
         }
     },
@@ -98,7 +116,6 @@ export default {
         // 系統線図ページを開く時に弁の開閉表示を切り替える。
         // この処理をしない場合→開ボタンクリック後にページを開き直すと閉状態の弁全てが開表示に
         // 切り替わってしまう。  ※UsuallyClose.vueの場合
-
         if (this.optionId == getStore.id) {
             if (getStore.valve_state == "開") {
                 this.open = true;

@@ -39,7 +39,7 @@
         <tr>
           <td class="table-text">
             <div id="app">
-              <usually-close :option-id={{ $valve->id }}></usually-close>
+              <ValveOption></ValveOption>
             </div>
 
             <div>{{ $valve->id }}</div>

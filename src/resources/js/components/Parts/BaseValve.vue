@@ -23,6 +23,7 @@
                 v-if="adjusted"
             />
         </div>
+
     </div>
 </template>
 
@@ -58,13 +59,19 @@ export default {
     },
     watch: {
         openCommand: function() {
-            // 開ボタンを押した時に弁の表示を変化させる処理。データの流れ:valveption => (例)T1.vue => UsuallyClose。
+            // 開ボタンを押した時に弁の表示を変化させる処理。データの流れ:valveption => (例)U1_T1.vue => BaseValve。
             // その弁のidとクリックした弁のidが同じであれば、弁の開閉表示を切り替える。
-            // この処理をしないと、開ボタンクリック時に閉状態の弁全てが開表示に切り替わってしまう。※UsuallyClose.vueの場合
+            // この処理をしないと、開ボタンクリック時に閉状態の弁全てが開表示に切り替わってしまう。
             if (this.optionId == this.openCommand) {
                 this.open = true;
                 this.close = false;
                 this.adjusted = false;
+
+                if (this.optionUsuallyState == "開") {
+                    this.isDisplayUnusual = false;
+                } else if (this.optionUsuallyState != "開") {
+                    this.isDisplayUnusual = true;
+                }
             }
         },
         closeCommand: function() {
@@ -72,6 +79,12 @@ export default {
                 this.open = false;
                 this.close = true;
                 this.adjusted = false;
+
+                if (this.optionUsuallyState == "閉") {
+                    this.isDisplayUnusual = false;
+                } else if (this.optionUsuallyState != "閉") {
+                    this.isDisplayUnusual = true;
+                }
             }
         },
         adjustedCommand: function() {
@@ -79,15 +92,23 @@ export default {
                 this.open = false;
                 this.close = false;
                 this.adjusted = true;
+
+                if (this.optionUsuallyState == "調整開") {
+                    this.isDisplayUnusual = false;
+                } else if (this.optionUsuallyState != "調整開") {
+                    this.isDisplayUnusual = true;
+                }
             }
         }
     },
-    mounted() {
-        // もしt1の系統線図であれば、store.state.storeT1のデータを使う。
-        if ((this.systemDiagram = "t1")) {
-            var systemDiagrams = this.$store.state.storeT1;
-        } else if ((this.systemDiagrams = "t2")) {
-            var systemDiagrams = this.$store.state.storeT2;
+    mounted() { 
+        // もしt1の系統線図であれば、store.state.storeU1_T1のデータを使う。
+        if ((this.systemDiagram == "u1_t1")) {
+            var systemDiagrams = this.$store.state.storeU1_T1;            
+        } else if ((this.systemDiagram == "u1_t2")) {
+            var systemDiagrams = this.$store.state.storeU1_T2;
+        } else if ((this.systemDiagram == "u1_b1")) {
+            var systemDiagrams = this.$store.state.storeU1_B1;
         }
 
         // Vuexのstore.stateの中から、state.idとクリックした弁のidが同じものを探し出して、変数にいれる。
@@ -96,10 +117,9 @@ export default {
         });
         // propsで系統線図(B1.T1/vue等々)から送られてきたoptionId(弁のid)とstoreのidが同じものだけ、
         // 系統線図ページを開く時に弁の開閉表示を切り替える。
-        // この処理をしない場合→開ボタンクリック後にページを開き直すと閉状態の弁全てが開表示に
-        // 切り替わってしまう。  ※UsuallyClose.vueの場合
-
-if (this.optionId == getStore.id) {
+        // この処理をしない場合→開ボタンクリック後に,ページを開き直すと閉状態の弁全てが開表示に
+        // 切り替わってしまう。  
+        if (this.optionId == getStore.id) {
             if (getStore.valve_state == "開") {
                 this.open = true;
                 this.close = false;
@@ -158,6 +178,6 @@ if (this.optionId == getStore.id) {
     position: absolute;
 }
 .unusual_valve {
-    background-color: yellow;
+    background-color: red;
 }
 </style>

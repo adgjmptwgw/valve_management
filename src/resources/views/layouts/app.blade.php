@@ -18,6 +18,9 @@
     deferを書いているので読み込みが最後になる。 -->
     <script src=" {{ mix('js/app.js') }} " defer></script>
 
+    <!-- 付箋用 -->
+    <script src="{{ asset('/js/tag.js') }}" defer></script>
+
     <!-- Vueをblade.phpで使えるようにする。この書き方はダメ。仮使用のみOK。 -->
     <!-- <script src="https://unpkg.com/vue"></script> -->
 

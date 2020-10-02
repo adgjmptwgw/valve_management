@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreOption extends FormRequest
+class StoreTag extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +24,10 @@ class StoreOption extends FormRequest
     public function rules()
     {
         return [
-            'valve_name' => 'sometimes|max:50',
-            'valve_number' => 'sometimes|max:50',
-            'valve_usuallyState' => 'sometimes|max:50',
-            'valve_state' => 'sometimes|max:50',
-            'valve_lock' => 'sometimes|max:50',
-            'valve_memo' => 'sometimes|max:50',
-        ]; 
+            'content' => 'sometimes|max:50',
+            'width' => 'sometimes|max:50',
+            'height' => 'sometimes|max:50',
+            'visibility' => 'sometimes|max:50',
+        ];
     }
 }

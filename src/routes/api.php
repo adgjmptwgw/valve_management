@@ -1,6 +1,5 @@
 <?php
 
-use App\ValveOption;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,7 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::apiResource('/System', 'OptionApiController');
+// apiResource・・・Route::resource('users', 'UsersController')と同じ使い方
+// Route::apiResource([
+//     'System' => 'Api\OptionApiController',
+//     'Tag' => 'Api\OptionApiController'
+//     ]);
+Route::apiResource('/System', 'Api\OptionApiController');
+
+Route::apiResource('/Tag', 'Api\TagApiController');
+// Route::apiResource('/Tag', 'Api\OptionApiController');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

@@ -4,26 +4,28 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+require("./bootstrap");
 
-require('./bootstrap');
-
-// Vueのrouterを使う際には以下2行を追加？
+// Vueのrouterで使用
 import Vue from "vue";
 import VueRouter from "vue-router";
-
 import router from "./router";
+Vue.use(VueRouter);
 
 // Vuexで使用
 import store from "./store";
 
-// デフォルトで書いてるやつ
-window.Vue = require('vue');
+// Vuetifyで使用
+import Vuetify from "vuetify";
+import "vuetify/dist/vuetify.min.css";
+Vue.use(Vuetify);
 
-// Vueのrouterを使う際には以下追加
-Vue.use(VueRouter);
+// デフォルトで書いてるやつ
+window.Vue = require("vue");
+
 
 // Vueのrouterを使う際に「router」追加(一番下の行に記述している。一番下でないと、コンポーネントが読み込めない)
-// const app = new Vue({  
+// const app = new Vue({
 //     router
 // });
 
@@ -36,14 +38,20 @@ Vue.use(VueRouter);
  */
 
 // 下記の2行のおかげでコンポーネントの登録を行う必要はない。自動で登録される。
-const files = require.context('./', true, /\.vue$/i)
-files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+const files = require.context("./", true, /\.vue$/i);
+files.keys().map(key =>
+    Vue.component(
+        key
+            .split("/")
+            .pop()
+            .split(".")[0],
+        files(key).default
+    )
+);
 
 // 下記はコンポーネントの登録
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-// Vue.component('UsuallyOpen', require('./components/Parts/UsuallyOpen.vue').default);
 // Vue.component('T1', require('./components/SystemDiagram/T1.vue').default);
-// Vue.component('UsuallyClose', require('./components/Parts/UsuallyClose.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -57,7 +65,22 @@ files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(
 // Vueのrouterを使う際に「router」追加
 const app = new Vue({
     el: "#app",
+    vuetify: new Vuetify(),
+    data: {
+        show: true
+    },
+    methods: {
+        // hoge() {
+        // }
+    },
+    // mounted() {
+    //     this.show = true;
+    //     alert("test");
+    // },
+
+    // Vue-router使用
     router,
-    // 以下Vuex使用に際に記述
-    store,
+    // Vuex使用
+    store
+    // Vuetufyで使用
 });
