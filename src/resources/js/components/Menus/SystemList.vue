@@ -267,9 +267,6 @@ export default {
 </script>
 
 <style>
-/* .test{
-    margin: 0px auto;
-} */
 
 .note {
     background-color: aliceblue;
