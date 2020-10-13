@@ -15,11 +15,13 @@ class CreateValveOptionsTable extends Migration
     {
         Schema::create('ValveOptions', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('valve_name');
+            $table->string('valve_name')->nullable();
+            $table->string('valve_number')->nullable();
+            $table->string('valve_usually_state')->nullable();
             $table->string('valve_state')->nullable();
-            $table->string('valve_lock')->nullable();
             $table->string('valve_memo')->nullable();
             $table->string('operator')->nullable();
+            $table->string('category');
             $table->timestamps();
         });
 

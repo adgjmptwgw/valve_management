@@ -6,11 +6,21 @@
 <p>T-1系統図</p>
 
 
-<!-- <div id="app">
-  <usually-close :csrf="{{json_encode(csrf_token())}}"></usually-close>
-</div> -->
+<div id="app">
+  <store-valve :csrf="{{json_encode(csrf_token())}}"></store-valve>
+</div>
 
 <!-- ---------------表示領域------------------>
+
+<!-- <div id="app">
+  <div>
+    <router-link to="/SystemList">系統図リスト</router-link>
+  </div>
+
+  <div>
+    <router-view />
+  </div>
+</div> -->
 
 
 @if (count($ValveOptions) > 0)
@@ -24,29 +34,20 @@
       </thead>
       <!-- テーブル本体 -->
       <tbody>
+        <!-- <system-diagram> -->
         @foreach ($ValveOptions as $valve)
         <tr>
           <td class="table-text">
-            <form action="{{ route('SystemD.update',$valve->id) }}" method="post">
-              @csrf
-              @method('PUT')
-
-              <div id="app">
-                <usually-close></usually-close>
-              </div>
-            </form>
+            <div id="app">
+              <ValveOption></ValveOption>
+            </div>
 
             <div>{{ $valve->id }}</div>
             <div>{{ $valve->valve_name }}</div>
           </td>
-          <!-- <td>
-            <form action="{{ route('SystemD.edit',$valve->id) }}" method="GET">
-              @csrf
-              <button type="submit" class="btn btn-primary">更新</button>
-            </form>
-          </td> -->
         </tr>
         @endforeach
+        <!-- </system-diagram> -->
       </tbody>
     </table>
   </div>
