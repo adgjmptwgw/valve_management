@@ -290,7 +290,7 @@ export default {
 }
 
 /* 各弁のclass */
-.u1_b5_336 {
+.u1_b5_1 {
     position: absolute;
     top: 726px;
     left: 995px;

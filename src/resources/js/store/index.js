@@ -14,6 +14,7 @@ export default new Vuex.Store({
     // }
 
     state: {
+        // 配列　map
         storeU1_B4: [],
         storeU1_B5: [],
         storeU1_T3: [],
