@@ -1,7 +1,5 @@
 <?php
 
-
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -22,10 +20,10 @@ class ValveController extends Controller
         // あいまい検索でcategoryカラムの中から、系統図番号に合うものだけを引っ張ってくる。
 
         // <1号ボイラの弁データ>
-        
+
         $U1_B4 = ValveOption::orderBy('id', 'asc')->where('category', 'like', '%B-4%')->get();
         // $U1_B5 = ValveOption::orderBy('id', 'asc')->where('category', 'like', '%B-5%')->get();
-        $U1_B5 = ValveOption::orderBy('id', 'asc')->find([1,2,3,4,5]);
+        $U1_B5 = ValveOption::orderBy('id', 'asc')->find([1, 2, 3, 4, 5]);
         $U1_B9 = ValveOption::orderBy('id', 'asc')->find([1]);
         $U1_B11 = ValveOption::orderBy('id', 'asc')->find([1]);
         $U1_B17 = ValveOption::orderBy('id', 'asc')->find([1]);
@@ -46,7 +44,7 @@ class ValveController extends Controller
 
         // <1号タービンの弁データ>
         $U1_T3 = ValveOption::orderBy('id', 'asc')->find([1, 2, 3, 4, 5]);
-        $U1_T4 = ValveOption::orderBy('id', 'asc')->find([1, 2, 3, 4, 5]);
+        $U1_T4 = ValveOption::orderBy('id', 'asc')->find([1]);
         $U1_T5 = ValveOption::orderBy('id', 'asc')->find([1]);
         $U1_T6 = ValveOption::orderBy('id', 'asc')->find([1]);
         $U1_T7 = ValveOption::orderBy('id', 'asc')->find([1]);
@@ -80,7 +78,7 @@ class ValveController extends Controller
         // 配列データをjson形式に変換
         // <1号ボイラ>
         $ValveOptions_U1_B4 = json_encode($U1_B4);
-        $ValveOptions_U1_B5 = json_encode($U1_B5); 
+        $ValveOptions_U1_B5 = json_encode($U1_B5);
         $ValveOptions_U1_B9 = json_encode($U1_B9);
         $ValveOptions_U1_B11 = json_encode($U1_B11);
         $ValveOptions_U1_B17 = json_encode($U1_B17);
@@ -98,7 +96,7 @@ class ValveController extends Controller
         $ValveOptions_U1_B37 = json_encode($U1_B37);
         $ValveOptions_U1_B38 = json_encode($U1_B38);
         $ValveOptions_U1_B41 = json_encode($U1_B41);
-        
+
         // <1号タービン>
         $ValveOptions_U1_T3 = json_encode($U1_T3);
         $ValveOptions_U1_T4 = json_encode($U1_T4);
@@ -122,13 +120,13 @@ class ValveController extends Controller
         $ValveOptions_U1_T32 = json_encode($U1_T32);
         $ValveOptions_U1_T33 = json_encode($U1_T33);
         $ValveOptions_U1_T36 = json_encode($U1_T36);
-        
+
         // <1号電気>
         $ValveOptions_U1_E27 = json_encode($U1_E27);
         $ValveOptions_U1_E29 = json_encode($U1_E29);
         $ValveOptions_U1_E30 = json_encode($U1_E30);
         $ValveOptions_U1_E31 = json_encode($U1_E31);
-        
+
         // <付箋データ>
         $TagsData = json_encode($Tag);
 
@@ -155,7 +153,7 @@ class ValveController extends Controller
                 'ValveData_U1_B37' => $ValveOptions_U1_B37,
                 'ValveData_U1_B38' => $ValveOptions_U1_B38,
                 'ValveData_U1_B41' => $ValveOptions_U1_B41,
-                
+
                 // <1号タービン>
                 'ValveData_U1_T3' => $ValveOptions_U1_T3,
                 'ValveData_U1_T4' => $ValveOptions_U1_T4,
@@ -185,7 +183,7 @@ class ValveController extends Controller
                 'ValveData_U1_E29' => $ValveOptions_U1_E29,
                 'ValveData_U1_E30' => $ValveOptions_U1_E30,
                 'ValveData_U1_E31' => $ValveOptions_U1_E31,
-                
+
                 // <付箋データ>
                 'TagsData' => $TagsData
             ]

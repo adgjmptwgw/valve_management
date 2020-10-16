@@ -5,12 +5,12 @@
             <div @mousemove="touchmove($event)" @mouseup="touchend()">
                 <div>
                     <img
-                        :src="'/img/SystemDiagrams/turbine/T-8.png'"
-                        alt="T-8系統線図"
-                        class="t-8"
+                        :src="'/img/SystemDiagrams/turbine/T-3.png'"
+                        alt="T-3系統線図"
+                        class="t-3"
                     />
                 </div>
-                <!-- 付箋関係 -->
+                <!-- 付箋 -->
                 <div
                     @mousedown="touchstart()"
                     :style="memoPosition"
@@ -18,6 +18,7 @@
                 >
                     <Tag :tagName="systemDiagram" :tagPosi="tag_posi"></Tag>
                 </div>
+
                 <!-- 系統線図の各弁をv-forで展開 -->
                 <div
                     v-for="(Valve, index) in u1_t3"
@@ -33,8 +34,8 @@
                 >
                     <!-- 弁名称表示用 -->
                     <!-- <p :class="assignClass + Valve.id" class="valve_name">
-                        {{ Valve.valve_number }}
-                    </p> -->
+                    {{ Valve.valve_number }}
+                </p> -->
 
                     <!-- v-forで展開する弁のコンポーネント -->
                     <p
@@ -71,7 +72,7 @@
                 </div>
 
                 <!-- その他の弁オプション(弁名称・弁番号・通常状態・メモ)のコンポーネント -->
-                <p v-if="othersShow">
+                <p v-if="othersShow" class="sub_options">
                     <BaseSubOption
                         :option-id="sendId"
                         :option-name="sendName"
@@ -107,7 +108,7 @@ export default {
             // 弁のメモ
             sendMemo: "",
 
-            // v-forで展開した各弁にclassを自動で割り振る。// 例: class="t3_3" => 系統図=t3,id=3の弁
+            // v-forで展開した各弁にclassを自動で割り振る。// 例: class="u1_t3_1" => 1号T-3,id=3の弁
             assignClass: "u1_t3_",
 
             // 弁オプションからemitで飛んできたイベントで用いる。各弁のコンポーネントにpropsで送る。
@@ -248,6 +249,8 @@ export default {
             if (this.is_mousedown == true) {
                 this.tag_posi.x = e.pageX;
                 this.tag_posi.y = e.pageY;
+                console.log(this.tag_posi.x);
+                console.log(this.tag_posi.y);
                 this.memoPositionStyles.left = this.tag_posi.x - 30;
                 this.memoPositionStyles.top = this.tag_posi.y - 150;
             }
@@ -261,16 +264,19 @@ export default {
 </script>
 
 <style scoped>
-/* 系統線図T-8 */
-.t-8 {
-    width: 1400px;
+/* 系統線図T-3 */
+.t-3 {
+    width: 1200px;
     height: auto;
-    padding-left: 200px;
+    /* padding-left: 200px; */
+    position: absolute;
+    top: 0px;
+    left: 220px;
 }
 /* 弁名称の表示関係のcss */
-.valve_name {
+/* .valve_name {
     margin-top: 20px;
-}
+} */
 /* 弁オプション */
 .valve_options {
     position: absolute;

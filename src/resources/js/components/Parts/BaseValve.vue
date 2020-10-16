@@ -111,16 +111,20 @@ export default {
     mounted() {
         // もしt1の系統線図であれば、store.state.storeU1_T1のデータを使う。
         const storeArray = ["u1_b4","u1_b5", "u1_t3", "u1_t4"];
-        const systemDiagramArray = [
-            this.$store.state.storeU1_B4,
-            this.$store.state.storeU1_B5,
-            this.$store.state.storeU1_T3,
-            this.$store.state.storeU1_T4
-        ];
+        // const systemDiagramArray = [
+        //     this.$store.state.storeU1_B4,
+        //     this.$store.state.storeU1_B5,
+        //     this.$store.state.storeU1_T3,
+        //     this.$store.state.storeU1_T4
+        // ];
+
+        const systemDiagramArray = this.$store.state.storeValves;
+        // console.log(systemDiagramArray[1]);
 
         for (let i = 0; i < storeArray.length; i++) {
             if (this.systemDiagram == storeArray[i]) {
                 var systemDiagrams = systemDiagramArray[i];
+                // console.log(systemDiagrams);
             }
         }
 

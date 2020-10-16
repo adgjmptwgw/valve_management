@@ -18,7 +18,7 @@
     deferを書いているので読み込みが最後になる。 -->
   <script src=" {{ mix('js/app.js') }} " defer></script>
 
-  <!-- 付箋用 -->
+  <!-- 付箋用 ・・・多分もういらない  -->
   <script src="{{ asset('/js/tag.js') }}" defer></script>
 
   <!-- Vueをblade.phpで使えるようにする。この書き方はダメ。仮使用のみOK。 -->
@@ -47,11 +47,7 @@
       <div class="main_text">
         <router-link to="/SystemList">
           <!-- 各系統線図へアクセスする際のボタンコンポーネント。ボタンに系統線図名を表示する為、slotを使用。 -->
-          <base-list-btn>
-            <template v-slot:btn-name>
               1号機目次
-            </template>
-          </base-list-btn>
         </router-link>
       </div>
     </div>

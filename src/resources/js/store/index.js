@@ -14,11 +14,11 @@ export default new Vuex.Store({
     // }
 
     state: {
-        // 配列　map
-        storeU1_B4: [],
-        storeU1_B5: [],
-        storeU1_T3: [],
-        storeU1_T4: [],
+        storeValves: [],
+        // storeU1_B4: [],
+        // storeU1_B5: [],
+        // storeU1_T3: [],
+        // storeU1_T4: [],
         // 付箋のデータ
         storeTags: []
     },
@@ -28,28 +28,37 @@ export default new Vuex.Store({
         getDataValves(state, { arrayData, tagsData }) {
             // DBからの付箋データをstate.storeTagsへpush
             state.storeTags.push(tagsData);
+            // pushでページをcreatedする度に配列の中身が増えていく為、増えた分のデータを削除
+            state.storeTags.splice(tagsData.length, tagsData.length);
+
+            // state.storeValves = [];
+            for (let i = 0; i < arrayData.length; i++) {
+                state.storeValves.push(arrayData[i]);
+            }
+            // pushでページをcreatedする度に配列の中身が増えていく為、増えた分のデータを削除
+            state.storeValves.splice(arrayData.length, arrayData.length);
 
             // Vue読み込み時、stateにDB(DB→T1.Vue経由)から引っ張ってきた配列データをpushで挿入する。
-            let ary = [];
-            for (let i = 0; i < arrayData.length; i++) {
-                ary.push(arrayData[i].length);
-            }
+            // let ary = [];
+            // for (let i = 0; i < arrayData.length; i++) {
+            //     ary.push(arrayData[i].length);
+            // }
             // 配列のlengthの最大値を取得。※何回pushするか決定する。
-            var max_val = Math.max.apply(null, ary);
+            // var max_val = Math.max.apply(null, ary);
 
             // 各系統線図のstateでの名称を配列へ代入。下記繰り返し処理で使用。
-            let stateArray = [
-                state.storeU1_B4,
-                state.storeU1_B5,
-                state.storeU1_T3,
-                state.storeU1_T4
-            ];
+            // let stateArray = [
+            //     state.storeU1_B4,
+            //     state.storeU1_B5,
+            //     state.storeU1_T3,
+            //     state.storeU1_T4
+            // ];
             // 目次ページを開いた時に各stateに各arrayData(DBからの各系統図の弁データ)を入力、更新
-            for (let j = 0; j < stateArray.length; j++) {
-                for (let i = 0; i < max_val; i++) {
-                    stateArray[j].push(arrayData[j][i]);
-                }
-            }
+            // for (let j = 0; j < stateArray.length; j++) {
+            //     for (let i = 0; i < max_val; i++) {
+            //         stateArray[j].push(arrayData[j][i]);
+            //     }
+            // }
         },
 
         // 開閉ボタンをクリックした際に対象の弁のidとvalve_state(弁の開閉状態)をstore.stateに挿入、値を更新する。
@@ -64,34 +73,88 @@ export default new Vuex.Store({
                 memoInput
             }
         ) {
-            let stateArray = [
-                state.storeU1_B4,
-                state.storeU1_B5,
-                state.storeU1_T3,
-                state.storeU1_T4
-            ];
-            // "引数のid"と"stateのid"が同じものを探してくる。
-            for (let i = 0; i < stateArray.length; i++) {
-                let getStore = stateArray[i].find(valvesStore => {
+            // let stateArray = [
+            //     state.storeU1_B4,
+            //     state.storeU1_B5,
+            //     state.storeU1_T3,
+            //     state.storeU1_T4
+            // ];
+
+            // for (let j = 0; j < stateArray.length; j++) {
+            //     for (let i = 0; i < stateArray[j].length; i++) {
+            //         var array = [stateArray[j][i].id];
+
+            //         var even = element => element == id;
+
+            //         console.log("@" + array.some(even));
+
+            //         if (array.some(even) == true) {
+            //             let getStore = stateArray[j].find(valvesStore => {
+            //                 return valvesStore.id == id;
+            //             });
+            //             // console.log(num);
+            //             var num = stateArray[j].findIndex(
+            //                 ({ id }) => id == getStore.id
+            //             );
+            //         }
+            //     }
+            // }
+
+            // stateArray.forEach(function(value) {
+            //     console.log("処理前:" + value[0].id);
+            //     let getStore = value.find(valvesStore => {
+            //         return valvesStore.id == id;
+            //     });
+            //     if (getStore) {
+            //         console.log("find処理後:" + getStore.id);
+            //     }
+            // });
+
+            // var items = [1, 2, 3, 4, 5];
+
+            // var new_items = items.map(function(value) {
+            //     value.find(valvesStore => {
+            //         return valvesStore.id == id;
+            //     });
+            // });
+
+            // console.log(new_items);
+
+
+            for (let i = 0; i < state.storeValves.length; i++) {
+                // "引数のid"と"stateのid"が同じものを探してくる。
+                var getStore = state.storeValves[i].find(valvesStore => {
                     return valvesStore.id == id;
                 });
-                
-                // 上記のidの配列の順番を取得する
-                var num = stateArray[i].findIndex(
-                    ({ id }) => id == getStore.id
-                );
 
-                // i番目のstate配列のnum番目のvalve_state(弁開閉状態)をstateInput(開・閉・調整開)の状態にする。
-                if (stateInput != undefined) {
-                    stateArray[i][num].valve_state = stateInput;
-                } else if (nameInput && numberInput != undefined) {
-                    stateArray[i][num].valve_name = nameInput;
-                    stateArray[i][num].valve_number = numberInput;
-                    stateArray[i][num].valve_usually_state = usuallyStateInput;
-                    stateArray[i][num].valve_memo = memoInput;
+                if (getStore != undefined) {
+                    var num = state.storeValves[i].findIndex(
+                        ({ id }) => id == getStore.id
+                    );
+
+                    // i番目のstate配列のnum番目のvalve_state(弁開閉状態)をstateInput(開・閉・調整開)の状態にする。
+                    if (stateInput != undefined) {
+                        state.storeValves[i][num].valve_state = stateInput;
+                    } else if (nameInput && numberInput != undefined) {
+                        state.storeValves[i][num].valve_name = nameInput;
+                        state.storeValves[i][num].valve_number = numberInput;
+                        state.storeValves[i][
+                            num
+                        ].valve_usually_state = usuallyStateInput;
+                        state.storeValves[i][num].valve_memo = memoInput;
+                    } else {
+                        alert("弁名称と弁番号を入力して下さい。");
+                    }
                 } else {
-                    alert("弁名称と弁番号を入力して下さい。");
+                    console.log(
+                        "id=" +
+                            id +
+                            "の弁はstoreValvesの" +
+                            [i] +
+                            "番目の配列の中に存在しません。"
+                    );
                 }
+
                 // console.log(state.storeU1_T3);
                 // stateArray[i][num].valve_state = stateInput;
                 // stateArray[i][num].valve_name = nameInput;

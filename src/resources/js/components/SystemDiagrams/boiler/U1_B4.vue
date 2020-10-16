@@ -3,20 +3,17 @@
         <v-app>
             <!-- 付箋の座標を取得するマウスイベント -->
             <div @mousemove="touchmove($event)" @mouseup="touchend()">
-                <div>
-                    <img
-                        :src="'/img/SystemDiagrams/boiler/B-4.png'"
-                        alt="B-4系統線図"
-                        class="b-4"
-                    />
-                </div>
-                <!-- 付箋関係 -->
+                <!-- 付箋コンポーネント -->
                 <div
                     @mousedown="touchstart()"
                     :style="memoPosition"
                     class="tag"
                 >
                     <Tag :tagName="systemDiagram" :tagPosi="tag_posi"></Tag>
+                </div>
+                <!-- ルーペコンポーネント -->
+                <div>
+                    <Loupe :sendSrc="imgSrc"></Loupe>
                 </div>
                 <!-- 系統線図の各弁をv-forで展開 -->
                 <div
@@ -31,12 +28,7 @@
                             getIndex(index)
                     "
                 >
-                    <!-- 弁名称表示用 -->
-                    <!-- <p :class="assignClass + Valve.id" class="valve_name">
-                    {{ Valve.valve_number }}
-                </p> -->
-
-                    <!-- v-forで展開する弁のコンポーネント -->
+                    <!-- v-forで展開する弁(バルブ)コンポーネント -->
                     <p
                         :class="assignClass + Valve.id"
                         @click="(show = !show), (othersShow = false)"
@@ -52,7 +44,7 @@
                     </p>
                 </div>
 
-                <!-- 弁オプション(開閉ボタン等)のコンポーネント。 -->
+                <!-- 弁(バルブ)オプション(開閉ボタン等)のコンポーネント。 -->
                 <div v-if="show" @click="show = !show" class="valve_options">
                     <ValveOption
                         :option-id="sendId"
@@ -70,7 +62,7 @@
                     ></ValveOption>
                 </div>
 
-                <!-- その他の弁オプション(弁名称・弁番号・通常状態・メモ)のコンポーネント -->
+                <!-- その他の弁(バルブ)オプション(弁名称・弁番号・通常状態・メモ)のコンポーネント -->
                 <p v-if="othersShow" class="sub_options">
                     <BaseSubOption
                         :option-id="sendId"
@@ -107,7 +99,7 @@ export default {
             // 弁のメモ
             sendMemo: "",
 
-            // v-forで展開した各弁にclassを自動で割り振る。// 例: class="b4_3" => 系統図=b4,id=3の弁
+            // v-forで展開した各弁にclassを自動で割り振る。// 例: class="u1_b4_1" => 1号B-4,id=1の弁
             assignClass: "u1_b4_",
 
             // 弁オプションからemitで飛んできたイベントで用いる。各弁のコンポーネントにpropsで送る。
@@ -140,7 +132,10 @@ export default {
             is_mousedown: false,
 
             // 弁の通常状態の表示に関するデータ。弁のidが入ってくる。
-            watchStatus: ""
+            watchStatus: "",
+
+            // Loupe.vueにpropsで送る系統線図のsrc
+            imgSrc: "/img/SystemDiagrams/boiler/B-4.png"
         };
     },
     computed: {
@@ -263,19 +258,6 @@ export default {
 </script>
 
 <style scoped>
-/* 系統線図B-4 */
-.b-4 {
-    width: 1200px;
-    height: auto;
-    /* padding-left: 200px; */
-    position: absolute;
-    top: 0px;
-    left: 220px;
-}
-/* 弁名称の表示関係のcss */
-/* .valve_name {
-    margin-top: 20px;
-} */
 /* 弁オプション */
 .valve_options {
     position: absolute;
@@ -287,6 +269,7 @@ export default {
     position: absolute;
     top: var(--position-top);
     left: var(--position-left);
+    z-index: 1;
 }
 
 /* 各弁のclass */

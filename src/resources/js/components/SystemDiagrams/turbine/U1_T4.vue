@@ -17,6 +17,10 @@
                 >
                     <Tag :tagName="systemDiagram" :tagPosi="tag_posi"></Tag>
                 </div>
+                <!-- ルーペ -->
+                <div>
+                    <Loupe :sendSrc="imgSrc"></Loupe>
+                </div>
                 <!-- 系統線図の各弁をv-forで展開 -->
                 <div
                     v-for="(Valve, index) in u1_t4"
@@ -139,7 +143,9 @@ export default {
             is_mousedown: false,
 
             // 弁の通常状態の表示に関するデータ。弁のidが入ってくる。
-            watchStatus: ""
+            watchStatus: "",
+
+            imgSrc: "/img/SystemDiagrams/turbine/T-4.png"
         };
     },
     computed: {
