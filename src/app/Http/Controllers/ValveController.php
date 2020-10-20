@@ -22,8 +22,8 @@ class ValveController extends Controller
         // <1号ボイラの弁データ>
 
         $U1_B4 = ValveOption::orderBy('id', 'asc')->where('category', 'like', '%B-4%')->get();
-        // $U1_B5 = ValveOption::orderBy('id', 'asc')->where('category', 'like', '%B-5%')->get();
-        $U1_B5 = ValveOption::orderBy('id', 'asc')->find([1, 2, 3, 4, 5]);
+        $U1_B5 = ValveOption::orderBy('id', 'asc')->where('category', 'like', '%B-5%')->get();
+        // $U1_B5 = ValveOption::orderBy('id', 'asc')->find([1, 2, 3, 4, 5]);
         $U1_B9 = ValveOption::orderBy('id', 'asc')->find([1]);
         $U1_B11 = ValveOption::orderBy('id', 'asc')->find([1]);
         $U1_B17 = ValveOption::orderBy('id', 'asc')->find([1]);
@@ -193,6 +193,10 @@ class ValveController extends Controller
     public function HomeIndex()
     {
         return view('Home');
+    }
+    public function HistoryIndex()
+    {
+        return view('History');
     }
 
     public function Index()

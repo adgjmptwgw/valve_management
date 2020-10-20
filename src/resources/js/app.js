@@ -25,7 +25,6 @@ import "@mdi/font/css/materialdesignicons.css";
 // デフォルトで書いてるやつ
 window.Vue = require("vue");
 
-
 // Vueのrouterを使う際に「router」追加(一番下の行に記述している。一番下でないと、コンポーネントが読み込めない)
 // const app = new Vue({
 //     router
@@ -69,15 +68,13 @@ const app = new Vue({
     el: "#app",
     vuetify: new Vuetify({
         icons: {
-          iconfont: "mdi",
+            iconfont: "mdi"
         }
     }),
     data: {
-        show: true
+        menuShow: false
     },
     methods: {
-        // hoge() {
-        // }
     },
     // mounted() {
     //     this.show = true;

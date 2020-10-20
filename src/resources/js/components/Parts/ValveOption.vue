@@ -24,7 +24,9 @@
                                     updateOption(),
                                     commandOpen(),
                                     resetOpen(),
-                                    sendStore()
+                                    sendStore(),
+                                    time(),
+                                    sendStoreHistory()
                             "
                             >開
                         </v-btn>
@@ -41,7 +43,9 @@
                                     updateOption(),
                                     commandClose(),
                                     resetClose(),
-                                    sendStore()
+                                    sendStore(),
+                                    time(),
+                                    sendStoreHistory()
                             "
                             >閉
                         </v-btn>
@@ -58,7 +62,9 @@
                                     updateOption(),
                                     commandAdjusted(),
                                     resetAdjusted(),
-                                    sendStore()
+                                    sendStore(),
+                                    time(),
+                                    sendStoreHistory()
                             "
                             >調整開
                         </v-btn>
@@ -131,7 +137,8 @@ export default {
 
             // クリックした弁の:value値(開・閉・調整開)が入る。上記のvalueopen/close/adjustedが入る。
             // axiosでデータベースに送ったり、Vuexのstoreにデータを渡す役割がある。
-            stateInput: ""
+            stateInput: "",
+            now: new Date()
         };
     },
     methods: {
@@ -173,12 +180,30 @@ export default {
         resetAdjusted() {
             this.$emit("push-reset-adjusted");
         },
-        // 弁オプションで開閉ボタンを押した際に、Vuexのstoreに状態を登録する処理
+        // 弁オプションで開閉ボタンを押した際に、Vuexのstoreに状態を更新する処理
         sendStore() {
             this.$emit("push-state-button", this.stateInput);
         },
+        sendStoreHistory() {
+            this.$store.commit("changeValveStatus", {
+                numberInput:this.optionNumber,
+                nameInput:this.optionName,
+                time: this.now
+            });
+        },
         othersOption() {
             this.$emit("push-others-button");
+        },
+        time: function(e){
+          var date = new Date();
+          
+          this.now = 
+          date.getFullYear() + "年 " + 
+          date.getMonth() + "月 " + 
+          date.getDate() + "日  " + 
+          date.getHours() + ":" +
+          date.getMinutes() + ":" +
+          date.getSeconds();
         }
     }
 };

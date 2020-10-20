@@ -1,92 +1,84 @@
 <template>
-    <div>
-        <v-app>
-            <!-- 付箋の座標を取得するマウスイベント -->
-            <div @mousemove="touchmove($event)" @mouseup="touchend()">
-                <div>
-                    <img
-                        :src="'/img/SystemDiagrams/boiler/B-5.png'"
-                        alt="B-5系統線図"
-                        class="b-5"
-                    />
-                </div>
-                <!-- 付箋関係 -->
-                <div
-                    @mousedown="touchstart()"
-                    :style="memoPosition"
-                    class="tag"
+    <v-app class="whole_page">
+        <!-- 付箋の座標を取得するマウスイベント -->
+        <div @mousemove="touchmove($event)" @mouseup="touchend()">
+            <!-- 付箋コンポーネント -->
+            <div @mousedown="touchstart()" :style="memoPosition" class="tag">
+                <Tag :tagName="systemDiagram" :tagPosi="tag_posi"></Tag>
+            </div>
+            <!-- ルーペコンポーネント -->
+            <div>
+                <Loupe :sendSrc="imgSrc"></Loupe>
+            </div>
+            <!-- 系統線図の各弁をv-forで展開 -->
+            <div
+                v-for="(Valve, index) in u1_b5"
+                :key="Valve.id"
+                @click="
+                    getId(Valve.id),
+                        getNumber(Valve.valve_number),
+                        getName(Valve.valve_name),
+                        getUsuallyState(Valve.valve_usually_state),
+                        getMemo(Valve.valve_memo),
+                        getIndex(index)
+                "
+            >
+                <!-- v-forで展開する弁(バルブ)コンポーネント -->
+                <p
+                    :class="assignClass + Valve.id"
+                    @click="(show = !show), (othersShow = false)"
                 >
-                    <Tag :tagName="systemDiagram" :tagPosi="tag_posi"></Tag>
-                </div>
-                <!-- 系統線図の各弁をv-forで展開 -->
-                <div
-                    v-for="(Valve, index) in u1_b5"
-                    :key="Valve.id"
-                    @click="
-                        getId(Valve.id),
-                            getNumber(Valve.valve_number),
-                            getName(Valve.valve_name),
-                            getUsuallyState(Valve.valve_usually_state),
-                            getMemo(Valve.valve_memo),
-                            getIndex(index)
-                    "
-                >
-                    <!-- 弁名称表示用 -->
-                    <!-- <p :class="assignClass + Valve.id" class="valve_name">
-                    {{ Valve.valve_number }}
-                </p> -->
-
-                    <!-- v-forで展開する弁のコンポーネント -->
-                    <p
-                        :class="assignClass + Valve.id"
-                        @click="(show = !show), (othersShow = false)"
-                    >
-                        <BaseValve
-                            :option-id="Valve.id"
-                            :open-command="openCommand"
-                            :close-command="closeCommand"
-                            :adjusted-command="adjustedCommand"
-                            :system-diagram="systemDiagram"
-                            :watchStatus="watchStatus"
-                        ></BaseValve>
-                    </p>
-                </div>
-
-                <!-- 弁オプション(開閉ボタン等)のコンポーネント。 -->
-                <div v-if="show" @click="show = !show" class="valve_options">
-                    <ValveOption
-                        :option-id="sendId"
-                        :option-name="sendName"
-                        :option-number="sendNumber"
-                        :option-usually-state="sendUsuallyState"
-                        @push-open="pushOpen"
-                        @push-close="pushClose"
-                        @push-adjusted="pushAdjusted"
-                        @push-reset-open="pushResetOpen"
-                        @push-reset-close="pushResetClose"
-                        @push-reset-adjusted="pushResetAdjusted"
-                        @push-state-button="pushStateButton"
-                        @push-others-button="othersShow = !othersShow"
-                    ></ValveOption>
-                </div>
-
-                <!-- その他の弁オプション(弁名称・弁番号・通常状態・メモ)のコンポーネント -->
-                <p v-if="othersShow" class="sub_options">
-                    <BaseSubOption
-                        :option-id="sendId"
-                        :option-name="sendName"
-                        :option-number="sendNumber"
-                        :option-usually-state="sendUsuallyState"
-                        :option-memo="sendMemo"
-                        :systemDiagram="systemDiagram"
-                        @push-save-invisible="othersShow = false"
-                        @push-save-update="pushSaveUpdate"
-                        @push-save-reset="pushSaveReset"
-                    ></BaseSubOption>
+                    <BaseValve
+                        :option-id="Valve.id"
+                        :open-command="openCommand"
+                        :close-command="closeCommand"
+                        :adjusted-command="adjustedCommand"
+                        :system-diagram="systemDiagram"
+                        :watchStatus="watchStatus"
+                    ></BaseValve>
                 </p>
             </div>
-        </v-app>
-    </div>
+
+            <!-- 弁(バルブ)オプション(開閉ボタン等)のコンポーネント。 -->
+            <div v-if="show" @click="show = !show" class="valve_options">
+                <ValveOption
+                    :option-id="sendId"
+                    :option-name="sendName"
+                    :option-number="sendNumber"
+                    :option-usually-state="sendUsuallyState"
+                    @push-open="pushOpen"
+                    @push-close="pushClose"
+                    @push-adjusted="pushAdjusted"
+                    @push-reset-open="pushResetOpen"
+                    @push-reset-close="pushResetClose"
+                    @push-reset-adjusted="pushResetAdjusted"
+                    @push-state-button="pushStateButton"
+                    @push-others-button="othersShow = !othersShow"
+                ></ValveOption>
+            </div>
+
+            <!-- その他の弁(バルブ)オプション(弁名称・弁番号・通常状態・メモ)のコンポーネント -->
+            <p v-if="othersShow" class="sub_options">
+                <BaseSubOption
+                    :option-id="sendId"
+                    :option-name="sendName"
+                    :option-number="sendNumber"
+                    :option-usually-state="sendUsuallyState"
+                    :option-memo="sendMemo"
+                    :systemDiagram="systemDiagram"
+                    @push-save-invisible="othersShow = false"
+                    @push-save-update="pushSaveUpdate"
+                    @push-save-reset="pushSaveReset"
+                ></BaseSubOption>
+            </p>
+        </div>
+        <!-- 系統線図毎の弁のポジションや大きさに関するCSSの読み込み -->
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="css/SystemDiagram/boiler/B-5.css"
+        />
+    </v-app>
 </template>
 
 <script>
@@ -107,7 +99,7 @@ export default {
             // 弁のメモ
             sendMemo: "",
 
-            // v-forで展開した各弁にclassを自動で割り振る。// 例: class="b4_3" => 系統図=b4,id=3の弁
+            // v-forで展開した各弁にclassを自動で割り振る。// 例: class="u1_b5_1" => 1号B-5,id=1の弁
             assignClass: "u1_b5_",
 
             // 弁オプションからemitで飛んできたイベントで用いる。各弁のコンポーネントにpropsで送る。
@@ -140,7 +132,10 @@ export default {
             is_mousedown: false,
 
             // 弁の通常状態の表示に関するデータ。弁のidが入ってくる。
-            watchStatus: ""
+            watchStatus: "",
+
+            // Loupe.vueにpropsで送る系統線図のsrc
+            imgSrc: "/img/SystemDiagrams/boiler/B-5.png"
         };
     },
     computed: {
@@ -263,19 +258,9 @@ export default {
 </script>
 
 <style scoped>
-/* 系統線図B-5 */
-.b-5 {
-    width: 1200px;
-    height: auto;
-    /* padding-left: 200px; */
-    position: absolute;
-    top: 0px;
-    left: 220px;
+.whole_page {
+    height: 1100px;
 }
-/* 弁名称の表示関係のcss */
-/* .valve_name {
-    margin-top: 20px;
-} */
 /* 弁オプション */
 .valve_options {
     position: absolute;
@@ -287,48 +272,6 @@ export default {
     position: absolute;
     top: var(--position-top);
     left: var(--position-left);
+    z-index: 1;
 }
-
-/* 各弁のclass */
-.u1_b5_1 {
-    position: absolute;
-    top: 726px;
-    left: 995px;
-    width: 7px;
-    height: 6.3px;
-    transform: rotate(90deg);
-}
-.u1_b5_2 {
-    position: absolute;
-    top: 726px;
-    left: 1005px;
-    width: 7px;
-    height: 6.3px;
-    transform: rotate(90deg);
-}
-.u1_b5_3 {
-    position: absolute;
-    top: 726px;
-    left: 1055px;
-    width: 7px;
-    height: 6.3px;
-    transform: rotate(90deg);
-}
-.u1_b5_4 {
-    position: absolute;
-    top: 726px;
-    left: 1070px;
-    width: 7px;
-    height: 6.3px;
-    transform: rotate(90deg);
-}
-.u1_b5_5 {
-    position: absolute;
-    top: 726px;
-    left: 1100px;
-    width: 7px;
-    height: 6.3px;
-    transform: rotate(90deg);
-}
-
 </style>

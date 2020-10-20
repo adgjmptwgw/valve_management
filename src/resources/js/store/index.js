@@ -14,16 +14,19 @@ export default new Vuex.Store({
     // }
 
     state: {
+        // 弁のデータ。この中に更に配列が入っている。※配列名u1_b4等。
         storeValves: [],
-        // storeU1_B4: [],
-        // storeU1_B5: [],
-        // storeU1_T3: [],
-        // storeU1_T4: [],
+      
         // 付箋のデータ
-        storeTags: []
+        storeTags: [],
+
+        // 履歴の各項目(弁の名前、番号、操作時間)
+        historyNumber: [],
+        historyName: [],
+        historyTime: []
     },
     mutations: {
-        // ------------------< 弁・subオプション・付箋データ受取 & 更新 >------------------------
+        // ------------------< 弁・subオプション・付箋データ受取(push)  >------------------------
         // 目次(SystemListコンポーネント)更新時に以下イベント発火
         getDataValves(state, { arrayData, tagsData }) {
             // DBからの付箋データをstate.storeTagsへpush
@@ -60,7 +63,7 @@ export default new Vuex.Store({
             //     }
             // }
         },
-
+        // ------------------< 弁オプション更新処理 >------------------------
         // 開閉ボタンをクリックした際に対象の弁のidとvalve_state(弁の開閉状態)をstore.stateに挿入、値を更新する。
         changeValveStatus(
             state,
@@ -70,7 +73,8 @@ export default new Vuex.Store({
                 nameInput,
                 numberInput,
                 usuallyStateInput,
-                memoInput
+                memoInput,
+                time
             }
         ) {
             // let stateArray = [
@@ -118,8 +122,15 @@ export default new Vuex.Store({
             //     });
             // });
 
-            // console.log(new_items);
+            if (time != undefined) {
+                state.historyNumber.push(numberInput);
+                state.historyName.push(nameInput);
+                state.historyTime.push(time);
+            }
 
+            console.log(state.historyNumber);
+            console.log(state.historyName);
+            console.log(state.historyTime);
 
             for (let i = 0; i < state.storeValves.length; i++) {
                 // "引数のid"と"stateのid"が同じものを探してくる。

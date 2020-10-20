@@ -26,8 +26,11 @@ Route::get('/', function () {
 // ホーム画面の表示処理
 Route::get('/Home', 'ValveController@HomeIndex');
 
-// 系統図一覧の表示に関するルーティング
-Route::get('/SystemList', 'ValveController@ListIndex');
+// 1号機目次表示処理
+Route::get('/DiagramsList', 'ValveController@ListIndex');
+
+// 弁操作履歴表示処理
+Route::get('/History', 'ValveController@HistoryIndex');
 
 // Route::get('/SystemList/json', 'ValveController@json');
 // Route::get('/SystemList/json/{id}', 'ValveController@json');
