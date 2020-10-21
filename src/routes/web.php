@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('Home');
+});
 
 // Route::get('valveData', function () {
 //     return App\ValveOption::all();
@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 // ホーム画面の表示処理
-Route::get('/', 'ValveController@HomeIndex');
+// Route::get('/', 'ValveController@HomeIndex');
 
 // 1号機目次表示処理
 Route::get('/DiagramsList', 'ValveController@ListIndex');
