@@ -25,6 +25,10 @@ use Illuminate\Support\Facades\Route;
 // ホーム画面の表示処理
 Route::get('/', 'ValveController@HomeIndex');
 
+Route::get('/home', function () {
+    return view('home');
+});
+
 // 1号機目次表示処理
 Route::get('/DiagramsList', 'ValveController@ListIndex');
 
