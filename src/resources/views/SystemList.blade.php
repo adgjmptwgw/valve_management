@@ -57,11 +57,11 @@
               </v-list-item>
               <v-list-item>
                 <v-list-item-title>
-                  <a href="{{ url('/DiagramsList') }}"> 1号機目次 </a>
+                  <a href="{{ url('/DiagramsList') }}"> 1号機系統線図リスト </a>
                 </v-list-item-title>
               </v-list-item>
               <v-list-item>
-                <v-list-item-title>2号機目次</v-list-item-title>
+                <v-list-item-title>2号機系統線図リスト</v-list-item-title>
               </v-list-item>
               <v-list-item>
                 <v-list-item-title>弁チェックリスト</v-list-item-title>

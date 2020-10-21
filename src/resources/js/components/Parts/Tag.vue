@@ -123,7 +123,7 @@ export default {
                 () =>
                     // axiosでデータを送る(このコンポーネント=>app/Http/Request/StoreOption.php=>ValveController=>DB)
                     axios
-                        .put("/api/System/" + this.tagId, {
+                        .put("/Tag/System/" + this.tagId, {
                             content: this.tagContent,
                             width: this.tagWidth,
                             height: this.tagHeight,

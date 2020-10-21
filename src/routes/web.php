@@ -24,7 +24,7 @@ Route::get('/', function () {
 
 
 // ホーム画面の表示処理
-Route::get('/Home', 'ValveController@HomeIndex');
+Route::get('/', 'ValveController@HomeIndex');
 
 // 1号機目次表示処理
 Route::get('/DiagramsList', 'ValveController@ListIndex');

@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 //     'Tag' => 'Api\OptionApiController'
 //     ]);
 Route::apiResource('/System', 'Api\OptionApiController');
+// Route::put('/Tag', 'Api\OptionApiController@updateTag');
 
 // Route::apiResource('/Tag', 'Api\TagApiController');
 // Route::apiResource('/Tag', 'Api\OptionApiController');
