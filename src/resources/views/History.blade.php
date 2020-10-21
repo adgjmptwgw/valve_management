@@ -52,7 +52,7 @@
           <v-list nav dense>
             <v-list-item-group>
               <v-list-item>
-                <a href="{{ url('/Home') }}"> ホーム </a>
+                <a href="{{ url('/home') }}"> ホーム </a>
               </v-list-item>
               <v-list-item>
                 <a href="{{ url('/DiagramsList') }}"> 1号機目次 </a>
@@ -110,6 +110,6 @@
   }
 
   .u1_history {
-    margin-top:100px;
+    margin-top: 100px;
   }
 </style>
