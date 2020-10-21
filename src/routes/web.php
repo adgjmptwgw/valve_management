@@ -13,15 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 // Route::get('valveData', function () {
 //     return App\ValveOption::all();
 //     return view('SystemList');
 // });
-
 
 // ホーム画面の表示処理
 Route::get('/', 'ValveController@HomeIndex');

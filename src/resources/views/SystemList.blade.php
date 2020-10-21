@@ -53,7 +53,7 @@
           <v-list nav dense>
             <v-list-item-group>
               <v-list-item>
-                <a href="{{ url('/Home') }}"> ホーム </a>
+                <a href="{{ url('/') }}"> ホーム </a>
               </v-list-item>
               <v-list-item>
                 <v-list-item-title>
