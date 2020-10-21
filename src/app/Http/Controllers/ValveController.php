@@ -192,7 +192,7 @@ class ValveController extends Controller
 
     public function HomeIndex()
     {
-        return view('Home');
+        return view('home');
     }
     public function HistoryIndex()
     {
