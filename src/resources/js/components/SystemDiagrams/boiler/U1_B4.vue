@@ -243,8 +243,6 @@ export default {
             if (this.is_mousedown == true) {
                 this.tag_posi.x = e.pageX;
                 this.tag_posi.y = e.pageY;
-                console.log(this.tag_posi.x);
-                console.log(this.tag_posi.y);
                 this.memoPositionStyles.left = this.tag_posi.x - 30;
                 this.memoPositionStyles.top = this.tag_posi.y - 150;
             }
@@ -258,6 +256,7 @@ export default {
 </script>
 
 <style scoped>
+/* ページ全体のcss */
 .whole_page{
     height: 1100px;
 }
@@ -273,5 +272,8 @@ export default {
     top: var(--position-top);
     left: var(--position-left);
     z-index: 1;
+}
+.sub_options{
+    
 }
 </style>

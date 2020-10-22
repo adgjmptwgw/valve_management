@@ -1,75 +1,74 @@
 <template>
     <v-app>
-        <v-container class="test">
-            <v-form class="valve_option" color="purple lighten-3" dark>
-                <v-toolbar flat color="purple lighten-5" width="200px">
-                    <img src="/img/Parts/gear.png" alt="歯車" />
-                    <v-toolbar-title class="font-weight-light">
-                        サブオプション
-                    </v-toolbar-title>
-                    <v-spacer></v-spacer>
-                    <v-btn color="purple darken-4" fab small>
-                        <v-icon @click="invisibleOthersOption()"
-                            >mdi-close</v-icon
-                        >
+        <v-container class="sub_option"> 
+            <v-toolbar flat color="pink lighten-4" width="1200px">
+                <img src="/img/Parts/gear.png" alt="歯車" />
+                <v-toolbar-title class="font-weight-light">
+                   <p class="title_name">サブオプション</p>
+                </v-toolbar-title>
+                <v-spacer></v-spacer>
+                <v-btn color="red darken-1" fab>
+                    <v-icon @click="invisibleOthersOption()">mdi-close</v-icon>
+                </v-btn>
+            </v-toolbar>
+            <v-card height="600px">
+                <v-col class="d-flex" width="1000px">
+                    <v-text-field
+                        v-model="nameInput"
+                        filled
+                        :counter="30"
+                        :rules="nameRules"
+                        label="弁名称"
+                        required
+                    ></v-text-field>
+                </v-col>
+                <v-col class="d-flex" width="1000px">
+                    <v-text-field
+                        v-model="numberInput"
+                        filled
+                        :counter="15"
+                        :rules="numberRules"
+                        label="弁番号"
+                        required
+                    ></v-text-field>
+                </v-col>
+                <v-col class="d-flex" width="1000px">
+                    <v-select
+                        :items="usualStatus"
+                        filled
+                        label="通常状態"
+                        dense
+                        v-model="usuallyStateInput"
+                    ></v-select>
+                </v-col>
+                <v-col class="d-flex" width="1000px">
+                    <v-textarea
+                        v-model="memoInput"
+                        filled
+                        :counter="100"
+                        :rules="memoRules"
+                        label="メモ"
+                        required
+                    ></v-textarea>
+                </v-col>
+                <v-col class="save_btn">
+                    <v-btn
+                        @click="
+                            sendDataAxios(),
+                                sendDataStore(),
+                                invisibleOthersOption(),
+                                usuallyStateUpdate();
+                            usuallyStateReset();
+                        "
+                        width="300px"
+                        height="50px"
+                    >
+                        保存
                     </v-btn>
-                </v-toolbar>
-                <v-form>
-                    <v-col class="d-flex" cols="5" sm="2">
-                        <v-text-field
-                            v-model="nameInput"
-                            filled
-                            :counter="30"
-                            :rules="nameRules"
-                            label="弁名称"
-                            required
-                        ></v-text-field>
-                    </v-col>
-                    <v-col class="d-flex" cols="5" sm="2">
-                        <v-text-field
-                            v-model="numberInput"
-                            filled
-                            :counter="15"
-                            :rules="numberRules"
-                            label="弁番号"
-                            required
-                        ></v-text-field>
-                    </v-col>
-                    <v-col class="d-flex" cols="5" sm="2">
-                        <v-select
-                            :items="usualStatus"
-                            filled
-                            label="通常状態"
-                            dense
-                            v-model="usuallyStateInput"
-                        ></v-select>
-                    </v-col>
-                    <v-col class="d-flex" cols="5" sm="2">
-                        <v-textarea
-                            v-model="memoInput"
-                            filled
-                            :counter="100"
-                            :rules="memoRules"
-                            label="メモ"
-                            required
-                        ></v-textarea>
-                    </v-col>
-                    <v-col>
-                        <v-btn
-                            @click="
-                                sendDataAxios(),
-                                    sendDataStore(),
-                                    invisibleOthersOption(),
-                                    usuallyStateUpdate();
-                                usuallyStateReset();
-                            "
-                        >
-                            保存
-                        </v-btn>
-                    </v-col>
-                </v-form>
-            </v-form>
+                </v-col>
+            </v-card>
         </v-container>
+        <div id="overlay"></div>
     </v-app>
 </template>
 
@@ -109,7 +108,7 @@ export default {
         };
     },
     mounted() {
-        const storeArray = ["u1_b4","u1_b5", "u1_t3", "u1_t4"];
+        const storeArray = ["u1_b4", "u1_b5", "u1_t3", "u1_t4"];
         const systemDiagramArray = this.$store.state.storeValves;
         for (let i = 0; i < storeArray.length; i++) {
             if (this.systemDiagram == storeArray[i]) {
@@ -181,7 +180,45 @@ export default {
 </script>
 
 <style scoped>
-.test{
-    margin: auto 0;
+.title_name{
+    font-size: 120%;
+    width: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sub_option {
+    width: 1200px;
+    position: absolute;
+    top: -450px;
+    left: 200px;
+    z-index: 2;
+}
+/* モーダルウィンドウ */
+#overlay{
+  /* 要素を重ねた時の順番 */
+  z-index:1;
+
+  /* 画面全体を覆う設定 */
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background-color:rgba(0,0,0,0.5);
+
+  /* 画面の中央に要素を表示させる設定 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* 保存ボタンを囲む<v-col>のスタイル */
+.save_btn{
+    width: 1200px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 </style>

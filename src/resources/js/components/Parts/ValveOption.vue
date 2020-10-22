@@ -1,75 +1,90 @@
 <template>
     <v-app>
         <v-container>
-            <div>
-                <!-- justify="center"は効いていない -->
-                <v-card justify="center">
-                    <fieldset>
-                        <v-col>
-                            <p class="valve_names">{{ optionName }}</p>
-                        </v-col>
-                        <v-col>
-                            <p class="valve_names">{{ optionNumber }}</p>
-                        </v-col>
-                    </fieldset>
+            <v-card
+                width="230px"
+                height="700px"
+                elevation="24"
+                link
+                color="grey lighten-3"
+            >
+                <v-col>
                     <v-col>
-                        <v-btn
-                            name="valve_state"
-                            :value="valueOpen"
-                            @click="
+                        <p class="valve_names">{{ optionName }}</p>
+                    </v-col>
+                    <v-col>
+                        <p class="valve_names">{{ optionNumber }}</p>
+                    </v-col>
+                </v-col>
+                <v-divider></v-divider>
+                <v-col>
+                    <v-btn
+                        class="btns_style"
+                        name="valve_state"
+                        :value="valueOpen"
+                        @click="
+                            (open = false),
+                                (close = true),
+                                (adjusted = false),
+                                (stateInput = valueOpen),
+                                updateOption(),
+                                commandOpen(),
+                                resetOpen(),
+                                sendStore(),
+                                time(),
+                                sendStoreHistory()
+                        "
+                        width="205px"
+                        height="50px"
+                        color="grey lighten-5"
+                        >開
+                    </v-btn>
+                </v-col>
+                <v-col>
+                    <v-btn
+                        class="btns_style"
+                        name="valve_state"
+                        :value="valueClose"
+                        @click="
+                            (close = false),
+                                (open = true),
+                                (adjusted = false),
+                                (stateInput = valueClose),
+                                updateOption(),
+                                commandClose(),
+                                resetClose(),
+                                sendStore(),
+                                time(),
+                                sendStoreHistory()
+                        "
+                        width="205px"
+                        height="50px"
+                        >閉
+                    </v-btn>
+                </v-col>
+                <v-col>
+                    <v-btn
+                        class="btns_style"
+                        name="valve_state"
+                        :value="valueAdjusted"
+                        @click="
+                            (close = false),
                                 (open = false),
-                                    (close = true),
-                                    (adjusted = false),
-                                    (stateInput = valueOpen),
-                                    updateOption(),
-                                    commandOpen(),
-                                    resetOpen(),
-                                    sendStore(),
-                                    time(),
-                                    sendStoreHistory()
-                            "
-                            >開
-                        </v-btn>
-                    </v-col>
-                    <v-col>
-                        <v-btn
-                            name="valve_state"
-                            :value="valueClose"
-                            @click="
-                                (close = false),
-                                    (open = true),
-                                    (adjusted = false),
-                                    (stateInput = valueClose),
-                                    updateOption(),
-                                    commandClose(),
-                                    resetClose(),
-                                    sendStore(),
-                                    time(),
-                                    sendStoreHistory()
-                            "
-                            >閉
-                        </v-btn>
-                    </v-col>
-                    <v-col>
-                        <v-btn
-                            name="valve_state"
-                            :value="valueAdjusted"
-                            @click="
-                                (close = false),
-                                    (open = false),
-                                    (adjusted = true),
-                                    (stateInput = valueAdjusted),
-                                    updateOption(),
-                                    commandAdjusted(),
-                                    resetAdjusted(),
-                                    sendStore(),
-                                    time(),
-                                    sendStoreHistory()
-                            "
-                            >調整開
-                        </v-btn>
-                    </v-col>
-                    <!-- <input
+                                (adjusted = true),
+                                (stateInput = valueAdjusted),
+                                updateOption(),
+                                commandAdjusted(),
+                                resetAdjusted(),
+                                sendStore(),
+                                time(),
+                                sendStoreHistory()
+                        "
+                        width="205px"
+                        height="50px"
+                        >調整開
+                    </v-btn>
+                </v-col>
+                <!-- <input
                     type="button"
                     name="valve_state"
                     :value="valueOpen"
@@ -114,13 +129,17 @@
                             sendStore()
                     "
                 /> -->
-                    <v-col>
-                        <v-btn @click="othersOption()">
-                            その他オプション
-                        </v-btn>
-                    </v-col>
-                </v-card>
-            </div>
+                <v-col>
+                    <v-btn
+                        class="btns_style"
+                        @click="othersOption()"
+                        width="205px"
+                        height="50px"
+                    >
+                        その他オプション
+                    </v-btn>
+                </v-col>
+            </v-card>
         </v-container>
     </v-app>
 </template>
@@ -186,24 +205,29 @@ export default {
         },
         sendStoreHistory() {
             this.$store.commit("changeValveStatus", {
-                numberInput:this.optionNumber,
-                nameInput:this.optionName,
+                numberInput: this.optionNumber,
+                nameInput: this.optionName,
                 time: this.now
             });
         },
         othersOption() {
             this.$emit("push-others-button");
         },
-        time: function(e){
-          var date = new Date();
-          
-          this.now = 
-          date.getFullYear() + "年 " + 
-          date.getMonth() + "月 " + 
-          date.getDate() + "日  " + 
-          date.getHours() + ":" +
-          date.getMinutes() + ":" +
-          date.getSeconds();
+        time: function(e) {
+            var date = new Date();
+
+            this.now =
+                date.getFullYear() +
+                "年 " +
+                date.getMonth() +
+                "月 " +
+                date.getDate() +
+                "日  " +
+                date.getHours() +
+                ":" +
+                date.getMinutes() +
+                ":" +
+                date.getSeconds();
         }
     }
 };
@@ -215,5 +239,10 @@ export default {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    font-size: 120%;
+}
+.btns_style {
+    margin: 20px auto;
+    font-size: 130%;
 }
 </style>
