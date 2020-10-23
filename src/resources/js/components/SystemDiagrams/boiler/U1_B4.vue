@@ -1,12 +1,5 @@
 <template>
     <v-app class="whole_page">
-            <!-- 系統線図毎の弁のポジションや大きさに関するCSSの読み込み -->
-        <link
-            rel="stylesheet"
-            type="text/css"
-            href="css/SystemDiagram/boiler/B-4.css"
-        />
-        
         <!-- 付箋の座標を取得するマウスイベント -->
         <div @mousemove="touchmove($event)" @mouseup="touchend()">
             <!-- 付箋コンポーネント -->
@@ -79,6 +72,12 @@
                 ></BaseSubOption>
             </p>
         </div>
+        <!-- 系統線図毎の弁のポジションや大きさに関するCSSの読み込み -->
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="public/css/SystemDiagram/boiler/B-4.css"
+        />
     </v-app>
 </template>
 
