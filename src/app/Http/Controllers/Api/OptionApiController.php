@@ -96,7 +96,6 @@ class OptionApiController extends Controller
             $valveOption->operator = '';
         }
         $valveOption->save();
-        
     }
 
     public function updateTag(StoreTag $request, $id)
@@ -115,9 +114,8 @@ class OptionApiController extends Controller
         if ($request->position_Y == !NULL) {
             $tag->position_Y = $request->position_Y;
         }
-        
-            $tag->visibility = $request->visibility;
-        
+        $tag->visibility = $request->visibility;
+
         $tag->save();
     }
 

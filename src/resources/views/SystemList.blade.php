@@ -29,10 +29,10 @@
   <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
   <!-- Styles -->
-  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  <link rel="stylesheet" href="{{ asset('css/app.css') }}">
   <!-- <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet"> -->
 
-  <!-- Vue.jsを入れたときに追加した(2020/9/2)  もしかしたら、上の<link href="{{ asset('css/app.css') }}" rel="stylesheet">はいらないかも・・・ -->
+  <!-- Vue.jsを入れたときに追加した(2020/9/2)-->
   <link rel="stylesheet" href="{{ mix('css/app.css') }}" type="text/css">
 </head>
 <!---------------------------------------------------------------------------------->
