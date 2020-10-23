@@ -14,22 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::apiResource('/System', 'Api\OptionApiController')->only([
-//     'update', 'updateTag',
-// ]);
-
 // apiResource・・・Route::resource('users', 'UsersController')と同じ使い方
-// Route::apiResource([
-//     '/System' => 'Api\OptionApiController',
-//     '/Tag' => 'Api\TagApiController'
-//     ]);
-
 // Route::apiResource('/System', 'Api\OptionApiController');
 
+// 弁の開閉状態のルーティング
 Route::put('/System/{System}', 'Api\OptionApiController@update');
+
+// 付箋のルーティング
 Route::put('/Tag/{Tag}', 'Api\OptionApiController@updateTag');
 
-// Route::apiResource('/Tag', 'Api\TagApiController');
+
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

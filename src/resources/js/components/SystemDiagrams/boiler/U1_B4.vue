@@ -76,7 +76,7 @@
         <link
             rel="stylesheet"
             type="text/css"
-            href="public/css/SystemDiagram/boiler/B-4.css"
+            href="src/public/css/SystemDiagram/boiler/B-4.css"
         />
     </v-app>
 </template>

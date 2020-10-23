@@ -64,13 +64,12 @@ export default {
                 height: 60
             },
             tagId: 1,
-            // tagContent: "",
+            memoContent: "",
             position_X:"200",
             position_Y:"200",
             tagShow: false,
             buttonShow: true,
-            tagShow2: false,
-            memoContent: "",
+            
             // メモフレームの高さのデータ
             frameHeight: "",
         };
@@ -141,7 +140,7 @@ export default {
                             content: this.memoContent,
                             position_X: this.position_X,
                             position_Y: this.position_Y,
-                            visibility: this.tagShow2
+                            visibility: this.tagShow
                         })
                         .then(response => {
                             console.log(response);
