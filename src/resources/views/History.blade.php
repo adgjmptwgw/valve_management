@@ -55,10 +55,10 @@
                 <a href="{{ url('/home') }}"> ホーム </a>
               </v-list-item>
               <v-list-item>
-                <a href="{{ url('/DiagramsList') }}"> 1号機目次 </a>
+                <a href="{{ url('/DiagramsList') }}">1号機系統線図リスト </a>
               </v-list-item>
               <v-list-item>
-                <v-list-item-title>2号機目次</v-list-item-title>
+                <v-list-item-title>2号機系統線図リスト</v-list-item-title>
               </v-list-item>
               <v-list-item>
                 <v-list-item-title>弁チェックリスト</v-list-item-title>
@@ -79,14 +79,32 @@
 
     <!------------------------------------------------------------------------------->
 
-
-    <router-link to="/HistoryPage">
-      <p class="u1_history">テスト</p>
-    </router-link>
-
-    <div>
-      <router-view />
+    @if (count($histories) > 0)
+    <div class="test">
+      <div>履歴リスト</div>
+      <div>
+        <table>
+          <!-- テーブルヘッダ -->
+          <thead>
+            <th>履歴</th>
+          </thead>
+          <!-- テーブル本体 -->
+          <tbody>
+            @foreach ($histories as $history)
+            <tr>
+              <td>
+                <div>{{ $history->id }}</div>
+              </td>
+              <td>
+                <!-- 削除ボタン -->
+              </td>
+            </tr>
+            @endforeach
+          </tbody>
+        </table>
+      </div>
     </div>
+    @endif
 
   </div>
 </body>
@@ -109,7 +127,7 @@
     font-size: 250%;
   }
 
-  .u1_history {
+  .test {
     margin-top: 100px;
   }
 </style>

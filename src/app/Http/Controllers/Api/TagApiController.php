@@ -51,15 +51,19 @@ class TagApiController extends Controller
      */
     public function update(StoreTag $request, $id)
     {
+        // Log::debug('$request="' . $request . '"');
         $tag = Tag::find($id);
+        if ($request->tag_name == !NULL) {
+            $tag->tag_name = $request->tag_name;
+        }
         if ($request->content == !NULL) {
             $tag->content = $request->content;
         }
-        if ($request->width == !NULL) {
-            $tag->width = $request->width;
+        if ($request->position_X == !NULL) {
+            $tag->position_X = $request->position_X;
         }
-        if ($request->height == !NULL) {
-            $tag->height = $request->height;
+        if ($request->position_Y == !NULL) {
+            $tag->position_Y = $request->position_Y;
         }
         if ($request->visibility == !NULL) {
             $tag->visibility = $request->visibility;

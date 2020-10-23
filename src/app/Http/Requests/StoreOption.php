@@ -29,6 +29,6 @@ class StoreOption extends FormRequest
             'valve_usuallyState' => 'sometimes|max:50',
             'valve_state' => 'sometimes|max:50',
             'valve_memo' => 'sometimes|max:50',
-        ]; 
+        ];
     }
 }

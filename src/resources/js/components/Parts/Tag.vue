@@ -1,46 +1,56 @@
 <template>
-    <v-app @mousemove.stop class="frameHight" :style="memoSize">
-        <v-container>
-            <div v-if="tagShow">
-                <textarea
-                    v-model="memoContent"
-                    ref="area"
-                    :style="frameStyles"
-                    placeholder="memo"
-                >
-                </textarea>
-                <v-row>
-                    <v-col>
-                        <v-btn
-                            @click="
-                                updateTag();
-                                pushSaveButton();
-                            "
-                            >保存</v-btn
-                        >
-                    </v-col>
-                    <v-col>
-                        <v-btn
-                            @click="
-                                (tagShow = !tagShow)((buttonShow = !buttonShow))
-                            "
-                        >
-                            <div @click="pushSaveButton()">
-                                付箋 非表示
-                            </div>
-                        </v-btn>
-                    </v-col>
-                </v-row>
-            </div>
-            <v-col>
-                <v-btn
-                    @click="(tagShow = !tagShow)((buttonShow = !buttonShow))"
-                    v-if="buttonShow"
-                    >付箋 表示</v-btn
-                >
-            </v-col>
+    <div class="frameHight" :style="memoSize">
+        <v-container class="padding_styles">
+            <v-card color="yellow lighten-5" elevation="24">
+                <div v-if="tagShow">
+                    <textarea
+                        v-model="memoContent"
+                        ref="area"
+                        :style="frameStyles"
+                        placeholder="memo"
+                    >
+                    </textarea>
+                    <v-divider class="border_margin"></v-divider>
+                    <v-row>
+                        <v-col>
+                            <v-btn
+                                @click="
+                                    updateTag();
+                                    pushSaveButton();
+                                "
+                                block
+                                icon
+                                >save</v-btn
+                            >
+                        </v-col>
+                        <v-col>
+                            <v-btn
+                                @click="
+                                    (tagShow = !tagShow)(
+                                        (buttonShow = !buttonShow)
+                                    )
+                                "
+                                block
+                                icon
+                            >
+                                <div @click="pushSaveButton()">
+                                    close
+                                </div>
+                            </v-btn>
+                        </v-col>
+                    </v-row>
+                </div>
+            </v-card>
+            <v-btn
+                @click="(tagShow = !tagShow)((buttonShow = !buttonShow))"
+                v-if="buttonShow"
+                fab
+                x-large
+                color="yellow lighten-5"
+                ><v-icon dark>mdi-pencil</v-icon></v-btn
+            >
         </v-container>
-    </v-app>
+    </div>
 </template>
 
 <script>
@@ -54,12 +64,15 @@ export default {
                 height: 60
             },
             tagId: 1,
-            tagContent: "成功",
+            // tagContent: "",
+            position_X:"200",
+            position_Y:"200",
             tagShow: false,
             buttonShow: true,
-            tagShow2: 1,
+            tagShow2: false,
             memoContent: "",
-            frameHeight: ""
+            // メモフレームの高さのデータ
+            frameHeight: "",
         };
     },
     computed: {
@@ -99,7 +112,7 @@ export default {
         });
         // propsでU1_T1等々から送られてきたtagName(系統線図名)とstoreのtagNameが同じものだけ、
         // 系統線図ページを開く時にメモの内容と表示・非表示の状態が反映される。
-        
+
         if (this.tagName == getStore.tag_name) {
             this.memoContent = getStore.content;
             // 付箋の表示・非表示ボタンの状態を変更させる処理
@@ -123,10 +136,11 @@ export default {
                 () =>
                     // axiosでデータを送る(このコンポーネント=>app/Http/Request/StoreOption.php=>ValveController=>DB)
                     axios
-                        .put("/Tag/System/" + this.tagId, {
-                            content: this.tagContent,
-                            width: this.tagWidth,
-                            height: this.tagHeight,
+                        .put("/api/Tag/" + this.tagId, {
+                            tag_name:this.tagName,
+                            content: this.memoContent,
+                            position_X: this.position_X,
+                            position_Y: this.position_Y,
                             visibility: this.tagShow2
                         })
                         .then(response => {
@@ -166,6 +180,10 @@ export default {
 .frameHight {
     height: var(--tag-height);
 }
-
+.border_margin {
+    margin: 0;
+}
+.padding_styles {
+    padding: 0;
+}
 </style>
-

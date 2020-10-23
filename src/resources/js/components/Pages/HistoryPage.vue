@@ -1,20 +1,20 @@
 <template>
-  <v-app>
-    <div>テストVue</div>
-    <div>{{historyNumber}}</div>
-  </v-app>
+    <v-app>
+        <div>テストVue</div>
+        <router-link to="/HistoryPage">
+            <p class="u1_history">テスト</p>
+        </router-link>
+
+        <div>
+            <router-view />
+        </div>
+    </v-app>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      historyNumber:this.$store.state.historyNumber[0],
-    }
-  },
-}
+    data() {}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

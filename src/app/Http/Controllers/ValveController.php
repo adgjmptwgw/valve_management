@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Validator;
 use App\Tag;
 use App\ValveOption;
+use App\History;
 
 class ValveController extends Controller
 {
@@ -194,9 +195,13 @@ class ValveController extends Controller
     {
         return view('home');
     }
+    // 履歴ページの表示処理
     public function HistoryIndex()
     {
-        return view('History');
+        $histories = History::orderBy('created_at', 'asc')->get();
+        return view('History', [
+            'histories' => $histories
+        ]);
     }
 
     public function Index()

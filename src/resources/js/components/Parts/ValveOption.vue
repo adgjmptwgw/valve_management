@@ -3,11 +3,14 @@
         <v-container>
             <v-card
                 width="230px"
-                height="700px"
+                height="750px"
                 elevation="24"
                 link
-                color="grey lighten-3"
             >
+                <v-toolbar color="pink lighten-4" class="valve_names">
+                    <img src="/img/Parts/gear.png" alt="歯車" />
+                    <v-toolbar-title>バルブオプション</v-toolbar-title> 
+                </v-toolbar>
                 <v-col>
                     <v-col>
                         <p class="valve_names">{{ optionName }}</p>
@@ -36,7 +39,7 @@
                         "
                         width="205px"
                         height="50px"
-                        color="grey lighten-5"
+                        color="grey lighten-4"
                         >開
                     </v-btn>
                 </v-col>
@@ -59,6 +62,7 @@
                         "
                         width="205px"
                         height="50px"
+                        color="grey lighten-4"
                         >閉
                     </v-btn>
                 </v-col>
@@ -81,60 +85,17 @@
                         "
                         width="205px"
                         height="50px"
+                        color="grey lighten-4"
                         >調整開
                     </v-btn>
                 </v-col>
-                <!-- <input
-                    type="button"
-                    name="valve_state"
-                    :value="valueOpen"
-                    @click="
-                        (open = false),
-                            (close = true),
-                            (adjusted = false),
-                            (stateInput = valueOpen),
-                            updateOption(),
-                            commandOpen(),
-                            resetOpen(),
-                            sendStore()
-                    "
-                />
-                <input
-                    type="button"
-                    name="valve_state"
-                    :value="valueClose"
-                    @click="
-                        (close = false),
-                            (open = true),
-                            (adjusted = false),
-                            (stateInput = valueClose),
-                            updateOption(),
-                            commandClose(),
-                            resetClose(),
-                            sendStore()
-                    "
-                />
-                <input
-                    type="button"
-                    name="valve_state"
-                    :value="valueAdjusted"
-                    @click="
-                        (close = false),
-                            (open = false),
-                            (adjusted = true),
-                            (stateInput = valueAdjusted),
-                            updateOption(),
-                            commandAdjusted(),
-                            resetAdjusted(),
-                            sendStore()
-                    "
-                /> -->
                 <v-col>
                     <v-btn
                         class="btns_style"
                         @click="othersOption()"
                         width="205px"
                         height="50px"
+                        color="grey lighten-4"
                     >
                         その他オプション
                     </v-btn>

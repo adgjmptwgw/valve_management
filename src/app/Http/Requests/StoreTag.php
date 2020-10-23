@@ -24,9 +24,10 @@ class StoreTag extends FormRequest
     public function rules()
     {
         return [
+            'tag_name' => 'sometimes|max:50',
             'content' => 'sometimes|max:50',
-            'width' => 'sometimes|max:50',
-            'height' => 'sometimes|max:50',
+            'position_X' => 'sometimes|max:50',
+            'position_Y' => 'sometimes|max:50',
             'visibility' => 'sometimes|max:50',
         ];
     }

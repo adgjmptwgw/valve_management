@@ -7,8 +7,11 @@ use Illuminate\Http\Request;
 
 use App\ValveOption;
 use App\Http\Requests\StoreOption;
+// use App\History;
+// use App\Http\Requests\History;
 use App\Tag;
 use App\Http\Requests\StoreTag;
+use Illuminate\Support\Facades\Log;
 
 class OptionApiController extends Controller
 {
@@ -28,10 +31,29 @@ class OptionApiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
+    // public function store(Request $request)
+    // {
+    //     $history = new History;
+    //     if ($request->valve_name == !NULL) {
+    //         $history->valve_name = $request->valve_name;
+    //     }
+    //     if ($request->valve_number == !NULL) {
+    //         $history->valve_number = $request->valve_number;
+    //     }
+    //     if ($request->valve_usually_state == !NULL) {
+    //         $history->valve_usually_state = $request->valve_usually_state;
+    //     }
+    //     if ($request->valve_state == !NULL) {
+    //         $history->valve_state = $request->valve_state;
+    //     }
+    //     if ($request->valve_memo == !NULL) {
+    //         $history->valve_memo = $request->valve_memo;
+    //     }
+    //     if ($request->operator == !NULL) {
+    //         $history->operator = '';
+    //     }
+    //     $history->save();
+    // }
 
     /**
      * Display the specified resource.
@@ -53,12 +75,13 @@ class OptionApiController extends Controller
      */
     public function update(StoreOption $request, $id)
     {
+        // Log::debug('$request="' . $request . '"');
         $valveOption = ValveOption::find($id);
         if ($request->valve_name == !NULL) {
             $valveOption->valve_name = $request->valve_name;
         }
         if ($request->valve_number == !NULL) {
-            $valveOption->valve_number = $request->valve_number; 
+            $valveOption->valve_number = $request->valve_number;
         }
         if ($request->valve_usually_state == !NULL) {
             $valveOption->valve_usually_state = $request->valve_usually_state;
@@ -73,23 +96,28 @@ class OptionApiController extends Controller
             $valveOption->operator = '';
         }
         $valveOption->save();
+        
     }
 
     public function updateTag(StoreTag $request, $id)
     {
+        // Log::debug('$request="' . $request . '"');
         $tag = Tag::find($id);
+        if ($request->tag_name == !NULL) {
+            $tag->tag_name = $request->tag_name;
+        }
         if ($request->content == !NULL) {
             $tag->content = $request->content;
         }
-        if ($request->width == !NULL) {
-            $tag->width = $request->width;
+        if ($request->position_X == !NULL) {
+            $tag->position_X = $request->position_X;
         }
-        if ($request->height == !NULL) {
-            $tag->height = $request->height;
+        if ($request->position_Y == !NULL) {
+            $tag->position_Y = $request->position_Y;
         }
-        if ($request->visibility == !NULL) {
+        
             $tag->visibility = $request->visibility;
-        }
+        
         $tag->save();
     }
 

@@ -3,7 +3,7 @@
         <!-- 付箋の座標を取得するマウスイベント -->
         <div @mousemove="touchmove($event)" @mouseup="touchend()">
             <!-- 付箋コンポーネント -->
-            <div @mousedown="touchstart()" :style="memoPosition" class="tag">
+            <div @mousedown="touchstart()" @mousemove.stop :style="memoPosition" class="tag">
                 <Tag :tagName="systemDiagram" :tagPosi="tag_posi"></Tag>
             </div>
             <!-- ルーペコンポーネント -->
@@ -147,6 +147,10 @@ export default {
             };
         }
     },
+    created() {
+        // ページを開いた時、画面がそのページにスクロールする。
+        scrollTo(0, 125);
+    },
     mounted() {
         //store.stateの中から、state.tagNameとこのページのsystemDiagramが同じものを探し出して、変数にいれる。
         let getStore = this.$store.state.storeTags[0].find(tagStore => {
@@ -160,9 +164,6 @@ export default {
             this.memoPositionStyles.left = this.tag_posi.x - 30;
             this.memoPositionStyles.top = this.tag_posi.y - 150;
         }
-
-        // ページを開いた時、画面がそのページにスクロールする。
-        scrollTo(0, 125);
     },
     methods: {
         // SystemList.blade.phpから送られてきたデータがv-forで展開される。v-forで展開された各idとvalve_nameを
@@ -264,7 +265,7 @@ export default {
 /* 弁オプション */
 .valve_options {
     position: absolute;
-    top: 70px;
+    top: 50px;
     left: 15px;
 }
 /* 付箋を動かすときのポジション(css変数を使用。computedからデータが飛んでくる) */

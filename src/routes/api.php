@@ -20,14 +20,16 @@ use Illuminate\Support\Facades\Route;
 
 // apiResource・・・Route::resource('users', 'UsersController')と同じ使い方
 // Route::apiResource([
-//     'System' => 'Api\OptionApiController',
-//     'Tag' => 'Api\OptionApiController'
+//     '/System' => 'Api\OptionApiController',
+//     '/Tag' => 'Api\TagApiController'
 //     ]);
-Route::apiResource('/System', 'Api\OptionApiController');
-// Route::put('/Tag', 'Api\OptionApiController@updateTag');
+
+// Route::apiResource('/System', 'Api\OptionApiController');
+
+Route::put('/System/{System}', 'Api\OptionApiController@update');
+Route::put('/Tag/{Tag}', 'Api\OptionApiController@updateTag');
 
 // Route::apiResource('/Tag', 'Api\TagApiController');
-// Route::apiResource('/Tag', 'Api\OptionApiController');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

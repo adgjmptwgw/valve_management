@@ -13,9 +13,14 @@ class CreateHistoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('histories', function (Blueprint $table) {
+        Schema::create('Histories', function (Blueprint $table) {
             $table->id();
-            
+            $table->string('valve_name');
+            $table->string('valve_number');
+            $table->string('valve_usually_state');
+            $table->string('valve_state');
+            $table->string('valve_memo')->nullable();
+            $table->string('operator')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +32,6 @@ class CreateHistoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('histories');
+        Schema::dropIfExists('Histories');
     }
 }

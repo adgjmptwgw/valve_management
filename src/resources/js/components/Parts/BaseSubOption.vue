@@ -181,7 +181,7 @@ export default {
 
 <style scoped>
 .title_name{
-    font-size: 120%;
+    font-size: 115%;
     width: 1000px;
     display: flex;
     justify-content: center;
