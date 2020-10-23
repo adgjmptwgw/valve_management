@@ -8,7 +8,7 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>{{ config('app.name', 'Laravel') }}</title>
+  <title>{{ config('app.name', 'バルブ管理システム') }}</title>
 
   <!-- Scripts -->
   <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
@@ -29,11 +29,11 @@
   <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-  <!-- <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet"> -->
+  <!-- <link rel="stylesheet" href="{{ asset('css/app.css') }}"> -->
+  <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
 
   <!-- Vue.jsを入れたときに追加した(2020/9/2)-->
-  <link rel="stylesheet" href="{{ mix('css/app.css') }}" type="text/css">
+  <!-- <link rel="stylesheet" href="{{ mix('css/app.css') }}" type="text/css"> -->
 </head>
 <!---------------------------------------------------------------------------------->
 
