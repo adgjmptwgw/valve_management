@@ -237,6 +237,6 @@
   .main_bottom_content:hover {
     width: 320px;
     height: 270px;
-    opacity: 0.9;
+    opacity: 0.7;
   }
 </style>
