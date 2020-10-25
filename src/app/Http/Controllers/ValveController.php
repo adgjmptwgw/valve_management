@@ -199,14 +199,16 @@ class ValveController extends Controller
     public function HistoryIndex()
     {
         $maxRecordNumber = History::get()->count();
-        $lastRecordNumber = History::all()->last()->id;
+        if($maxRecordNumber >= 1){
+            $lastRecordNumber = History::all()->last()->id;
 
-        // 履歴が10000レコードを超えた場合、10000個以上前のレコードは全て削除する。
-        if ($maxRecordNumber >= 10000) {
-            $deleteNumbers = $lastRecordNumber - 10000;
-            History::where('id', '<=', $deleteNumbers)->delete();
+            // 履歴が10000レコードを超えた場合、10000個以上前のレコードは全て削除する。
+            if ($maxRecordNumber >= 10000) {
+                $deleteNumbers = $lastRecordNumber - 10000;
+                History::where('id', '<=', $deleteNumbers)->delete();
+            }
         }
-
+        
         // 履歴の表示処理
         $histories = History::orderBy('created_at', 'desc')->get();
         return view('History', [

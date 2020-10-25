@@ -34,9 +34,7 @@
                                 commandOpen(),
                                 resetOpen(),
                                 sendStore(),
-                                time(),
-                                sendStoreHistory(),
-                                test()
+                                storeHistory()
                         "
                         width="205px"
                         height="50px"
@@ -58,9 +56,7 @@
                                 commandClose(),
                                 resetClose(),
                                 sendStore(),
-                                time(),
-                                sendStoreHistory(),
-                                test()
+                                storeHistory()
                         "
                         width="205px"
                         height="50px"
@@ -82,9 +78,7 @@
                                 commandAdjusted(),
                                 resetAdjusted(),
                                 sendStore(),
-                                time(),
-                                sendStoreHistory(),
-                                test()
+                                storeHistory()
                         "
                         width="205px"
                         height="50px"
@@ -141,7 +135,7 @@ export default {
                 200
             );
         },
-        test() {
+        storeHistory() {
             // タイマーで遅らせる理由
             // propsに弁1番が入っている時に弁2番を操作する→弁2番の操作が弁1番の方に反映されてしまう。
             setTimeout(
@@ -187,13 +181,13 @@ export default {
         sendStore() {
             this.$emit("push-state-button", this.stateInput);
         },
-        sendStoreHistory() {
-            this.$store.commit("changeValveStatus", {
-                numberInput: this.optionNumber,
-                nameInput: this.optionName,
-                time: this.now
-            });
-        },
+        // sendStoreHistory() {
+        //     this.$store.commit("changeValveStatus", {
+        //         numberInput: this.optionNumber,
+        //         nameInput: this.optionName,
+        //         time: this.now
+        //     });
+        // },
         othersOption() {
             this.$emit("push-others-button");
         },
