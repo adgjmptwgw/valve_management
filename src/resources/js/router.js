@@ -1,8 +1,6 @@
 import Router from "vue-router";
 // 1号機目次
 import DiagramsList from "./components/Pages/DiagramsList.vue";
-// 弁操作履歴
-import HistoryPage from "./components/Pages/HistoryPage.vue";
 
 // 1号ボイラ系統線図
 import U1_B4 from "./components/SystemDiagrams/boiler/U1_B4.vue";
@@ -122,12 +120,6 @@ export default new Router({
             path: "/DiagramsList",
             name: "目次",
             component: DiagramsList
-        },
-        // 弁操作履歴
-        {
-            path: "/HistoryPage",
-            name: "履歴",
-            component: HistoryPage
         },
 
         // ------------------------- 1号ボイラ  -------------------------

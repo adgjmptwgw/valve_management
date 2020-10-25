@@ -37,18 +37,10 @@ class OptionApiController extends Controller
     {
         // Log::debug('$request="' . $request . '"');
         $history = new History;
-        if ($request->valve_name == !NULL) {
-            $history->valve_name = $request->valve_name;
-        }
-        if ($request->valve_number == !NULL) {
-            $history->valve_number = $request->valve_number;
-        }
-        if ($request->valve_usually_state == !NULL) {
-            $history->valve_usually_state = $request->valve_usually_state;
-        }
-        if ($request->valve_state == !NULL) {
-            $history->valve_state = $request->valve_state;
-        }
+        $history->valve_name = $request->valve_name;
+        $history->valve_number = $request->valve_number;
+        $history->valve_usually_state = $request->valve_usually_state;
+        $history->valve_state = $request->valve_state;
         if ($request->valve_memo == !NULL) {
             $history->valve_memo = $request->valve_memo;
         }

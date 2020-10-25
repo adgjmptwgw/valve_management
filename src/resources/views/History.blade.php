@@ -102,7 +102,7 @@
             <p class="table_column">通常開閉状態</p>
           </th>
           <th>
-            <p class="table_column">現在の開閉状態</p>
+            <p class="table_column">更新後の開閉状態</p>
           </th>
           <th>
             <p class="table_column">操作時刻</p>
