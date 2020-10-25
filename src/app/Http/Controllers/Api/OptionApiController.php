@@ -111,9 +111,9 @@ class OptionApiController extends Controller
         if ($request->tag_name == !NULL) {
             $tag->tag_name = $request->tag_name;
         }
-        if ($request->content == !NULL) {
-            $tag->content = $request->content;
-        }
+
+        $tag->content = $request->content;
+
         if ($request->position_X == !NULL) {
             $tag->position_X = $request->position_X;
         }
