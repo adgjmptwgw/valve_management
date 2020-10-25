@@ -3,7 +3,7 @@
         <!-- 付箋の座標を取得するマウスイベント -->
         <div @mousemove="touchmove($event)" @mouseup="touchend()">
             <!-- 付箋コンポーネント -->
-            <div @mousedown="touchstart()" @mousemove.stop :style="memoPosition" class="tag">
+            <div @mousedown="touchstart()" :style="memoPosition" class="tag">
                 <Tag :tagName="systemDiagram" :tagPosi="tag_posi"></Tag>
             </div>
             <!-- ルーペコンポーネント -->

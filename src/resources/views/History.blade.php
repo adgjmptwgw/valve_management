@@ -8,7 +8,7 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>{{ config('app.name', 'バルブ管理システム') }}</title>
+  <title>{{ config('app.name', 'バルブマネージメントシステム') }}</title>
 
   <!-- Scripts -->
   <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
@@ -38,13 +38,13 @@
 
 <body>
   <div id="app">
-    <div class="whole_page">
+    <div class="menu_bar">
       <v-app-bar app color="grey lighten-3" height="60px">
         <v-app-bar-nav-icon @click="menuShow = !menuShow"></v-app-bar-nav-icon>
         <!-- ロゴ -->
         <img src="/img/Parts/logo.png" alt="ロゴ" class="logo">
         <v-toolbar-title>
-          バルブ管理システム
+          バルブマネージメントシステム
         </v-toolbar-title>
       </v-app-bar>
       <div @click="menuShow = !menuShow">
@@ -79,32 +79,83 @@
 
     <!------------------------------------------------------------------------------->
 
+    <p class="background_color_space">
+      <!-- テーブルの上に背景色と同じ色のスペースを設置 -->
+    </p>
+
+    <p class="table_top">
+      <!-- テーブルの上にテーブル枠と同じ色のスペースを設置 -->
+    </p>
+
     @if (count($histories) > 0)
-    <div class="test">
-      <div>履歴リスト</div>
-      <div>
-        <table>
-          <!-- テーブルヘッダ -->
-          <thead>
-            <th>履歴</th>
-          </thead>
-          <!-- テーブル本体 -->
-          <tbody>
-            @foreach ($histories as $history)
-            <tr>
-              <td>
-                <div>{{ $history->id }}</div>
-              </td>
-              <td>
-                <!-- 削除ボタン -->
-              </td>
-            </tr>
-            @endforeach
-          </tbody>
-        </table>
-      </div>
+    <div class="whole_page">
+      <table>
+        <!-- テーブルヘッダ -->
+        <thead class="table_columns">
+          <th>
+            <p class="table_column">弁名称</p>
+          </th>
+          <th>
+            <p class="table_column">弁番号</p>
+          </th>
+          <th>
+            <p class="table_column">通常開閉状態</p>
+          </th>
+          <th>
+            <p class="table_column">現在の開閉状態</p>
+          </th>
+          <th>
+            <p class="table_column">操作時刻</p>
+          </th>
+        </thead>
+        <!-- テーブル本体 -->
+        <tbody>
+          @foreach ($histories as $history)
+          <tr>
+            <td>
+              <div class="grey lighten-5 pa-4">
+                <v-row>
+                  <v-col>
+                    <v-card>
+                      <v-list width="1300px">
+                        <v-list-item>
+                          <v-list-item-action>
+                            <v-icon>mdi-inbox-arrow-down</v-icon>
+                          </v-list-item-action>
+                          <v-list-item-content>
+                            {{ $history->valve_name }}
+                          </v-list-item-content>
+                          <v-list-item-content>
+                            {{ $history->valve_number }}
+                          </v-list-item-content>
+                          <v-list-item-content>
+                            {{ $history->valve_usually_state }}
+                          </v-list-item-content>
+                          <v-list-item-content>
+                            {{ $history->valve_state }}
+                          </v-list-item-content>
+                          <v-list-item-content>
+                            {{ $history->created_at }}
+                          </v-list-item-content>
+                        </v-list-item>
+                      </v-list>
+                    </v-card>
+                  </v-col>
+                </v-row>
+              </div>
+            </td>
+            <td>
+              <!-- 削除ボタン -->
+            </td>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
     </div>
     @endif
+
+    <!------------------------------------------------------------------------------->
+
 
   </div>
 </body>
@@ -112,7 +163,7 @@
 </html>
 
 <style>
-  .whole_page {
+  .menu_bar {
     display: flex;
     align-items: center;
   }
@@ -127,7 +178,67 @@
     font-size: 250%;
   }
 
-  .test {
+  .whole_page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 100px;
+  }
+
+  table {
+    margin-top: 50px;
+  }
+
+  .table_column {
+    font-size: 140%;
+    margin: auto 65px auto 80px;
+  }
+
+  .table_columns {
+    background-color: #FFABCE;
+    position: fixed;
+    width: 1310px;
+    height: 60px;
+    top: 100px;
+    left: 60px;
+    z-index: 1;
+  }
+
+  .table_top {
+    background-color: #FFABCE;
+    position: fixed;
+    width: 1310px;
+    height: 40px;
+    top: 70px;
+    left: 60px;
+    z-index: 1;
+  }
+
+  .background_color_space {
+    background-color: rgb(247, 253, 255);
+    position: fixed;
+    width: 1310px;
+    height: 70px;
+    top: 50px;
+    left: 60px;
+    z-index: 1;
+  }
+
+  a {
+    text-decoration: none;
+    transition: .2s;
+  }
+
+  a:link {
+    color: black;
+  }
+
+  a:visited {
+    color: black;
+  }
+
+  a:hover {
+    color: red;
+    font-size: 117%;
   }
 </style>

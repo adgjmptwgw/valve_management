@@ -20,6 +20,9 @@ use Illuminate\Support\Facades\Route;
 // 弁の開閉状態のルーティング
 Route::put('/System/{System}', 'Api\OptionApiController@update');
 
+// 弁の操作履歴のルーティング
+Route::post('/System', 'Api\OptionApiController@store');
+
 // 付箋のルーティング
 Route::put('/Tag/{Tag}', 'Api\OptionApiController@updateTag');
 

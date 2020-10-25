@@ -35,7 +35,8 @@
                                 resetOpen(),
                                 sendStore(),
                                 time(),
-                                sendStoreHistory()
+                                sendStoreHistory(),
+                                test()
                         "
                         width="205px"
                         height="50px"
@@ -58,7 +59,8 @@
                                 resetClose(),
                                 sendStore(),
                                 time(),
-                                sendStoreHistory()
+                                sendStoreHistory(),
+                                test()
                         "
                         width="205px"
                         height="50px"
@@ -81,7 +83,8 @@
                                 resetAdjusted(),
                                 sendStore(),
                                 time(),
-                                sendStoreHistory()
+                                sendStoreHistory(),
+                                test()
                         "
                         width="205px"
                         height="50px"
@@ -131,6 +134,26 @@ export default {
                     axios
                         .put("/api/System/" + this.optionId, {
                             valve_state: this.stateInput
+                        })
+                        .then(response => {
+                            console.log(response);
+                        }),
+                200
+            );
+        },
+        test() {
+            // タイマーで遅らせる理由
+            // propsに弁1番が入っている時に弁2番を操作する→弁2番の操作が弁1番の方に反映されてしまう。
+            setTimeout(
+                () =>
+                    // axiosでデータを送る(このコンポーネント=>app/Http/Request/StoreOption.php=>ValveController=>DB)
+                    axios
+                        .post("/api/System", {
+                            valve_name:this.optionName,
+                            valve_number:this.optionNumber,
+                            valve_usually_state:this.optionUsuallyState,
+                            valve_state: this.stateInput,
+                            operator:"",
                         })
                         .then(response => {
                             console.log(response);

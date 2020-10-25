@@ -192,8 +192,8 @@ export default {
     width: 1200px;
     position: absolute;
     /* ローカル環境では-450pxが適切 */
-    /* top: -450px; */
-    top: 100px;
+    top: -450px;
+    /* top: 100px; */
     left: 200px;
     z-index: 2;
 }

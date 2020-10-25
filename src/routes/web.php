@@ -22,9 +22,10 @@ use Illuminate\Support\Facades\Route;
 //     return view('SystemList');
 // });
 
-// ホーム画面の表示処理
+// 初期のホーム画面の表示処理
 Route::get('/', 'ValveController@HomeIndex');
 
+// メニューバーからホーム画面を開く為の処理
 Route::get('/home', function () {
     return view('home');
 });
@@ -32,8 +33,9 @@ Route::get('/home', function () {
 // 1号機目次表示処理
 Route::get('/DiagramsList', 'ValveController@ListIndex');
 
-// 弁操作履歴表示処理
+// 弁操作履歴表示処理 & カラムの削除処理
 Route::get('/History', 'ValveController@HistoryIndex');
+
 
 // Route::get('/SystemList/json', 'ValveController@json');
 // Route::get('/SystemList/json/{id}', 'ValveController@json');
@@ -46,10 +48,6 @@ Route::get('/History', 'ValveController@HistoryIndex');
 
 // ValveOptionsのテーブルにデータを登録する処理
 // Route::post('/SystemD', 'ValveController@store');
-
-// Route::resource('SystemD', 'ValveController')->only([
-//     'index', 'store', 'edit', 'update', 'destroy'
-// ]);
 
 
 // 以下Laravelデフォルト

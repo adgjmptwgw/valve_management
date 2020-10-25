@@ -198,7 +198,17 @@ class ValveController extends Controller
     // 履歴ページの表示処理
     public function HistoryIndex()
     {
-        $histories = History::orderBy('created_at', 'asc')->get();
+        $maxRecordNumber = History::get()->count();
+        $lastRecordNumber = History::all()->last()->id;
+
+        // 履歴が10000レコードを超えた場合、10000個以上前のレコードは全て削除する。
+        if ($maxRecordNumber >= 10000) {
+            $deleteNumbers = $lastRecordNumber - 10000;
+            History::where('id', '<=', $deleteNumbers)->delete();
+        }
+
+        // 履歴の表示処理
+        $histories = History::orderBy('created_at', 'desc')->get();
         return view('History', [
             'histories' => $histories
         ]);
@@ -235,28 +245,26 @@ class ValveController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'valve_memo' => 'sometimes|max:50',
-        ]);
-        // バリデーション:エラー
-        if ($validator->fails()) {
-            return redirect()
-                ->route('SystemD.index')
-                ->withInput()
-                ->withErrors($validator);
-        }
-        // Eloquentモデル
-        $valveOption = new ValveOption;
-        $valveOption->valve_name = 'CWP出口弁';
-        $valveOption->valve_number = 'SW-1';
-        $valveOption->valve_usually_state = '開';
-        $valveOption->valve_state = '閉';
-        $valveOption->valve_lock = '保安ロック';
-        $valveOption->valve_memo = $request->valve_memo;
-        $valveOption->operator = '楠本';
-        $valveOption->save();
-        // ルーティング「valveOptions.index」にリクエスト送信（一覧ページに移動）
-        return redirect()->route('SystemD.index');
+        // $validator = Validator::make($request->all(), [
+        //     'valve_memo' => 'sometimes|max:50',
+        // ]);
+        // if ($validator->fails()) {
+        //     return redirect()
+        //         ->route('SystemD.index')
+        //         ->withInput()
+        //         ->withErrors($validator);
+        // }
+        // $valveOption = new ValveOption;
+        // $valveOption->valve_name = 'CWP出口弁';
+        // $valveOption->valve_number = 'SW-1';
+        // $valveOption->valve_usually_state = '開';
+        // $valveOption->valve_state = '閉';
+        // $valveOption->valve_lock = '保安ロック';
+        // $valveOption->valve_memo = $request->valve_memo;
+        // $valveOption->operator = '楠本';
+        // $valveOption->save();
+        
+        // return redirect()->route('SystemD.index');
     }
 
     /**
@@ -291,34 +299,33 @@ class ValveController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validator = Validator::make($request->all(), [
-            'valve_state' => 'sometimes|max:50',
-            'valve_memo' => 'sometimes|max:50',
-        ]);
+        // $validator = Validator::make($request->all(), [
+        //     'valve_state' => 'sometimes|max:50',
+        //     'valve_memo' => 'sometimes|max:50',
+        // ]);
 
-        if ($validator->fails()) {
-            return redirect()
-                ->route('SystemD.index')
-                ->withInput()
-                ->withErrors($validator);
-        }
+        // if ($validator->fails()) {
+        //     return redirect()
+        //         ->route('SystemD.index')
+        //         ->withInput()
+        //         ->withErrors($validator);
+        // }
 
-        $valveOption = ValveOption::find($id);
-        // $valveOption->valve_name = 'CWP出口弁';
-        if ($request->valve_state == !NULL) {
-            $valveOption->valve_state = $request->valve_state;
-        }
-        if ($request->valve_lock == !NULL) {
-            $valveOption->valve_lock = $request->valve_lock;
-        }
-        if ($request->valve_memo == !NULL) {
-            $valveOption->valve_memo = $request->valve_memo;
-        }
-        if ($request->operator == !NULL) {
-            $valveOption->operator = '楠本';
-        }
-        $valveOption->save();
-        return redirect()->route('SystemD.index');
+        // $valveOption = ValveOption::find($id);
+        // if ($request->valve_state == !NULL) {
+        //     $valveOption->valve_state = $request->valve_state;
+        // }
+        // if ($request->valve_lock == !NULL) {
+        //     $valveOption->valve_lock = $request->valve_lock;
+        // }
+        // if ($request->valve_memo == !NULL) {
+        //     $valveOption->valve_memo = $request->valve_memo;
+        // }
+        // if ($request->operator == !NULL) {
+        //     $valveOption->operator = '楠本';
+        // }
+        // $valveOption->save();
+        // return redirect()->route('SystemD.index');
     }
 
     /**
@@ -327,8 +334,15 @@ class ValveController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete()
     {
-        //
+        $maxUserId = History::max('id');
+        if($maxUserId > 3){
+            // ddd($maxUserId);
+            // $number = $maxUserId - 3;
+            $test = History::whereBetween('id', [1, 3])->delete();
+            // ddd($test);
+            // $test->delete();
+        }
     }
 }

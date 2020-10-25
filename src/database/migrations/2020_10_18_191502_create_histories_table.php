@@ -14,12 +14,11 @@ class CreateHistoriesTable extends Migration
     public function up()
     {
         Schema::create('Histories', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('valve_name');
             $table->string('valve_number');
             $table->string('valve_usually_state');
             $table->string('valve_state');
-            $table->string('valve_memo')->nullable();
             $table->string('operator')->nullable();
             $table->timestamps();
         });

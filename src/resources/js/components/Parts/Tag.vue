@@ -33,7 +33,10 @@
                                 block
                                 icon
                             >
-                                <div @click="pushSaveButton()">
+                                <div @click="
+                                    updateTag();
+                                    pushSaveButton();
+                                ">
                                     close
                                 </div>
                             </v-btn>
@@ -138,8 +141,8 @@ export default {
                         .put("/api/Tag/" + this.tagId, {
                             tag_name:this.tagName,
                             content: this.memoContent,
-                            position_X: this.position_X,
-                            position_Y: this.position_Y,
+                            position_X: this.tagPosi.x,
+                            position_Y: this.tagPosi.y,
                             visibility: this.tagShow
                         })
                         .then(response => {

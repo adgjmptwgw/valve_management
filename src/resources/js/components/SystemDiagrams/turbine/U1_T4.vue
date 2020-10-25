@@ -1,95 +1,85 @@
 <template>
-    <div>
-        <v-app>
-            <div @mousemove="touchmove($event)" @mouseup="touchend()">
-                <div>
-                    <!-- <img
-                        :src="'/img/SystemDiagrams/boiler/B-4.png'"
-                        alt="B-4系統線図"
-                        class="b-4"
-                    /> -->
-                </div>
-                <!-- 付箋関係 -->
-                <div
-                    @mousedown="touchstart()"
-                    :style="memoPosition"
-                    class="tag"
+    <v-app class="whole_page">
+        <!-- 付箋の座標を取得するマウスイベント -->
+        <div @mousemove="touchmove($event)" @mouseup="touchend()">
+            <!-- 付箋コンポーネント -->
+            <!-- @mousemove.stop -->
+            <div @mousedown="touchstart()" :style="memoPosition" class="tag">
+                <Tag :tagName="systemDiagram" :tagPosi="tag_posi"></Tag>
+            </div>
+            <!-- ルーペコンポーネント -->
+            <div>
+                <Loupe :sendSrc="imgSrc"></Loupe>
+            </div>
+            <!-- 系統線図の各弁をv-forで展開 -->
+            <div
+                v-for="(Valve, index) in u1_t4"
+                :key="Valve.id"
+                @click="
+                    getId(Valve.id),
+                        getNumber(Valve.valve_number),
+                        getName(Valve.valve_name),
+                        getUsuallyState(Valve.valve_usually_state),
+                        getMemo(Valve.valve_memo),
+                        getIndex(index)
+                "
+            >
+                <!-- v-forで展開する弁(バルブ)コンポーネント -->
+                <p
+                    :class="assignClass + Valve.id"
+                    @click="(show = !show), (othersShow = false)"
                 >
-                    <Tag :tagName="systemDiagram" :tagPosi="tag_posi"></Tag>
-                </div>
-                <!-- ルーペ -->
-                <div>
-                    <Loupe :sendSrc="imgSrc"></Loupe>
-                </div>
-                <!-- 系統線図の各弁をv-forで展開 -->
-                <div
-                    v-for="(Valve, index) in u1_t4"
-                    :key="Valve.id"
-                    @click="
-                        getId(Valve.id),
-                            getNumber(Valve.valve_number),
-                            getName(Valve.valve_name),
-                            getUsuallyState(Valve.valve_usually_state),
-                            getMemo(Valve.valve_memo),
-                            getIndex(index)
-                    "
-                >
-                    <!-- 弁名称表示用 -->
-                    <p :class="assignClass + Valve.id" class="valve_name">
-                        {{ Valve.valve_number }}
-                    </p>
-
-                    <!-- v-forで展開する弁のコンポーネント -->
-                    <p
-                        :class="assignClass + Valve.id"
-                        @click="(show = !show), (othersShow = false)"
-                    >
-                        <BaseValve
-                            :option-id="Valve.id"
-                            :open-command="openCommand"
-                            :close-command="closeCommand"
-                            :adjusted-command="adjustedCommand"
-                            :system-diagram="systemDiagram"
-                            :watchStatus="watchStatus"
-                        ></BaseValve>
-                    </p>
-                </div>
-
-                <!-- 弁オプション(開閉ボタン等)のコンポーネント。 -->
-                <div v-if="show" @click="show = !show" class="valve_options">
-                    <ValveOption
-                        :option-id="sendId"
-                        :option-name="sendName"
-                        :option-number="sendNumber"
-                        :option-usually-state="sendUsuallyState"
-                        @push-open="pushOpen"
-                        @push-close="pushClose"
-                        @push-adjusted="pushAdjusted"
-                        @push-reset-open="pushResetOpen"
-                        @push-reset-close="pushResetClose"
-                        @push-reset-adjusted="pushResetAdjusted"
-                        @push-state-button="pushStateButton"
-                        @push-others-button="othersShow = !othersShow"
-                    ></ValveOption>
-                </div>
-
-                <!-- その他の弁オプション(弁名称・弁番号・通常状態・メモ)のコンポーネント -->
-                <p v-if="othersShow">
-                    <BaseSubOption
-                        :option-id="sendId"
-                        :option-name="sendName"
-                        :option-number="sendNumber"
-                        :option-usually-state="sendUsuallyState"
-                        :option-memo="sendMemo"
-                        :systemDiagram="systemDiagram"
-                        @push-save-invisible="othersShow = false"
-                        @push-save-update="pushSaveUpdate"
-                        @push-save-reset="pushSaveReset"
-                    ></BaseSubOption>
+                    <BaseValve
+                        :option-id="Valve.id"
+                        :open-command="openCommand"
+                        :close-command="closeCommand"
+                        :adjusted-command="adjustedCommand"
+                        :system-diagram="systemDiagram"
+                        :watchStatus="watchStatus"
+                    ></BaseValve>
                 </p>
             </div>
-        </v-app>
-    </div>
+
+            <!-- 弁(バルブ)オプション(開閉ボタン等)のコンポーネント。 -->
+            <div v-if="show" @click="show = !show" class="valve_options">
+                <ValveOption
+                    :option-id="sendId"
+                    :option-name="sendName"
+                    :option-number="sendNumber"
+                    :option-usually-state="sendUsuallyState"
+                    @push-open="pushOpen"
+                    @push-close="pushClose"
+                    @push-adjusted="pushAdjusted"
+                    @push-reset-open="pushResetOpen"
+                    @push-reset-close="pushResetClose"
+                    @push-reset-adjusted="pushResetAdjusted"
+                    @push-state-button="pushStateButton"
+                    @push-others-button="othersShow = !othersShow"
+                ></ValveOption>
+            </div>
+
+            <!-- その他の弁(バルブ)オプション(弁名称・弁番号・通常状態・メモ)のコンポーネント -->
+            <p v-if="othersShow">
+                <BaseSubOption
+                    :option-id="sendId"
+                    :option-name="sendName"
+                    :option-number="sendNumber"
+                    :option-usually-state="sendUsuallyState"
+                    :option-memo="sendMemo"
+                    :systemDiagram="systemDiagram"
+                    @push-save-invisible="othersShow = false"
+                    @push-save-update="pushSaveUpdate"
+                    @push-save-reset="pushSaveReset"
+                ></BaseSubOption>
+            </p>
+        </div>
+        <!-- 系統線図毎の弁のポジションや大きさに関するCSSの読み込み -->
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="/css/SystemDiagram/turbine/T-4.css"
+        />
+    </v-app>
 </template>
 
 <script>
@@ -110,7 +100,7 @@ export default {
             // 弁のメモ
             sendMemo: "",
 
-            // v-forで展開した各弁にclassを自動で割り振る。// 例: class="t4_3" => 系統図=t4,id=3の弁
+            // v-forで展開した各弁にclassを自動で割り振る。// 例: class="u1_t4_1" => 1号T-4,id=1の弁
             assignClass: "u1_t4_",
 
             // 弁オプションからemitで飛んできたイベントで用いる。各弁のコンポーネントにpropsで送る。
@@ -136,8 +126,8 @@ export default {
             },
             memoPositionStyles: {
                 position: "absolute",
-                top: "",
-                left: ""
+                top: this.$store.state.storeTags[0].position_X,
+                left: this.$store.state.storeTags[0].position_Y,
             },
             // クリックしている時だけ、trueになる。tag_posiをmemoPositionStylesに代入する際、使用。
             is_mousedown: false,
@@ -145,6 +135,7 @@ export default {
             // 弁の通常状態の表示に関するデータ。弁のidが入ってくる。
             watchStatus: "",
 
+            // Loupe.vueにpropsで送る系統線図のsrc
             imgSrc: "/img/SystemDiagrams/turbine/T-4.png"
         };
     },
@@ -156,6 +147,10 @@ export default {
                 "--position-left": this.memoPositionStyles.left + "px"
             };
         }
+    },
+    created() {
+        // ページを開いた時、画面がそのページにスクロールする。
+        scrollTo(0, 125);
     },
     mounted() {
         //store.stateの中から、state.tagNameとこのページのsystemDiagramが同じものを探し出して、変数にいれる。
@@ -169,10 +164,7 @@ export default {
             this.tag_posi.y = getStore.position_Y;
             this.memoPositionStyles.left = this.tag_posi.x - 30;
             this.memoPositionStyles.top = this.tag_posi.y - 150;
-        }
-
-        // ページを開いた時、画面がそのページにスクロールする。
-        scrollTo(0, 125);
+        }        
     },
     methods: {
         // SystemList.blade.phpから送られてきたデータがv-forで展開される。v-forで展開された各idとvalve_nameを
@@ -266,20 +258,14 @@ export default {
 </script>
 
 <style scoped>
-/* 系統線図T-8 */
-.t-4 {
-    width: 1400px;
-    height: auto;
-    padding-left: 200px;
-}
-/* 弁名称の表示関係のcss */
-.valve_name {
-    margin-top: 20px;
+/* ページ全体のcss */
+.whole_page{
+    height: 1100px;
 }
 /* 弁オプション */
 .valve_options {
     position: absolute;
-    top: 70px;
+    top: 50px;
     left: 15px;
 }
 /* 付箋を動かすときのポジション(css変数を使用。computedからデータが飛んでくる) */
@@ -287,6 +273,7 @@ export default {
     position: absolute;
     top: var(--position-top);
     left: var(--position-left);
+    z-index: 1;
 }
 
 /* 各弁のclass */

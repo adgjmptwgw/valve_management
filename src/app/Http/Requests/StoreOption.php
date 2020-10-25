@@ -24,11 +24,11 @@ class StoreOption extends FormRequest
     public function rules()
     {
         return [
-            'valve_name' => 'sometimes|max:50',
-            'valve_number' => 'sometimes|max:50',
-            'valve_usuallyState' => 'sometimes|max:50',
-            'valve_state' => 'sometimes|max:50',
-            'valve_memo' => 'sometimes|max:50',
+            'valve_name' => 'sometimes|max:15',
+            'valve_number' => 'sometimes|max:30',
+            'valve_usuallyState' => 'sometimes|max:3',
+            'valve_state' => 'sometimes|max:3',
+            'valve_memo' => 'sometimes|max:100',
         ];
     }
 }

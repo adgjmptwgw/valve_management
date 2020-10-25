@@ -128,9 +128,9 @@ export default new Vuex.Store({
                 state.historyTime.push(time);
             }
 
-            console.log(state.historyNumber);
-            console.log(state.historyName);
-            console.log(state.historyTime);
+            // console.log(state.historyNumber);
+            // console.log(state.historyName);
+            // console.log(state.historyTime);
 
             for (let i = 0; i < state.storeValves.length; i++) {
                 // "引数のid"と"stateのid"が同じものを探してくる。
@@ -157,13 +157,13 @@ export default new Vuex.Store({
                         alert("弁名称と弁番号を入力して下さい。");
                     }
                 } else {
-                    console.log(
-                        "id=" +
-                            id +
-                            "の弁はstoreValvesの" +
-                            [i] +
-                            "番目の配列の中に存在しません。"
-                    );
+                    // console.log(
+                    //     "id=" +
+                    //         id +
+                    //         "の弁はstoreValvesの" +
+                    //         [i] +
+                    //         "番目の配列の中に存在しません。"
+                    // );
                 }
 
                 // console.log(state.storeU1_T3);
