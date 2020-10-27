@@ -62,10 +62,6 @@
             <p v-if="othersShow">
                 <BaseSubOption
                     :option-id="sendId"
-                    :option-name="sendName"
-                    :option-number="sendNumber"
-                    :option-usually-state="sendUsuallyState"
-                    :option-memo="sendMemo"
                     :systemDiagram="systemDiagram"
                     @push-save-invisible="othersShow = false"
                     @push-save-update="pushSaveUpdate"

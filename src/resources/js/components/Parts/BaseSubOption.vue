@@ -76,15 +76,11 @@
 export default {
     props: [
         "optionId",
-        // "optionName",
-        // "optionNumber",
-        // "optionUsuallyState",
-        // "optionMemo",
         "systemDiagram"
     ],
     data() {
         return {
-            // 入力フォームに初期表示させる為に、直接データを代入。
+            // 入力フォームに初期表示させる為に、storeからデータを代入。
             nameInput: "",
             numberInput: "",
             usuallyStateInput: "",
@@ -116,15 +112,7 @@ export default {
                 // console.log(systemDiagrams);
             }
         }
-        // もしt1の系統線図であれば、store.state.storeU1_T1のデータを使う。
-        // if (this.systemDiagram == "u1_t3") {
-        //     var systemDiagrams = this.$store.state.storeValves[0];
-        // } else if (this.systemDiagram == "u1_t4") {
-        //     var systemDiagrams = this.$store.state.storeValves[1];
-        // } else if (this.systemDiagram == "u1_b4") {
-        //     var systemDiagrams = this.$store.state.storeValves[2];
-        // }
-
+    
         // Vuexのstore.stateの中から、state.idとクリックした弁のidが同じものを探し出して、変数にいれる。
         let getStore = systemDiagrams.find(valvesStore => {
             return valvesStore.id == this.optionId;

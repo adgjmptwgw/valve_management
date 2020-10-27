@@ -69,7 +69,7 @@ class OptionApiController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    //  弁の開閉状態更新処理
+    //  弁の開閉状態 & サブオプション更新処理
     public function update(StoreOption $request, $id)
     {
         // Log::debug('$request="' . $request . '"');
@@ -86,9 +86,9 @@ class OptionApiController extends Controller
         if ($request->valve_state == !NULL) {
             $valveOption->valve_state = $request->valve_state;
         }
-        if ($request->valve_memo == !NULL) {
+        
             $valveOption->valve_memo = $request->valve_memo;
-        }
+        
         if ($request->operator == !NULL) {
             $valveOption->operator = '';
         }
