@@ -1,13 +1,13 @@
 <template>
     <v-app>
         <v-container class="sub_option"> 
-            <v-toolbar flat color="pink lighten-4" width="1200px">
+            <v-toolbar flat color="grey lighten-2" width="1200px">
                 <img src="/img/Parts/gear.png" alt="歯車" />
                 <v-toolbar-title class="font-weight-light">
                    <p class="title_name">サブオプション</p>
                 </v-toolbar-title>
                 <v-spacer></v-spacer>
-                <v-btn color="red darken-1" fab>
+                <v-btn color="grey lighten-4" fab>
                     <v-icon @click="invisibleOthersOption()">mdi-close</v-icon>
                 </v-btn>
             </v-toolbar>

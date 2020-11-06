@@ -7,7 +7,7 @@
                 elevation="24"
                 link
             >
-                <v-toolbar color="pink lighten-4" class="valve_names">
+                <v-toolbar color="grey lighten-2" class="valve_names">
                     <img src="/img/Parts/gear.png" alt="歯車" />
                     <v-toolbar-title>バルブオプション</v-toolbar-title> 
                 </v-toolbar>
